@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core concepts · Approving</title>
+  <meta name="description" content="FSM orchestration, human gates, sandboxed execution, and artifact contracts.">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/concepts/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/concepts/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/concepts/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/en/">Approving</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
+        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="Language">
+        <a class="lang-switch__link" href="/guide/concepts/" data-locale-set="zh-CN">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link is-current" href="/en/guide/concepts/" data-locale-set="en" aria-current="page">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">Docs</p>
+        <h1 class="doc__title">Core concepts</h1>
+        <p class="doc__lead">FSM orchestration, human gates, sandboxed execution, and artifact contracts.</p>
+      </header>
+      <div class="doc__body">
+        <h2>FSM orchestration</h2>
+<p>Approving turns coding agents into steps in a workflow. You orchestrate on a finite state machine:</p>
+<ul>
+<li><strong>Nodes</strong> are states (agent / react / gate / …)</li>
+<li><strong>Edges</strong> are transitions, with configurable success, failure, and rollback paths</li>
+<li>Use <code>when</code> guards and checkpoints to make risky steps explicit</li>
+</ul>
+<p>This is not a one-shot, irreversible agent run: design the path first, then gate the critical steps.</p>
+<h2>Human gates</h2>
+<p>When a step needs a human decision, the run stops at a <strong>gate</strong> until someone approves or rejects.</p>
+<p>Approval moments are first-class — not an afterthought. Approving bets that agents can be fast while people still own the critical decisions.</p>
+<h2>Real Docker sandboxes</h2>
+<p>Agents are not black-box prompts on a laptop. They execute in Docker containers through the in-repo <a href="https://github.com/cocofhu/approving/tree/main/sandbox-gateway">sandbox-gateway</a>, talking over ACP.</p>
+<p>Supported backends: <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>CodeBuddy</strong>, and <strong>Trae</strong>. Configure <code>acpBackend</code> per agent; keep secrets in agent meta env.</p>
+<h2>Artifact contract and MCP</h2>
+<p>Each run has an isolated artifact MCP. Agents call tools such as:</p>
+<ul>
+<li><code>write_artifact</code></li>
+<li><code>set_*</code></li>
+<li><code>node_complete</code></li>
+</ul>
+<p>Isolation is by run token, leaving an inspectable paper trail.</p>
+<h2>Single-repo self-hosting</h2>
+<p><code>sandbox-gateway</code> and the generic sandbox image sources live in this repository. One clone is enough to self-host.</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/gateway/">Gateway</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gateway · Approving</title>
+  <meta name="description" content="sandbox-gateway contract summary; full details in GATEWAY.md.">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/gateway/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/gateway/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/gateway/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/en/">Approving</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
+        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="Language">
+        <a class="lang-switch__link" href="/help/gateway/" data-locale-set="zh-CN">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link is-current" href="/en/help/gateway/" data-locale-set="en" aria-current="page">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">Docs</p>
+        <h1 class="doc__title">Gateway</h1>
+        <p class="doc__lead">sandbox-gateway contract summary; full details in GATEWAY.md.</p>
+      </header>
+      <div class="doc__body">
+        <p>Approving schedules the generic sandbox image through the vendored <strong>sandbox-gateway</strong> control plane. The Web UI talks to the Approving API; agent / react nodes execute in containers via the gateway.</p>
+<h2>Full documentation</h2>
+<ul>
+<li><a href="https://github.com/cocofhu/approving/blob/main/GATEWAY.md">GATEWAY.md</a></li>
+</ul>
+<h2>Health checks (default local stack)</h2>
+<ul>
+<li>Gateway: <a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
+<li>Approving API: <a href="http://localhost:8080/api/health">http://localhost:8080/api/health</a></li>
+</ul>
+<h2>Source locations</h2>
+<ul>
+<li>Control plane: <code>sandbox-gateway/gateway/</code></li>
+<li>Sandbox image and scripts: <code>sandbox-gateway/sandbox/</code>, <code>sandbox-gateway/scripts/</code></li>
+</ul>
+<h2>Related</h2>
+<ul>
+<li><a href="../configuration/">Configuration</a></li>
+<li><a href="../../guide/concepts/">Core concepts</a></li>
+</ul>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/gateway/">Gateway</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

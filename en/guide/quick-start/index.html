@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quick start · Approving</title>
+  <meta name="description" content="Bring up Approving on a Linux host with Docker Compose.">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/quick-start/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/quick-start/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/quick-start/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/en/">Approving</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
+        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="Language">
+        <a class="lang-switch__link" href="/guide/quick-start/" data-locale-set="zh-CN">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link is-current" href="/en/guide/quick-start/" data-locale-set="en" aria-current="page">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">Docs</p>
+        <h1 class="doc__title">Quick start</h1>
+        <p class="doc__lead">Bring up Approving on a Linux host with Docker Compose.</p>
+      </header>
+      <div class="doc__body">
+        <h2>Prerequisites</h2>
+<ul>
+<li>A Linux host</li>
+<li>Git, Docker, and Docker Compose installed</li>
+</ul>
+<h2>Clone the repository</h2>
+<pre><code class="language-bash">git clone https://github.com/cocofhu/approving.git
+cd approving
+</code></pre>
+<h2>Start</h2>
+<p>By default this pulls published images from GHCR (no local image build required):</p>
+<pre><code class="language-bash">./start.sh -d
+</code></pre>
+<p>Then open:</p>
+<ul>
+<li>UI / API: <a href="http://localhost:8080">http://localhost:8080</a></li>
+<li>API health: <a href="http://localhost:8080/api/health">http://localhost:8080/api/health</a></li>
+<li>Gateway health: <a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
+<li>Default login: <code>admin</code> / <code>demo1234</code> (local-demo)</li>
+</ul>
+<p><code>./start.sh</code> also pulls the <strong>sandbox runtime</strong> image from GHCR (large). Until that finishes, sandbox chats may stay on “starting sandbox…”.</p>
+<h2>Common commands</h2>
+<pre><code class="language-bash">./start.sh logs
+./start.sh down
+./start.sh pull          # refresh GHCR images
+./start.sh dev -d        # source stack: go run + Vite HMR
+</code></pre>
+<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
+<h2>Next steps</h2>
+<ul>
+<li><a href="../concepts/">Core concepts</a> — FSM, gates, sandbox, artifacts</li>
+<li><a href="../../help/configuration/">Configuration summary</a> — points to full <code>CONFIGURATION.md</code></li>
+<li><a href="../../help/gateway/">Gateway summary</a> — points to <code>GATEWAY.md</code></li>
+</ul>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/gateway/">Gateway</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

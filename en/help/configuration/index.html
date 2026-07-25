@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configuration · Approving</title>
+  <meta name="description" content="Configuration highlights; full details live in source CONFIGURATION.md.">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/configuration/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/configuration/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/configuration/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/en/">Approving</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
+        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="Language">
+        <a class="lang-switch__link" href="/help/configuration/" data-locale-set="zh-CN">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link is-current" href="/en/help/configuration/" data-locale-set="en" aria-current="page">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">Docs</p>
+        <h1 class="doc__title">Configuration</h1>
+        <p class="doc__lead">Configuration highlights; full details live in source CONFIGURATION.md.</p>
+      </header>
+      <div class="doc__body">
+        <p>Approving server configuration is primarily YAML / environment variables (local examples: <code>server/config.example.yaml</code> and the root <code>.env.example</code>).</p>
+<h2>Full documentation</h2>
+<p>Treat the in-repo docs as authoritative (avoids drift between this site and source):</p>
+<ul>
+<li><a href="https://github.com/cocofhu/approving/blob/main/server/CONFIGURATION.md">server/CONFIGURATION.md</a></li>
+</ul>
+<p>That document is generated/checked by <code>go run ./cmd/gen-configdoc</code>; CI runs <code>-check</code>.</p>
+<h2>Local quick path</h2>
+<pre><code class="language-bash">./start.sh -d          # published image stack
+./start.sh dev -d      # source + HMR
+</code></pre>
+<p>Image tags / digests, gateway, and sandbox-related variables are in <code>.env.example</code>. Agent API keys, <code>GITHUB_*</code> / <code>GITLAB_*</code> / SSH, and similar belong in agent meta env (values may reference <code>${vars.&lt;name&gt;}</code>).</p>
+<h2>Related</h2>
+<ul>
+<li><a href="../gateway/">Gateway</a></li>
+<li><a href="../contributing/">Contributing</a></li>
+</ul>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/gateway/">Gateway</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>
