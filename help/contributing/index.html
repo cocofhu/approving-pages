@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>贡献 · Approving</title>
+  <meta name="description" content="如何为 Approving 做贡献；指向仓库贡献指南。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/approving-pages/css/tokens.css">
+  <link rel="stylesheet" href="/approving-pages/css/site.css">
+  <link rel="stylesheet" href="/approving-pages/css/page.css">
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/approving-pages/">Approving</a>
+      <nav class="site-header__nav" aria-label="主导航">
+        <a class="site-header__link" href="/approving-pages/guide/quick-start/">文档</a>
+        <a class="site-header__link" href="/approving-pages/guide/concepts/">概念</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">文档</p>
+        <h1 class="doc__title">贡献</h1>
+        <p class="doc__lead">如何为 Approving 做贡献；指向仓库贡献指南。</p>
+      </header>
+      <div class="doc__body">
+        <p>欢迎贡献。请先阅读：</p>
+<ul>
+<li><a href="https://github.com/cocofhu/approving/blob/main/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a></li>
+<li><a href="https://github.com/cocofhu/approving/blob/main/SECURITY.md">SECURITY.md</a></li>
+<li><a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a></li>
+</ul>
+<p>面向 Agent / 贡献者的短规则（path→命令、门禁、勿碰清单）：</p>
+<ul>
+<li><a href="https://github.com/cocofhu/approving/blob/main/AGENTS.md">AGENTS.md</a></li>
+</ul>
+<h2>本站（docs/）本地构建</h2>
+<pre><code class="language-bash">cd docs
+npm ci --no-audit --no-fund
+npm run build
+</code></pre>
+<p>预览：</p>
+<pre><code class="language-bash">BASE_PATH=/ npm run server
+</code></pre>
+<p>产物在 <code>docs/public/</code>。推送到 <code>main</code> 且改动 <code>docs/**</code> 时，<code>ci-docs</code> 会构建并部署到独立 Pages 仓库 <code>cocofhu/approving-pages</code>（需配置 Secret <code>PAGES_DEPLOY_TOKEN</code>）。</p>
+<h2>相关模块门禁</h2>
+<p>改 <code>server/</code>、<code>web/</code>、<code>sandbox-gateway/</code> 时请按 <code>AGENTS.md</code> 跑对应本地套件，不要只依赖 always-on 的 <code>ci</code> gate。</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="页脚">
+        <a href="/approving-pages/guide/quick-start/">快速开始</a>
+        <a href="/approving-pages/help/configuration/">配置</a>
+        <a href="/approving-pages/help/gateway/">网关</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

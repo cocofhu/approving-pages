@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>核心概念 · Approving</title>
+  <meta name="description" content="FSM 编排、人审门禁、沙箱执行与产物契约。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/approving-pages/css/tokens.css">
+  <link rel="stylesheet" href="/approving-pages/css/site.css">
+  <link rel="stylesheet" href="/approving-pages/css/page.css">
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/approving-pages/">Approving</a>
+      <nav class="site-header__nav" aria-label="主导航">
+        <a class="site-header__link" href="/approving-pages/guide/quick-start/">文档</a>
+        <a class="site-header__link" href="/approving-pages/guide/concepts/">概念</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">文档</p>
+        <h1 class="doc__title">核心概念</h1>
+        <p class="doc__lead">FSM 编排、人审门禁、沙箱执行与产物契约。</p>
+      </header>
+      <div class="doc__body">
+        <h2>FSM 编排</h2>
+<p>Approving 把 coding agent 变成工作流里的步骤。你在有限状态机上编排：</p>
+<ul>
+<li><strong>节点</strong>即状态（agent / react / gate / …）</li>
+<li><strong>边</strong>即转移，可配置成功、失败、回滚路径</li>
+<li>可用 <code>when</code> 守卫、检查点，把风险步骤显式化</li>
+</ul>
+<p>不再是无法撤销的一次性 Agent 跑法：先设计路径，再门禁关键步骤。</p>
+<h2>人审门禁（gate）</h2>
+<p>当某一步需要人做决定时，运行会停在 <strong>gate</strong>，直到有人批准或拒绝。</p>
+<p>批准时刻是一等公民，而不是事后补丁。产品名 Approving 的赌注是：Agent 可以很快，但关键决策仍由人拥有。</p>
+<h2>真实 Docker 沙箱</h2>
+<p>Agent 不是在笔记本上跑的黑盒 prompt。它们通过仓库内嵌的 <a href="https://github.com/cocofhu/approving/tree/main/sandbox-gateway">sandbox-gateway</a> 在 Docker 容器中执行，经 ACP 通信。</p>
+<p>支持 <strong>Cursor</strong>、<strong>Claude Code</strong>、<strong>CodeBuddy</strong>、<strong>Trae</strong>。按 Agent 配置 <code>acpBackend</code>；密钥放在 Agent meta env。</p>
+<h2>产物契约与 MCP</h2>
+<p>每个 run 有隔离的 artifact MCP。Agent 调用例如：</p>
+<ul>
+<li><code>write_artifact</code></li>
+<li><code>set_*</code></li>
+<li><code>node_complete</code></li>
+</ul>
+<p>按 run token 隔离，留下可检查的纸面轨迹。</p>
+<h2>单仓自托管</h2>
+<p><code>sandbox-gateway</code> 与通用沙箱镜像源码在本仓库。一次克隆即可自托管。</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="页脚">
+        <a href="/approving-pages/guide/quick-start/">快速开始</a>
+        <a href="/approving-pages/help/configuration/">配置</a>
+        <a href="/approving-pages/help/gateway/">网关</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

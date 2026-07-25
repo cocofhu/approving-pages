@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>网关 · Approving</title>
+  <meta name="description" content="sandbox-gateway 契约摘要；完整说明见 GATEWAY.md。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/approving-pages/css/tokens.css">
+  <link rel="stylesheet" href="/approving-pages/css/site.css">
+  <link rel="stylesheet" href="/approving-pages/css/page.css">
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/approving-pages/">Approving</a>
+      <nav class="site-header__nav" aria-label="主导航">
+        <a class="site-header__link" href="/approving-pages/guide/quick-start/">文档</a>
+        <a class="site-header__link" href="/approving-pages/guide/concepts/">概念</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">文档</p>
+        <h1 class="doc__title">网关</h1>
+        <p class="doc__lead">sandbox-gateway 契约摘要；完整说明见 GATEWAY.md。</p>
+      </header>
+      <div class="doc__body">
+        <p>Approving 通过 vendored 的 <strong>sandbox-gateway</strong> 控制平面调度通用沙箱镜像。Web UI 走 Approving API；Agent / react 节点经 gateway 在容器中执行。</p>
+<h2>完整文档</h2>
+<ul>
+<li><a href="https://github.com/cocofhu/approving/blob/main/GATEWAY.md">GATEWAY.md</a></li>
+</ul>
+<h2>健康检查（默认本地栈）</h2>
+<ul>
+<li>Gateway：<a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
+<li>Approving API：<a href="http://localhost:8080/api/health">http://localhost:8080/api/health</a></li>
+</ul>
+<h2>源码位置</h2>
+<ul>
+<li>控制平面：<code>sandbox-gateway/gateway/</code></li>
+<li>沙箱镜像与脚本：<code>sandbox-gateway/sandbox/</code>、<code>sandbox-gateway/scripts/</code></li>
+</ul>
+<h2>相关</h2>
+<ul>
+<li><a href="../configuration/">配置</a></li>
+<li><a href="../../guide/concepts/">核心概念</a></li>
+</ul>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="页脚">
+        <a href="/approving-pages/guide/quick-start/">快速开始</a>
+        <a href="/approving-pages/help/configuration/">配置</a>
+        <a href="/approving-pages/help/gateway/">网关</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

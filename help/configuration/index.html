@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>配置 · Approving</title>
+  <meta name="description" content="配置要点摘要；完整说明见源码 CONFIGURATION.md。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/approving-pages/css/tokens.css">
+  <link rel="stylesheet" href="/approving-pages/css/site.css">
+  <link rel="stylesheet" href="/approving-pages/css/page.css">
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/approving-pages/">Approving</a>
+      <nav class="site-header__nav" aria-label="主导航">
+        <a class="site-header__link" href="/approving-pages/guide/quick-start/">文档</a>
+        <a class="site-header__link" href="/approving-pages/guide/concepts/">概念</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">文档</p>
+        <h1 class="doc__title">配置</h1>
+        <p class="doc__lead">配置要点摘要；完整说明见源码 CONFIGURATION.md。</p>
+      </header>
+      <div class="doc__body">
+        <p>Approving 服务端配置以 YAML / 环境变量为主（本地示例见 <code>server/config.example.yaml</code> 与根目录 <code>.env.example</code>）。</p>
+<h2>完整文档</h2>
+<p>请以仓库内权威文档为准（避免本站与源码双份漂移）：</p>
+<ul>
+<li><a href="https://github.com/cocofhu/approving/blob/main/server/CONFIGURATION.md">server/CONFIGURATION.md</a></li>
+</ul>
+<p>该文档由 <code>go run ./cmd/gen-configdoc</code> 生成/校验，CI 会 <code>-check</code>。</p>
+<h2>本地快速路径</h2>
+<pre><code class="language-bash">./start.sh -d          # 发布镜像栈
+./start.sh dev -d      # 源码 + HMR
+</code></pre>
+<p>镜像 tag / digest、网关与沙箱相关变量见 <code>.env.example</code>。Agent 侧 API key、<code>GITHUB_*</code> / <code>GITLAB_*</code> / SSH 等放在 Agent meta env（值可引用 <code>${vars.&lt;name&gt;}</code>）。</p>
+<h2>相关</h2>
+<ul>
+<li><a href="../gateway/">网关</a></li>
+<li><a href="../contributing/">贡献</a></li>
+</ul>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="页脚">
+        <a href="/approving-pages/guide/quick-start/">快速开始</a>
+        <a href="/approving-pages/help/configuration/">配置</a>
+        <a href="/approving-pages/help/gateway/">网关</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>
