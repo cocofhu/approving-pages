@@ -62,6 +62,13 @@
 <li><code>node_complete</code></li>
 </ul>
 <p>按 run token 隔离，留下可检查的纸面轨迹。</p>
+<h2>PM：<code>pm-agent-fs</code>（组织架构 + Agent 工作目录）</h2>
+<p>项目绑定的 PM Leader 可启用独立 MCP <code>pm-agent-fs</code>（新项目默认启用；旧项目若已显式保存过 EnabledMcps 需在 PM 设置中手动勾选）：</p>
+<ul>
+<li><code>pm_get_org</code>：读取组织架构，并标注相对 Leader 的 self / direct / indirect / other</li>
+<li><code>pm_fs_*</code>：对自身与汇报闭包内下属的 <strong>host 侧</strong> <code>workspace/</code> 做 list/read/write/delete/mkdir/rename（<strong>不是</strong> Run 沙箱 FS）</li>
+</ul>
+<p>写入结果与 Agent Studio「Agent 工作目录」同一磁盘树；<strong>刷新或重新打开该 Agent 后可见</strong>（不做热更新）。若 Studio 仍打开同一 Agent 且存在未保存草稿，随后 Save 可能覆盖 MCP 已写入内容——使用/Demo 时请刷新并避免并行脏写。</p>
 <h2>单仓自托管</h2>
 <p><code>sandbox-gateway</code> 与通用沙箱镜像源码在本仓库。一次克隆即可自托管。</p>
 

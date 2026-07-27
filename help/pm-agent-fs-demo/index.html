@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>help/pm-agent-fs-demo · Approving</title>
+  <meta name="description" content="Approving 帮助文档">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/pm-agent-fs-demo/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/pm-agent-fs-demo/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/pm-agent-fs-demo/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/">Approving</a>
+      <nav class="site-header__nav" aria-label="主导航">
+        <a class="site-header__link" href="/guide/quick-start/">文档</a>
+        <a class="site-header__link" href="/guide/concepts/">概念</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="语言">
+        <a class="lang-switch__link is-current" href="/help/pm-agent-fs-demo/" data-locale-set="zh-CN" aria-current="page">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link" href="/en/help/pm-agent-fs-demo/" data-locale-set="en">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">文档</p>
+        <h1 class="doc__title">help/pm-agent-fs-demo</h1>
+        
+      </header>
+      <div class="doc__body">
+        <h1>Demo：pm-agent-fs（人工门禁主路径）</h1>
+<p>对齐已批准 <code>page.html</code> 主路径，可复现步骤：</p>
+<ol>
+<li>确认项目 PM 设置已启用 <code>pm-agent-fs</code>（新项目默认启用）。</li>
+<li>在组织架构中准备：Leader → 直接下属 → 间接下属（<code>parentAgent</code> 链）。</li>
+<li>Leader 会话调用 <code>pm_get_org</code>，确认间接下属 relation=<code>indirect</code>，并出现在 <code>subtree</code> / <code>indirectReports</code>。</li>
+<li>调用 <code>pm_fs_write</code>：<code>agentName=&lt;间接下属&gt;</code>，<code>path=AGENTS.md</code>（或 <code>rules/...</code>），写入可识别内容。</li>
+<li>打开 Agent Studio → 选中该下属 → <strong>刷新或重新打开</strong>「Agent 工作目录」，对照内容一致。</li>
+<li>对非下属 Agent 再试 <code>pm_fs_write</code>，应被拒绝。</li>
+<li>全程不打开/不使用任何 Run sandbox FS/Exec。</li>
+</ol>
+<p>证据痕迹：单测 <code>TestPmGetOrgRelations</code> / <code>TestPmFSDirectIndirectSelfWrite</code> / <code>TestPmFSRejectNonReportAndCrossProject</code> / <code>TestPmFSPathEscapeRejected</code>（<code>server/internal/pmmcp/agent_fs_test.go</code>）。</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Approving</p>
+      <nav class="site-footer__nav" aria-label="页脚">
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置</a>
+        <a href="/help/gateway/">网关</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

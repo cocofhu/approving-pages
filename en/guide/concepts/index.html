@@ -62,6 +62,13 @@
 <li><code>node_complete</code></li>
 </ul>
 <p>Isolation is by run token, leaving an inspectable paper trail.</p>
+<h2>PM: <code>pm-agent-fs</code> (org + Agent workspace)</h2>
+<p>A project-bound PM Leader can enable the dedicated MCP <code>pm-agent-fs</code> (on by default for new projects; older projects with an explicit EnabledMcps list must opt in under PM settings):</p>
+<ul>
+<li><code>pm_get_org</code>: read the org and label self / direct / indirect / other relative to the Leader</li>
+<li><code>pm_fs_*</code>: list/read/write/delete/mkdir/rename the <strong>host-side</strong> <code>workspace/</code> of self and reporting-closure reports (<strong>not</strong> Run sandbox FS)</li>
+</ul>
+<p>Writes land on the same disk tree as Agent Studio「Agent workspace」and are visible after <strong>refresh or reopen</strong> (no live hot-reload). If Studio still has an unsaved dirty draft for the same Agent, a later Save may overwrite MCP writes — refresh and avoid concurrent dirty edits during demos.</p>
 <h2>Single-repo self-hosting</h2>
 <p><code>sandbox-gateway</code> and the generic sandbox image sources live in this repository. One clone is enough to self-host.</p>
 
