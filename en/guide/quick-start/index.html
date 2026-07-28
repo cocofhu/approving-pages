@@ -60,14 +60,16 @@ cd approving
 <li>Gateway health: <a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
 <li>Default login: <code>admin</code> / <code>demo1234</code> (local-demo)</li>
 </ul>
-<p><code>./start.sh</code> also pulls the <strong>sandbox runtime</strong> image from GHCR (large). Until that finishes, sandbox chats may stay on “starting sandbox…”.</p>
+<p><code>./start.sh</code> also pulls <strong>four sandbox runtime</strong> images from GHCR (one per acpBackend: cursor / claude_code / codebuddy / trae; large). Until that finishes, sandbox chats may stay on “starting sandbox…”.</p>
+<p>Agent / workspace / platform-rules data lives on a named volume (<code>/app/data</code>); <code>./start.sh restart</code> and <code>./start.sh down</code> (without <code>-v</code>) keep it. <strong>Do not run <code>docker compose down -v</code></strong> — that wipes Agent config and SQLite.</p>
 <h2>Common commands</h2>
 <pre><code class="language-bash">./start.sh logs
 ./start.sh down
-./start.sh pull          # refresh GHCR images
+./start.sh pull          # refresh GHCR images (including four sandbox runtimes)
+./start.sh restart       # down + up -d (keeps named volumes)
 ./start.sh dev -d        # source stack: go run + Vite HMR
 </code></pre>
-<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
+<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. By default sandbox images follow acpBackend; set <code>SANDBOX_IMAGE</code> / <code>APPROVING_SANDBOX_IMAGE</code> only for an optional global force. Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
 <h2>Next steps</h2>
 <ul>
 <li><a href="../concepts/">Core concepts</a> — FSM, gates, sandbox, artifacts</li>
