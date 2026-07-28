@@ -72,6 +72,7 @@ cd approving
 <p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认按 backend 分流沙箱镜像；仅当显式设置 <code>SANDBOX_IMAGE</code> / <code>APPROVING_SANDBOX_IMAGE</code> 时才全局强制。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
 <h2>下一步</h2>
 <ul>
+<li>登录后进入空项目时，可按「首次上手引导」配置后端与 API Key，一键生成 5 个 Agent 与「快速上手·轻量」工作流（默认 clone Heroku 官方 nodejs-getting-started 公开仓）。引导使用固定 Agent 名（Clarify/Visual/Implement/Test/Preview），同一 Approving 实例内仅一个项目可完成该引导。</li>
 <li><a href="../concepts/">核心概念</a> — FSM、gate、sandbox、artifact</li>
 <li><a href="../../help/configuration/">配置摘要</a> — 指向完整 <code>CONFIGURATION.md</code></li>
 <li><a href="../../help/gateway/">网关摘要</a> — 指向 <code>GATEWAY.md</code></li>
