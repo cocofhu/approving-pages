@@ -41,6 +41,13 @@
       </header>
       <div class="doc__body">
         <p>Approving 通过 vendored 的 <strong>sandbox-gateway</strong> 控制平面调度通用沙箱镜像。Web UI 走 Approving API；Agent / react 节点经 gateway 在容器中执行。</p>
+<h2>直连与平台代理</h2>
+<ul>
+<li><strong>可直连（已鉴权）</strong>：<code>session</code>（会话密码）、<code>ide</code>（IDE 密码）、<code>ssh</code>（<code>ROOT_PASSWORD</code> 或 <code>SSH_KEY</code>）。</li>
+<li><strong>不可直连</strong>：CDP <code>:9222</code>、noVNC <code>:6080</code> 无应用层鉴权，不发布到宿主/LB，详情页不展示/不复制直连地址。</li>
+<li><strong>用户入口</strong>：仅平台代理 <code>/sandbox-vnc/:sandboxId/ws</code> 与 <code>/preview-vnc/:runId/:nodeId/:port/ws</code>（启用平台 Auth 时须 Session；仅校验登录有效，不校验沙箱/跑步归属）。「打开预览」进入沙箱控台 noVNC，不直连 websockify。</li>
+<li><strong>存量窗口</strong>：Docker 已运行容器的 <code>-p</code> 须 TTL/Reinstall 才收敛；K8s 存量 <code>*-lb</code> 在网关启动调和 / Start / Reinstall 完成前仍可能对外暴露 <code>:9222</code> / <code>:6080</code>。</li>
+</ul>
 <h2>完整文档</h2>
 <ul>
 <li><a href="https://github.com/cocofhu/approving/blob/main/GATEWAY.md">GATEWAY.md</a></li>

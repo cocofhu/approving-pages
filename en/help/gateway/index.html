@@ -41,6 +41,13 @@
       </header>
       <div class="doc__body">
         <p>Approving schedules the generic sandbox image through the vendored <strong>sandbox-gateway</strong> control plane. The Web UI talks to the Approving API; agent / react nodes execute in containers via the gateway.</p>
+<h2>Direct endpoints vs platform proxy</h2>
+<ul>
+<li><strong>Direct (already authenticated)</strong>: <code>session</code> (session password), <code>ide</code> (IDE password), <code>ssh</code> (<code>ROOT_PASSWORD</code> or <code>SSH_KEY</code>).</li>
+<li><strong>Not direct</strong>: CDP <code>:9222</code> and noVNC <code>:6080</code> have no app-layer auth, are not published to the host/LB, and are not shown or copied on the sandbox detail page.</li>
+<li><strong>User path</strong>: platform proxies only — <code>/sandbox-vnc/:sandboxId/ws</code> and <code>/preview-vnc/:runId/:nodeId/:port/ws</code> (Session required when platform Auth is enabled; validity only, no sandbox/run ownership check). “Open preview” opens sandbox console noVNC; it does not dial websockify.</li>
+<li><strong>Inventory window</strong>: Docker already-running <code>-p</code> needs TTL/Reinstall. K8s inventory <code>*-lb</code> may still expose <code>:9222</code> / <code>:6080</code> until gateway startup reconcile / Start / Reinstall.</li>
+</ul>
 <h2>Full documentation</h2>
 <ul>
 <li><a href="https://github.com/cocofhu/approving/blob/main/GATEWAY.md">GATEWAY.md</a></li>
