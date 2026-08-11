@@ -62,6 +62,14 @@ cd approving
 </ul>
 <p><code>./start.sh</code> also pulls <strong>four sandbox runtime</strong> images from GHCR (one per acpBackend: cursor / claude_code / codebuddy / trae; large). Until that finishes, sandbox chats may stay on “starting sandbox…”.</p>
 <p>Agent / workspace / platform-rules and SQLite data live under <code>.localdata</code> at the repo root (bind mounts: <code>gateway</code> / <code>db</code> / <code>app-data</code>). <code>./start.sh restart</code> and <code>./start.sh down</code> keep that directory. To wipe: <code>./start.sh down &amp;&amp; rm -rf .localdata</code>.</p>
+<h3>Database and attachments share one lifecycle (backup / cleanup)</h3>
+<p>In the release stack (<code>compose.release.yaml</code>), <strong>SQLite</strong> is mounted at <code>./.localdata/db</code> and <strong>app data (including default attachment blobs under <code>data/blobs</code> relative to <code>WORKDIR</code>)</strong> at <code>./.localdata/app-data</code>. Composite variable images keep only <code>blob:{id}</code> refs in the DB / Run outputs; bytes live under the blobs directory. Backing up or cleaning only one side creates orphan refs (“ref still present, GET <code>/api/blobs/:id</code> → 404”), and Run detail shows <strong>Cannot display / Attachment unavailable</strong>.</p>
+<p>Ops rules:</p>
+<ul>
+<li><strong>Paired backup</strong>: every backup set must include both <code>./.localdata/db</code> and <code>./.localdata/app-data</code> (or the whole <code>.localdata</code> tree).</li>
+<li><strong>Paired cleanup / migration / upgrade</strong>: never move only SQLite or delete only the blobs directory; if you override <code>APPROVING_BLOBS_ROOT</code>, include that path in the same lifecycle as the database.</li>
+<li><strong>Historical orphans</strong>: broken refs are not guaranteed recoverable; the UI only shows a permanent-failure placeholder. This delivery does <strong>not</strong> add an orphan inspection console, bulk scan page, or startup/health-check alerts.</li>
+</ul>
 <h2>Common commands</h2>
 <pre><code class="language-bash">./start.sh logs
 ./start.sh down

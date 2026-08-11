@@ -62,6 +62,14 @@ cd approving
 </ul>
 <p><code>./start.sh</code> 还会从 GHCR 拉取 <strong>四个 sandbox runtime</strong> 镜像（按 acpBackend：cursor / claude_code / codebuddy / trae，体积较大）。完成前，沙箱对话可能停留在 “starting sandbox…”。</p>
 <p>Agent / workspace / platform-rules 与 SQLite 持久在仓库根 <code>.localdata</code> 宿主机目录（bind mount：<code>gateway</code> / <code>db</code> / <code>app-data</code>）。<code>./start.sh restart</code> 与 <code>./start.sh down</code> 会保留该目录。清空数据：<code>./start.sh down &amp;&amp; rm -rf .localdata</code>。</p>
+<h3>数据库与附件同生命周期（备份 / 清理）</h3>
+<p>正式栈（<code>compose.release.yaml</code>）把 <strong>SQLite</strong> 挂在 <code>./.localdata/db</code>，把 <strong>应用数据（含默认附件 blobs，相对 <code>WORKDIR</code> 的 <code>data/blobs</code>）</strong> 挂在 <code>./.localdata/app-data</code>。复合变量附图在库/Run 输出里只保留 <code>blob:{id}</code> 引用，字节落在 blobs 目录；若只备份或只清理其中一侧，会出现「库里还有引用、GET <code>/api/blobs/:id</code> 却 404」的孤儿引用，Run 详情里附图会显示为「无法显示 / 附件不可用」。</p>
+<p>运维约束：</p>
+<ul>
+<li><strong>成对备份</strong>：同一备份集须同时包含 <code>./.localdata/db</code> 与 <code>./.localdata/app-data</code>（或整棵 <code>.localdata</code>）。</li>
+<li><strong>成对清理 / 迁移 / 升级</strong>：不要只搬 SQLite 或只删附件目录；自定义 <code>APPROVING_BLOBS_ROOT</code> 时，须把该路径与数据库一并纳入同一生命周期。</li>
+<li><strong>历史孤儿</strong>：已损坏的引用不保证可从附件存储找回；界面仅展示永久失败占位。本次交付<strong>不做</strong>孤儿巡检台、批量扫描页或启动/健康检查告警。</li>
+</ul>
 <h2>常用命令</h2>
 <pre><code class="language-bash">./start.sh logs
 ./start.sh down
