@@ -62,7 +62,7 @@
 <li>一次性令牌仅在确认或驳回<strong>成功</strong>后消耗；中间 ReAct 发送 / 取消不烧链；仅 ReAct 链上的越权 decide 被拒绝时也不消耗（生命周期依赖 TTL / 撤销 / 站内完成 / Run 结束）。过期、撤销、登录侧先审完或 Run 结束都会立刻失效。不可用态保持深色工作台空态，不再使用紫色一次确认镜框。</li>
 </ul>
 <h3>待复审临时链接（Inbox kind=review / app_preview / clarify）</h3>
-<p>Inbox <strong>待复审</strong>、<strong>应用预览</strong>与 <strong>待澄清</strong>卡片使用同一套管理面板与令牌规则（<code>ShareLinkKindReview</code>，含 TTL 与权限预设），认证 API 走 <code>/api/runs/:id/reviews/:nodeId/share-link*</code>，不复用 <code>/gates/...</code>，也不伪造 Gate 行。站内入口：卡片「复制临时链接」、移动端详情顶栏同名按钮、应用预览工作台工具栏「分享审批」。公开页：待复审标识为「外部复审」；待澄清标识为「待澄清 / 外部澄清」。热态可多轮 ReAct（发送 / 流式轮询 / 取消）；<code>productKind=app_preview</code> 时公开页默认提供远程桌面与取点（短时 ticket 通道，脱敏 ports；API 端口同源 iframe）；移动端仅降级提示。底栏仅「确认并流转」（无驳回、无姓名意见）。澄清确认走 Agent 收尾写入结构化需求，取消仅清当前轮并保留队列。运行详情澄清/复审 Tab / 登录侧复审面板 / 产物预览工具条不提供临时链接入口；<code>proposal_select</code> 没有此入口。</p>
+<p>Inbox <strong>待复审</strong>、<strong>应用预览</strong>与 <strong>待澄清</strong>卡片使用同一套管理面板与令牌规则（<code>ShareLinkKindReview</code>，含 TTL 与权限预设），认证 API 走 <code>/api/runs/:id/reviews/:nodeId/share-link*</code>，不复用 <code>/gates/...</code>，也不伪造 Gate 行。站内入口：卡片「复制临时链接」、移动端详情顶栏同名按钮。公开页：待复审标识为「外部复审」；待澄清标识为「待澄清 / 外部澄清」。热态可多轮 ReAct（发送 / 流式轮询 / 取消）；<code>productKind=app_preview</code> 时公开页默认提供远程桌面与取点（短时 ticket 通道，脱敏 ports；API 端口同源 iframe）；移动端仅降级提示。底栏仅「确认并流转」（无驳回、无姓名意见）。澄清确认走 Agent 收尾写入结构化需求，取消仅清当前轮并保留队列。运行详情澄清/复审 Tab / 登录侧复审面板 / 产物预览工具条不提供临时链接入口；<code>proposal_select</code> 没有此入口。</p>
 <h2>真实 Docker 沙箱</h2>
 <p>Agent 不是在笔记本上跑的黑盒 prompt。它们通过仓库内嵌的 <a href="https://github.com/cocofhu/approving/tree/main/sandbox-gateway">sandbox-gateway</a> 在 Docker 容器中执行，经 ACP 通信。</p>
 <p>支持 <strong>Cursor</strong>、<strong>Claude Code</strong>、<strong>CodeBuddy</strong>、<strong>Trae</strong>。按 Agent 配置 <code>acpBackend</code>；密钥放在 Agent meta env。</p>
