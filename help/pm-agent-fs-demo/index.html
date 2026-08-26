@@ -46,12 +46,15 @@
 <li>确认项目 PM 设置已启用 <code>pm-agent-fs</code>（新项目默认启用）。</li>
 <li>在组织架构中准备：同项目多个 Agent（绑定相同 <code>projectId</code>），可挂虚拟组。</li>
 <li>Leader 会话调用 <code>pm_get_org</code>，确认同项目成员 relation=<code>direct</code>，并出现在 <code>directReports</code> / 扁平 <code>subtree</code>。</li>
-<li>调用 <code>pm_fs_write</code>：<code>agentName=&lt;同项目另一 Agent&gt;</code>，<code>path=AGENTS.md</code>（或 <code>rules/...</code>），写入可识别内容。</li>
-<li>打开 Agent Studio → 选中该 Agent → <strong>刷新或重新打开</strong>「Agent 工作目录」，对照内容一致。</li>
+<li>调用 <code>pm_fs_write</code>：<code>agentName=&lt;同项目另一 Agent&gt;</code>，<code>path=AGENTS.md</code>（或 <code>rules/...</code>），<code>content=...</code>，<strong>必填 <code>reason</code></strong>（非空变更原因），写入可识别内容。</li>
+<li>可选：调用 <code>pm_fs_history</code> / <code>pm_fs_diff</code> 查看版本；<code>pm_fs_restore</code> 可整树回滚（也必填 reason）。</li>
+<li>打开 Agent Studio → 选中该 Agent → <strong>刷新或重新打开</strong>「Agent 工作目录」，右侧可见版本历史面板；对照内容一致。</li>
+<li>不带 <code>reason</code> 的写调用应失败且文件不落盘（故意断裂兼容）。</li>
 <li>对跨项目 Agent 再试 <code>pm_fs_write</code>，应被拒绝。</li>
 <li>全程不打开/不使用任何 Run sandbox FS/Exec。</li>
 </ol>
-<p>证据痕迹：单测 <code>TestPmGetOrgRelations</code> / <code>TestPmFSDirectIndirectSelfWrite</code> / <code>TestPmFSRejectNonReportAndCrossProject</code> / <code>TestPmFSPathEscapeRejected</code>（<code>server/internal/pmmcp/agent_fs_test.go</code>）。</p>
+<p><strong>不要</strong>去工作流发布版本、Run 沙箱业务仓 Git 或项目 Audit Tab 查 Agent workspace 文件变更——那些是历史包裹，与本账无关。</p>
+<p>证据痕迹：单测 <code>TestPmGetOrgRelations</code> / <code>TestPmFSDirectIndirectSelfWrite</code> / <code>TestPmFSReasonRequired</code> / <code>TestPmFSHistoryDiffRestore</code> / <code>TestWorkspaceVcsBaselineAndWrite</code>（<code>server/internal/pmmcp/agent_fs_test.go</code>、<code>server/internal/services/workspace_vcs_test.go</code>）。</p>
 
       </div>
     </article>
