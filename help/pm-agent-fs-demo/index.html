@@ -44,11 +44,11 @@
 <p>对齐已批准 <code>page.html</code> 主路径，可复现步骤：</p>
 <ol>
 <li>确认项目 PM 设置已启用 <code>pm-agent-fs</code>（新项目默认启用）。</li>
-<li>在组织架构中准备：Leader → 直接下属 → 间接下属（<code>parentAgent</code> 链）。</li>
-<li>Leader 会话调用 <code>pm_get_org</code>，确认间接下属 relation=<code>indirect</code>，并出现在 <code>subtree</code> / <code>indirectReports</code>。</li>
-<li>调用 <code>pm_fs_write</code>：<code>agentName=&lt;间接下属&gt;</code>，<code>path=AGENTS.md</code>（或 <code>rules/...</code>），写入可识别内容。</li>
-<li>打开 Agent Studio → 选中该下属 → <strong>刷新或重新打开</strong>「Agent 工作目录」，对照内容一致。</li>
-<li>对非下属 Agent 再试 <code>pm_fs_write</code>，应被拒绝。</li>
+<li>在组织架构中准备：同项目多个 Agent（绑定相同 <code>projectId</code>），可挂虚拟组。</li>
+<li>Leader 会话调用 <code>pm_get_org</code>，确认同项目成员 relation=<code>direct</code>，并出现在 <code>directReports</code> / 扁平 <code>subtree</code>。</li>
+<li>调用 <code>pm_fs_write</code>：<code>agentName=&lt;同项目另一 Agent&gt;</code>，<code>path=AGENTS.md</code>（或 <code>rules/...</code>），写入可识别内容。</li>
+<li>打开 Agent Studio → 选中该 Agent → <strong>刷新或重新打开</strong>「Agent 工作目录」，对照内容一致。</li>
+<li>对跨项目 Agent 再试 <code>pm_fs_write</code>，应被拒绝。</li>
 <li>全程不打开/不使用任何 Run sandbox FS/Exec。</li>
 </ol>
 <p>证据痕迹：单测 <code>TestPmGetOrgRelations</code> / <code>TestPmFSDirectIndirectSelfWrite</code> / <code>TestPmFSRejectNonReportAndCrossProject</code> / <code>TestPmFSPathEscapeRejected</code>（<code>server/internal/pmmcp/agent_fs_test.go</code>）。</p>
