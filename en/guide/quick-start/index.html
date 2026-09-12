@@ -60,7 +60,7 @@ cd approving
 <li>Gateway health: <a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
 <li>Default login: <code>admin</code> / <code>demo1234</code> (local-demo)</li>
 </ul>
-<p><code>./start.sh</code> also pulls <strong>five sandbox runtime</strong> images from GHCR (one per acpBackend: cursor / claude_code / codebuddy / trae / opencode; large). Until that finishes, sandbox chats may stay on “starting sandbox…”.</p>
+<p>Default <code>./start.sh</code> / <code>-d</code> / <code>restart</code> do <strong>not</strong> pre-pull the five sandbox runtimes. The first time you create a sandbox for an Agent backend, the Gateway pulls that image on demand (often multi-GB); Inbox starting and the run page show a “pulling image” loading state. Use <code>./start.sh pull</code> to warm all runtimes up front.</p>
 <p>Agent / workspace / platform-rules and SQLite data live under <code>.localdata</code> at the repo root (bind mounts: <code>gateway</code> / <code>db</code> / <code>app-data</code>). <code>./start.sh restart</code> and <code>./start.sh down</code> keep that directory. To wipe: <code>./start.sh down &amp;&amp; rm -rf .localdata</code>.</p>
 <h3>Database and attachments share one lifecycle (backup / cleanup)</h3>
 <p>In the release stack (<code>compose.release.yaml</code>), <strong>SQLite</strong> is mounted at <code>./.localdata/db</code> and <strong>app data (including default attachment blobs under <code>data/blobs</code> relative to <code>WORKDIR</code>)</strong> at <code>./.localdata/app-data</code>. Composite variable images keep only <code>blob:{id}</code> refs in the DB / Run outputs; bytes live under the blobs directory. Backing up or cleaning only one side creates orphan refs (“ref still present, GET <code>/api/blobs/:id</code> → 404”), and Run detail shows <strong>Cannot display / Attachment unavailable</strong>.</p>
@@ -73,7 +73,7 @@ cd approving
 <h2>Common commands</h2>
 <pre><code class="language-bash">./start.sh logs
 ./start.sh down
-./start.sh pull          # refresh GHCR images (including five sandbox runtimes)
+./start.sh pull          # refresh compose images and warm all five sandbox runtimes
 ./start.sh restart       # down + up -d (keeps .localdata)
 ./start.sh dev -d        # source stack: go run + Vite HMR
 </code></pre>
