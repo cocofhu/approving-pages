@@ -67,7 +67,7 @@ cd approving
 <p>Ops rules:</p>
 <ul>
 <li><strong>Paired backup</strong>: every backup set must include both <code>./.localdata/db</code> and <code>./.localdata/app-data</code> (or the whole <code>.localdata</code> tree).</li>
-<li><strong>Paired cleanup / migration / upgrade</strong>: never move only SQLite or delete only the blobs directory; if you override <code>APPROVING_BLOBS_ROOT</code>, include that path in the same lifecycle as the database.</li>
+<li><strong>Paired cleanup / migration / upgrade</strong>: never move only SQLite or delete only the blobs directory; if you override <code>GRASP_BLOBS_ROOT</code>, include that path in the same lifecycle as the database.</li>
 <li><strong>Historical orphans</strong>: broken refs are not guaranteed recoverable; the UI only shows a permanent-failure placeholder. This delivery does <strong>not</strong> add an orphan inspection console, bulk scan page, or startup/health-check alerts.</li>
 </ul>
 <h2>Common commands</h2>
@@ -77,7 +77,7 @@ cd approving
 ./start.sh restart       # down + up -d (keeps .localdata)
 ./start.sh dev -d        # source stack: go run + Vite HMR
 </code></pre>
-<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. By default sandbox images follow acpBackend; set <code>SANDBOX_IMAGE</code> / <code>APPROVING_SANDBOX_IMAGE</code> only for an optional global force. Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
+<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. By default sandbox images follow acpBackend; set <code>SANDBOX_IMAGE</code> / <code>GRASP_SANDBOX_IMAGE</code> only for an optional global force. Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
 <h2>Next steps</h2>
 <ul>
 <li>After login, the <strong>default project</strong> opens first-time setup: ACP backend, API token, and optional Git credentials (written to shared Agent config), then creates the default team and publishes <strong>Default Workflow</strong>. Fill the repo URL when starting a Run.</li>

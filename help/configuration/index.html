@@ -53,7 +53,7 @@
 </code></pre>
 <p>镜像 tag / digest、网关与沙箱相关变量见 <code>.env.example</code>。Agent 侧 API key、<code>GITHUB_*</code> / <code>GITLAB_*</code> / SSH 等放在 Agent meta env（值可引用 <code>${vars.&lt;name&gt;}</code>）。</p>
 <h2>数据库与附件同生命周期</h2>
-<p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>APPROVING_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>
+<p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>GRASP_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>
 <h2>相关</h2>
 <ul>
 <li><a href="../gateway/">网关</a></li>

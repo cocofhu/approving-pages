@@ -67,7 +67,7 @@ cd approving
 <p>运维约束：</p>
 <ul>
 <li><strong>成对备份</strong>：同一备份集须同时包含 <code>./.localdata/db</code> 与 <code>./.localdata/app-data</code>（或整棵 <code>.localdata</code>）。</li>
-<li><strong>成对清理 / 迁移 / 升级</strong>：不要只搬 SQLite 或只删附件目录；自定义 <code>APPROVING_BLOBS_ROOT</code> 时，须把该路径与数据库一并纳入同一生命周期。</li>
+<li><strong>成对清理 / 迁移 / 升级</strong>：不要只搬 SQLite 或只删附件目录；自定义 <code>GRASP_BLOBS_ROOT</code> 时，须把该路径与数据库一并纳入同一生命周期。</li>
 <li><strong>历史孤儿</strong>：已损坏的引用不保证可从附件存储找回；界面仅展示永久失败占位。本次交付<strong>不做</strong>孤儿巡检台、批量扫描页或启动/健康检查告警。</li>
 </ul>
 <h2>常用命令</h2>
@@ -77,7 +77,7 @@ cd approving
 ./start.sh restart       # down + up -d（保留 .localdata）
 ./start.sh dev -d        # 源码栈：go run + Vite HMR
 </code></pre>
-<p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认按 backend 分流沙箱镜像；仅当显式设置 <code>SANDBOX_IMAGE</code> / <code>APPROVING_SANDBOX_IMAGE</code> 时才全局强制。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
+<p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认按 backend 分流沙箱镜像；仅当显式设置 <code>SANDBOX_IMAGE</code> / <code>GRASP_SANDBOX_IMAGE</code> 时才全局强制。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
 <h2>下一步</h2>
 <ul>
 <li>登录后进入「默认项目」时，按第一次安装引导配置 <strong>ACP 后端、API Token、Git 凭据</strong>（Git 可跳过）。完成后写入项目共享 Agent 配置，生成 <strong>综合项目组</strong> 与已发布的 <strong>默认工作流</strong>（仓库 URL 在启动 Run 时填写）。引导只针对默认项目。</li>
