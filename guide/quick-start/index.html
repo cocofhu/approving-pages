@@ -80,7 +80,7 @@ cd approving
 <p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认一张 <code>universal-sandbox</code>（五个 CLI 预装，运行时按 Agent 后端切换）。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
 <h2>下一步</h2>
 <ul>
-<li>登录后进入「默认项目」时，按第一次安装引导配置 <strong>ACP 后端、API Token、Git 凭据</strong>（Git 可跳过）。完成后写入项目共享 Agent 配置，生成 <strong>综合项目组</strong> 与已发布的 <strong>默认工作流</strong>（仓库 URL 在启动 Run 时填写）。引导只针对默认项目。</li>
+<li>登录后进入「默认项目」时，按第一次安装引导在项目凭据 UI 配置 <strong>ACP 后端、API Token、Git 凭据</strong>（Git 可跳过）。项目凭据会优先注入运行时；兼容的项目/Agent env 仅作为回退。完成后生成 <strong>综合项目组</strong> 与已发布的 <strong>默认工作流</strong>（仓库 URL 在启动 Run 时填写）。引导只针对默认项目。</li>
 <li><a href="../concepts/">核心概念</a> — FSM、gate、sandbox、artifact</li>
 <li><a href="../../help/configuration/">配置摘要</a> — 指向完整 <code>CONFIGURATION.md</code></li>
 <li><a href="../../help/gateway/">网关摘要</a> — 指向 <code>GATEWAY.md</code></li>

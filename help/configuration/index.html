@@ -40,7 +40,7 @@
         <p class="doc__lead">配置要点摘要；完整说明见源码 CONFIGURATION.md。</p>
       </header>
       <div class="doc__body">
-        <p>Grasp 服务端配置以 YAML / 环境变量为主（本地示例见 <code>server/config.example.yaml</code> 与根目录 <code>.env.example</code>）。</p>
+        <p>Grasp 平台服务配置以 YAML / 环境变量为主（本地示例见 <code>server/config.example.yaml</code> 与根目录 <code>.env.example</code>）。ACP、Git 等运行时凭据优先在项目详情的项目凭据 UI 中管理；兼容的项目/Agent 环境变量仅作为回退。</p>
 <h2>完整文档</h2>
 <p>请以仓库内权威文档为准（避免本站与源码双份漂移）：</p>
 <ul>
@@ -51,7 +51,7 @@
 <pre><code class="language-bash">./start.sh -d          # 发布镜像栈
 ./start.sh dev -d      # 源码 + HMR
 </code></pre>
-<p>镜像 tag / digest、网关与沙箱相关变量见 <code>.env.example</code>。Agent 侧 API key、<code>GITHUB_*</code> / <code>GITLAB_*</code> / SSH 等放在 Agent meta env（值可引用 <code>${vars.&lt;name&gt;}</code>）。</p>
+<p>镜像 tag / digest、网关与沙箱相关变量见 <code>.env.example</code>。Agent 侧 API key、<code>GITHUB_*</code> / <code>GITLAB_*</code> / SSH 等应先保存到项目凭据 UI；兼容回退仍可放在项目共享或 Agent meta env（值可引用 <code>${vars.&lt;name&gt;}</code>）。</p>
 <h2>数据库与附件同生命周期</h2>
 <p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>GRASP_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>
 <h2>相关</h2>
