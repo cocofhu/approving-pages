@@ -43,11 +43,23 @@
         <h2>FSM 编排</h2>
 <p>Grasp 把 coding agent 变成工作流里的步骤。你在有限状态机上编排：</p>
 <ul>
-<li><strong>节点</strong>即状态（agent / react / gate / …）</li>
+<li><strong>节点</strong>即状态：Agent、输入、输出、赋值、分支、人工门禁、方案确认，共七种</li>
 <li><strong>边</strong>即转移，可配置成功、失败、回滚路径</li>
 <li>可用 <code>when</code> 守卫、检查点，把风险步骤显式化</li>
 </ul>
 <p>不再是无法撤销的一次性 Agent 跑法：先设计路径，再门禁关键步骤。</p>
+<h2>Agent 节点与能力</h2>
+<p>工作流里只有一种 Agent 节点。节点上只配三项：选哪个 Agent（<code>agent_profile</code>）、目标（<code>prompt</code>，支持 <code>{{变量}}</code>）和超时（分钟）。Agent 能做什么由 Agent 自己在 <code>agent.json</code> 的 <code>capabilities</code> 中声明，在 Agent Studio 的「能力」标签页编辑：</p>
+<ul>
+<li><code>interaction</code>：<code>clarify</code> 与人多轮对话，人确认后才结束；<code>auto</code> 一次跑完。</li>
+<li><code>review</code>：仅 <code>auto</code> 可用。跑完后停下等人复审，复审期间会话保持在线，可以继续修改、启动预览。</li>
+<li><code>tools</code>：可授予的平台工具，<code>ask_question</code>、<code>ask_form</code>、<code>set_artifact_preview</code>、<code>set_preview</code>、<code>update_plan_status</code>。<code>clarify</code> 必须授予 <code>ask_question</code>。</li>
+<li><code>reads</code> / <code>writes</code>：可读的产物（<code>*</code> 为全部）和要写的结构化产物，每项可标为必填。必填产物缺失时节点失败。</li>
+<li>写入带判定的产物（<code>test_result</code>、<code>review</code>）时，节点在画布上有「通过」「不通过」两个出口，全部判定通过才走「通过」。</li>
+</ul>
+<p>同一个 Agent 放进多个节点时，这些节点的能力相同，节点之间只靠目标区分；需要不同权限就建两个 Agent。行为规则写在 Agent 工作区的 <code>AGENTS.md</code> 和 skills 里，平台只保留不可修改的通用协议。</p>
+<p>内置三个模板：<strong>需求澄清</strong>（clarify，写需求规格和计划）、<strong>实现</strong>（auto，开启复审，写实现结果）、<strong>测试评审</strong>（auto，开启复审，写测试结果和评审结论）。三者都能用 <code>set_preview</code> 启动预览。首次引导生成的默认工作流是「输入 → 需求澄清 → 实现 → 测试评审」，评审通过到输出，不通过回到实现。</p>
+<p>工作流里出现未知节点类型时，校验报「未知节点类型 X」，运行直接失败；Agent 没有声明能力时报「Agent X 未声明能力」。</p>
 <h2>人审门禁（gate）</h2>
 <p>当某一步需要人做决定时，运行会停在 <strong>gate</strong>，直到有人批准或拒绝。</p>
 <p>批准时刻是一等公民，而不是事后补丁。产品名 Grasp 的赌注是：Agent 可以很快，但关键决策仍由人拥有。</p>
@@ -63,14 +75,14 @@
 <li><strong>每位访客的对话独立。</strong> 同一链接发给多人时，每个浏览器（按本地保存的匿名访客标识区分，刷新或新开标签页沿用）各自拥有一段对话和独立的 Agent 上下文，彼此看不到对方的消息；访客首次发言前看到的是节点此前的对话。Agent 在沙箱里另开会话，<strong>工作区和产物仍然共享</strong>，任一访客让 Agent 改动的产物，其他访客和站内都能看到。每条链接最多同时 6 位访客对话，超出时提示稍后再试；访客空闲 30 分钟后其沙箱会话被回收，再次发言会带着已有对话重新开始。</li>
 <li><strong>先决者生效。</strong> 任一访客确认或驳回成功后，链接对所有人失效，所有访客会话一并结束。</li>
 </ul>
-<h3>待复审临时链接（Inbox kind=review / app_preview / clarify）</h3>
-<p>Inbox <strong>待复审</strong>、<strong>应用预览</strong>与 <strong>待澄清</strong>卡片使用同一套管理面板与令牌规则（<code>ShareLinkKindReview</code>，含 TTL 与权限预设），认证 API 走 <code>/api/runs/:id/reviews/:nodeId/share-link*</code>，不复用 <code>/gates/...</code>，也不伪造 Gate 行。站内入口：卡片「复制临时链接」、移动端详情顶栏同名按钮。公开页：待复审标识为「外部复审」；待澄清标识为「待澄清 / 外部澄清」。热态可多轮 ReAct（发送 / 流式轮询 / 取消）；<code>productKind=app_preview</code> 时公开页默认提供远程桌面与取点（短时 ticket 通道，脱敏 ports；API 端口同源 iframe）；移动端仅降级提示。底栏仅「确认并流转」（无驳回、无姓名意见）。访客对话隔离、共享工作区与先决者生效的规则同上。澄清确认走 Agent 收尾写入结构化需求，取消仅清当前轮并保留队列。运行详情澄清/复审 Tab / 登录侧复审面板 / 产物预览工具条不提供临时链接入口；<code>proposal_select</code> 没有此入口。</p>
+<h3>待复审临时链接（Inbox kind=review / clarify）</h3>
+<p>Inbox <strong>待复审</strong>、<strong>应用预览</strong>与 <strong>待澄清</strong>卡片使用同一套管理面板与令牌规则（<code>ShareLinkKindReview</code>，含 TTL 与权限预设），认证 API 走 <code>/api/runs/:id/reviews/:nodeId/share-link*</code>，不复用 <code>/gates/...</code>，也不伪造 Gate 行。站内入口：卡片「复制临时链接」、移动端详情顶栏同名按钮。公开页：待复审标识为「外部复审」；待澄清标识为「待澄清 / 外部澄清」。热态可多轮 ReAct（发送 / 流式轮询 / 取消）；节点登记了应用预览时，公开页默认提供远程桌面与取点（短时 ticket 通道，脱敏 ports；API 端口同源 iframe）；移动端仅降级提示。底栏仅「确认并流转」（无驳回、无姓名意见）。访客对话隔离、共享工作区与先决者生效的规则同上。澄清确认走 Agent 收尾写入结构化需求，取消仅清当前轮并保留队列。运行详情澄清/复审 Tab / 登录侧复审面板 / 产物预览工具条不提供临时链接入口；<code>proposal_select</code> 没有此入口。</p>
 <h3>应用预览：noVNC 与 IP 直连</h3>
 <p><code>set_preview</code> 登记的沙箱端口始终在面板里用 noVNC 预览，打开的是沙箱内的 <code>http://127.0.0.1:端口/</code>。沙箱里的预览页面一直保留：离开再进入、切换标签、刷新平台页面后，看到的还是上次的页面，登录态和表单内容都在；Chromium 重启后登录态也会保留。同一个沙箱同时只显示一个画面，换端口会在同一页面里跳转。</p>
 <p>预览默认只观看。点工具栏的「接管」后才能用鼠标键盘操作页面，完成后点「交还」；「取点标注」时会临时允许点击。这只是为了防止误点，不是权限控制。</p>
-<p>节点开启 IP 直连预览（<code>direct_preview</code>）后，noVNC 工具栏会多一个「新标签页直连打开」按钮，打开 <code>http://IP:端口/</code>，那里可以用取点条和右下角的「对话」抽屉。</p>
-<h3>Live 实时变体（Grasp / 应用预览 + IP 直连）</h3>
-<p>开启 IP 直连预览（<code>direct_preview</code>）的 <strong>Grasp</strong>（<code>grasp</code>、历史 <code>approve</code>）和<strong>应用预览</strong>（<code>app_preview</code>）节点默认带 <strong>Live 实时变体</strong>（节点开关 <code>live_variants</code>）。Agent 用 <code>set_preview</code> 登记沙箱内应用端口后，从节点打开直连预览页，点击聊天输入框底部、附件按钮旁的「<strong>页面协作</strong>」图标，打开菜单后使用「页面候选」。存量直连节点未保存节点开关时默认具备此能力，无需更换节点。显式关闭 Live、noVNC、仅注册外部 URL 或没有 Live 操作权限时不提供候选生成入口。</p>
+<p>Agent 授予了 <code>set_preview</code> 时，noVNC 工具栏会多一个「新标签页直连打开」按钮，打开 <code>http://IP:端口/</code>，那里可以用取点条和右下角的「对话」抽屉。</p>
+<h3>Live 实时变体</h3>
+<p>授予了 <code>set_preview</code> 且会与人对话（<code>clarify</code>，或开启复审的 <code>auto</code>）的 Agent 节点带 <strong>Live 实时变体</strong>。Agent 用 <code>set_preview</code> 登记沙箱内应用端口后，从节点打开直连预览页，点击聊天输入框底部、附件按钮旁的「<strong>页面协作</strong>」图标，打开菜单后使用「页面候选」。noVNC、仅注册外部 URL 或没有 Live 操作权限时不提供候选生成入口。</p>
 <p>「页面协作」菜单默认收起，图标与附件按钮位于同一工具栏，鼠标悬停可查看完整名称。点击图标展开后，可分别设置「页面操作」和「页面候选」。使用完可以收起菜单，两个开关的状态会保留；图标显示已启用的数量，具体启用了哪些功能可通过悬停提示或展开菜单查看。</p>
 <p>「页面协作」中的「<strong>页面候选</strong>」默认关闭。开启后，直接输入需求并发送，Agent 会在当前真实页面上生成 <strong>3 个候选</strong>，等待你比较和选择；无需先点选元素或打开页面工具栏。图片和取点标注会随需求一起发送。关闭开关恢复普通聊天，不会删除已有候选；撤销候选请使用「放弃」。节点设置决定这项能力是否可用，聊天开关决定本次需求是否生成候选。</p>
 <p>同一菜单内的「<strong>允许 Agent 操作页面</strong>」也默认关闭，单独控制 Agent 是否能读取、点击和填写你正在看的预览页。两个开关各自独立，生成页面候选无需开启页面操作。页面操作开启后，Agent 读取到的页面内容会出现在本会话中，其他参与者也能看到，建议使用测试账号；菜单内保留隐私提醒，以及已连接、已暂停、未连接或控制已转到另一标签页的状态提示。</p>
