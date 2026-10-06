@@ -77,7 +77,7 @@ cd approving
 ./start.sh restart       # down + up -d（保留 .localdata）
 ./start.sh dev -d        # 源码栈：go run + Vite HMR
 </code></pre>
-<p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认一张 <code>universal-sandbox</code>（五个 CLI 预装，运行时按 Agent 后端切换）。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
+<p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认一张 <code>universal-sandbox</code>（六个 CLI 预装，含 Codex；Codex 使用登录文件而不是 API Key，运行时按 Agent 后端切换）。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
 <h2>下一步</h2>
 <ul>
 <li>登录后进入「默认项目」时，按第一次安装引导在项目凭据 UI 配置 <strong>ACP 后端、API Token、Git 凭据</strong>（Git 可跳过）。运行时密钥只来自项目凭据。完成后生成 <strong>综合项目组</strong> 与已发布的 <strong>默认工作流</strong>（仓库 URL 在启动 Run 时填写）。引导只针对默认项目。</li>

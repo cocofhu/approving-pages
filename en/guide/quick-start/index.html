@@ -77,7 +77,7 @@ cd approving
 ./start.sh restart       # down + up -d (keeps .localdata)
 ./start.sh dev -d        # source stack: go run + Vite HMR
 </code></pre>
-<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. The default is one <code>universal-sandbox</code> image (five CLIs; runtime switches by Agent backend). Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
+<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. The default is one <code>universal-sandbox</code> image (six CLIs, including Codex, which uses a ChatGPT login file rather than an API key; runtime switches by Agent backend). Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
 <h2>Next steps</h2>
 <ul>
 <li>After login, the <strong>default project</strong> opens first-time setup: save the ACP backend, API token, and optional Git credentials in the project’s credential UI (Git may be skipped). Runtime secrets come only from project credentials. The setup then creates the default team and publishes <strong>Default Workflow</strong>. Fill the repo URL when starting a Run.</li>
