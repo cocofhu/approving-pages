@@ -96,7 +96,7 @@
 <p>The page and chat card share the current candidate. “Use this one” keeps the version and tuned parameters you were viewing when you sent the message; switch candidates first to accept another number. If a whole-page adjustment fails or is interrupted, retry the same request or dismiss it. Dismissal preserves edits already made and does not roll back the page. “Discard all” also dismisses failed whole-page requests; review the retained result before confirming. If adoption is interrupted, “Retry accept” resumes the saved candidate and parameter values. Confirmation pauses when the workspace cannot be scanned and can be retried after access is restored.</p>
 <h2>Real Docker sandboxes</h2>
 <p>Agents are not black-box prompts on a laptop. They execute in Docker containers through the in-repo <a href="https://github.com/cocofhu/approving/tree/main/sandbox-gateway">sandbox-gateway</a>, talking over ACP.</p>
-<p>Supported backends: <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>CodeBuddy</strong>, <strong>Trae</strong>, and <strong>OpenCode</strong>. Configure <code>acpBackend</code> per agent; backend keys are saved only in the project’s credential UI; non-secret options such as sites may go in Agent meta env (OpenCode also takes vendor, optional API Base, and model).</p>
+<p>Supported backends: <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>CodeBuddy</strong>, <strong>Trae</strong>, and <strong>OpenCode</strong>. Configure <code>acpBackend</code> per agent; backend keys are saved only in Settings → Credentials; non-secret options such as sites may go in Agent meta env (OpenCode also takes vendor, optional API Base, and model).</p>
 <h2>Artifact contract and MCP</h2>
 <p>Each run has an isolated artifact MCP. Agents call tools such as:</p>
 <ul>
@@ -105,11 +105,11 @@
 <li><code>node_complete</code></li>
 </ul>
 <p>Isolation is by run token, leaving an inspectable paper trail.</p>
-<h2>PM: <code>pm-agent-fs</code> (project members + Agent workspace)</h2>
-<p>A project-bound PM Leader can enable the dedicated MCP <code>pm-agent-fs</code> (on by default for new projects; older projects with an explicit EnabledMcps list must opt in under PM settings):</p>
+<h2>PM: <code>pm-agent-fs</code> (workspace members + Agent workspace)</h2>
+<p>A workspace PM Leader can enable the dedicated MCP <code>pm-agent-fs</code> (on by default; existing installations with an explicit EnabledMcps list must opt in under PM settings):</p>
 <ul>
-<li><code>pm_list_project_agents</code>: list every Agent in the current project (self / other relative to the PM)</li>
-<li><code>pm_fs_*</code>: list/read/write/delete/mkdir/rename the <strong>host-side</strong> <code>workspace/</code> of any same-project agent (<strong>not</strong> Run sandbox FS)</li>
+<li><code>pm_list_project_agents</code>: list every Agent in the workspace (self / other relative to the PM)</li>
+<li><code>pm_fs_*</code>: list/read/write/delete/mkdir/rename the <strong>host-side</strong> <code>workspace/</code> of any workspace agent (<strong>not</strong> Run sandbox FS)</li>
 </ul>
 <p>Writes land on the same disk tree as Agent Studio「Agent workspace」and are visible after <strong>refresh or reopen</strong> (no live hot-reload). If Studio still has an unsaved dirty draft for the same Agent, a later Save may overwrite MCP writes — refresh and avoid concurrent dirty edits during demos.</p>
 <h2>Single-repo self-hosting</h2>
