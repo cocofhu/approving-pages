@@ -45,7 +45,7 @@
 <ol>
 <li>确认工作区助手设置已启用 <code>pm-agent-fs</code>（默认启用）。</li>
 <li>准备工作区内的多个 Agent。</li>
-<li>Leader 会话调用 <code>pm_list_project_agents</code>，确认自身 relation=<code>self</code>、其他工作区成员 relation=<code>other</code>。</li>
+<li>Leader 会话调用 <code>pm_list_workspace_agents</code>，确认自身 relation=<code>self</code>、其他工作区成员 relation=<code>other</code>。</li>
 <li>调用 <code>pm_fs_write</code>：<code>agentName=&lt;工作区另一 Agent&gt;</code>，<code>path=AGENTS.md</code>（或 <code>rules/...</code>），<code>content=...</code>，<strong>必填 <code>reason</code></strong>（非空变更原因），写入可识别内容。</li>
 <li>可选：调用 <code>pm_fs_history</code> / <code>pm_fs_diff</code> 查看版本；<code>pm_fs_restore</code> 可整树回滚（也必填 reason）。</li>
 <li>打开 Agent Studio → 选中该 Agent → <strong>刷新或重新打开</strong>「Agent 工作目录」，右侧可见版本历史面板；对照内容一致。</li>

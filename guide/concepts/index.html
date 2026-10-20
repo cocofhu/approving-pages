@@ -110,7 +110,7 @@
 <h2>PM：<code>pm-agent-fs</code>（工作区成员 + Agent 工作目录）</h2>
 <p>工作区绑定的 PM Leader 可启用独立 MCP <code>pm-agent-fs</code>（默认启用；已有部署若已显式保存过 EnabledMcps 需在 PM 设置中手动勾选）：</p>
 <ul>
-<li><code>pm_list_project_agents</code>：列出工作区的全部 Agent，并标注相对 Leader 的 self / other</li>
+<li><code>pm_list_workspace_agents</code>：列出工作区的全部 Agent，并标注相对 Leader 的 self / other</li>
 <li><code>pm_fs_*</code>：对工作区 Agent 的 <strong>host 侧</strong> <code>workspace/</code> 做 list/read/write/delete/mkdir/rename（<strong>不是</strong> Run 沙箱 FS）</li>
 </ul>
 <p>写入结果与 Agent Studio「Agent 工作目录」同一磁盘树；<strong>刷新或重新打开该 Agent 后可见</strong>（不做热更新）。若 Studio 仍打开同一 Agent 且存在未保存草稿，随后 Save 可能覆盖 MCP 已写入内容——使用/Demo 时请刷新并避免并行脏写。</p>
