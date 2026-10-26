@@ -80,7 +80,8 @@ cd approving
 <p>镜像 tag / digest 可在 <code>.env</code> 覆盖 — 见仓库根目录 <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a>。默认一张 <code>universal-sandbox</code>（七个 CLI 预装；Codex 可使用 ChatGPT 登录文件或 Responses 模型连接，运行时按 Agent 后端切换）。发布与 smoke 见 <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>。</p>
 <h2>下一步</h2>
 <ul>
-<li>登录后进入工作区时，按第一次安装引导先保存凭据，再创建并选择一条 <strong>编码工具 + 凭据 + 上游模型</strong> 的模型配置；可在向导内打开管理页面完成这些操作。可选多个 Git 授权，也可跳过 Git。运行时仅使用明确绑定的模型与授权。完成后生成一组内置 Agent 与已发布的 <strong>默认工作流</strong>（仓库 URL 在启动 Run 时填写）。全系统只使用一个工作区，侧栏列出全部工作流，原配置入口统一收进设置。</li>
+<li>登录后进入工作区时，首次引导保留原有窗口，先在「配置凭据」中保存编码工具凭据或 API 账号，再到「配置编码工具」中保存 <strong>编码工具 + 凭据 + 上游模型</strong> 的具名配置。空步骤直接展开配置表单，保存凭据或模型后直接进入下一步；也可使用已有凭据和模型。所有表单在当前步骤内展开。Git 步骤支持就地添加多个授权，也可跳过仓库与授权。运行时仅使用明确绑定的模型与授权。完成后生成一组内置 Agent、供 Solo 模式使用的空白 <strong>Solo</strong> Agent 与已发布的 <strong>默认工作流</strong>（仓库 URL 在启动 Run 时填写）。Solo 的模型选择器显示配置名称，支持思考强度的模型还可选择其可用档位。全系统只使用一个工作区，侧栏列出全部工作流，原配置入口统一收进设置。</li>
+<li>凭据中的编码工具卡片用于保存对应厂商授权：OpenCode CLI 使用 OpenCode 官方 Key，DeepSeek Harness 使用 DeepSeek 官方 Key。通用模型服务的 API Key、地址与协议统一在「API 账号」配置；配置模型时可选择厂商授权或兼容的 API 账号。选择 API 账号后，可搜索服务商返回的模型目录，选择主模型和辅助模型；读取失败可重试，也可填写原始模型 ID。</li>
 <li><a href="../concepts/">核心概念</a> — FSM、gate、sandbox、artifact</li>
 <li><a href="../../help/configuration/">配置摘要</a> — 指向完整 <code>CONFIGURATION.md</code></li>
 <li><a href="../../help/gateway/">网关摘要</a> — 指向 <code>GATEWAY.md</code></li>
