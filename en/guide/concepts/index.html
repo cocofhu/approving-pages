@@ -139,6 +139,11 @@
 <li><strong>GitHub issues and pull requests</strong> in the repositories mounted in the current session, or the repositories picked on the home page when starting one. You can also type <code>#number</code> or paste an issue or PR link. Grasp checks access with the same Git credential the sandbox uses, and the agent reads the latest text, comments and diff with <code>gh</code> inside the sandbox.</li>
 </ul>
 <p>Use <code>↑</code> <code>↓</code> to choose, <code>Enter</code> to confirm, <code>Tab</code> to switch between All, Sessions, Issues and PRs, and <code>Esc</code> to close. <code>Enter</code> with nothing highlighted sends the message as typed. A message can carry up to 5 references. They are shown above the composer; deleting the <code>@title</code> text or clicking × removes one. Referenced content is treated as material, not as instructions.</p>
+<p>Workflows support the same references:</p>
+<ul>
+<li><strong>Home page Workflow composer</strong>: after picking a workflow, type <code>@</code> or use the “+” menu. Issues and PRs are searched in the default repositories of the workflow’s <code>repos</code> variable; without repositories only sessions can be referenced. A message with only references can start a run, which is then titled after the first reference. Switching workflows or back to Solo clears the picked references and keeps the text.</li>
+<li><strong>Clarification and review chats and gate hot revisions inside a run</strong>: issues and PRs are searched in the run’s <code>repos</code> repositories. References go to the current node’s agent and are read the same way as in Solo (<code>read_reference</code> for sessions, <code>gh</code> for GitHub). They are unavailable when the node is finished, inactive or its composer is locked, and the anonymous shared approval page does not offer them.</li>
+</ul>
 <h2>Artifact contract and MCP</h2>
 <p>Each run has an isolated artifact MCP. Agents call tools such as:</p>
 <ul>

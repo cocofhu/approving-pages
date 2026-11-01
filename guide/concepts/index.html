@@ -141,6 +141,11 @@
 <li><strong>GitHub issue / PR</strong>：在当前会话挂载的 GitHub 仓库里搜索（首页启动时按已选的仓库搜索），输入 <code>#编号</code> 或粘贴 issue / PR 链接也可以。平台用沙箱同一份 Git 凭据检查能否访问；Agent 在沙箱里用 <code>gh</code> 读取最新内容、评论和改动。</li>
 </ul>
 <p>操作：<code>↑</code> <code>↓</code> 选择，<code>Enter</code> 确认，<code>Tab</code> 切换「全部 / 会话 / Issue / PR」，<code>Esc</code> 关闭；没有选中项时按 <code>Enter</code> 照常发送。每条消息最多引用 5 个，选中的引用显示在输入框上方，删掉 <code>@标题</code> 文字或点 × 都会去掉引用。被引用的内容只作为资料，不当作指令。</p>
+<p>工作流里也能这样引用：</p>
+<ul>
+<li><strong>首页「工作流」输入框</strong>：选中工作流后输入 <code>@</code> 或点「+」。Issue / PR 在该工作流 <code>repos</code> 变量的默认仓库里搜索，没有配置仓库时只能引用会话。只带引用、不写文字也能启动，运行标题取第一个引用。切换工作流或切回 Solo 时，已选的引用会清掉，文字保留。</li>
+<li><strong>运行内的澄清、复审对话和审批热修订</strong>：Issue / PR 在这次运行 <code>repos</code> 变量的仓库里搜索。引用交给当前节点的 Agent，读取方式与 Solo 相同（会话用 <code>read_reference</code>，GitHub 用 <code>gh</code>）。节点结束、未激活或输入框锁定时不能引用；匿名分享的审批页不提供引用。</li>
+</ul>
 <h2>产物契约与 MCP</h2>
 <p>每个 run 有隔离的 artifact MCP。Agent 调用例如：</p>
 <ul>
