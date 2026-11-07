@@ -42,6 +42,7 @@
       <div class="doc__body">
         <p>Grasp 通过 vendored 的 <strong>sandbox-gateway</strong> 控制平面调度通用沙箱镜像。Web UI 走 Grasp API；Agent 节点经 gateway 在容器中执行。</p>
 <h2>直连与平台代理</h2>
+<p>默认保持旧版直连。配置 <code>sandbox.gateway_transport: gateway</code> 后，Docker、Kubernetes、E2B 的 SSH、聊天、IDE 和浏览器连接均可经过带鉴权的网关，Grasp 不必与沙箱处于同一网络。浏览器继续使用原有 Grasp 入口。此模式要求网关 API key 和独立预览域名；命名网关的默认值仅影响新沙箱，已有沙箱保留原绑定。配置和迁移步骤见下方完整文档。</p>
 <ul>
 <li><strong>可直连（已鉴权）</strong>：<code>session</code>（会话密码）、<code>ide</code>（IDE 密码）、<code>ssh</code>（<code>ROOT_PASSWORD</code> 或 <code>SSH_KEY</code>）。</li>
 <li><strong>不可直连</strong>：CDP <code>:9222</code>、noVNC <code>:6080</code> 无应用层鉴权，不发布到宿主/LB，详情页不展示/不复制直连地址。</li>
