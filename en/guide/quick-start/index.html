@@ -70,6 +70,9 @@ cd approving
 <li><strong>Paired cleanup / migration / upgrade</strong>: never move only SQLite or delete only the blobs directory; if you override <code>GRASP_BLOBS_ROOT</code>, include that path in the same lifecycle as the database.</li>
 <li><strong>Historical orphans</strong>: broken refs are not guaranteed recoverable; the UI only shows a permanent-failure placeholder. This delivery does <strong>not</strong> add an orphan inspection console, bulk scan page, or startup/health-check alerts.</li>
 </ul>
+<h2>Chat attachments</h2>
+<p>Drag one or more files from your file manager into the chat input and release when the drop hint appears. You can also use the attachment button or paste files. Pending attachments show their name, type and size, and can be removed individually. The per-file limit is <strong>50 MiB</strong>; folders are not supported. Send after the files finish loading. A failed read removes that file and displays a message, while other content can still be sent.</p>
+<p>Click an image thumbnail to enlarge it, or an audio/video attachment to open native browser playback controls. Previews include a download option. If the format is unsupported, preview fails, or the file is too large, download it to view locally. Preview and download use the current chat’s existing access permissions.</p>
 <h2>Common commands</h2>
 <pre><code class="language-bash">./start.sh logs
 ./start.sh down
