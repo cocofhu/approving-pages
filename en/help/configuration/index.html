@@ -48,7 +48,9 @@
 </ul>
 <p>That document is generated/checked by <code>go run ./cmd/gen-configdoc</code>; CI runs <code>-check</code>.</p>
 <h2>Local quick path</h2>
-<pre><code class="language-bash">./start.sh -d          # published image stack
+<pre><code class="language-bash">./start.sh init-execution --offline # fresh install only; all writers stopped
+./start.sh -d          # published image stack
+# For source, run ./start.sh dev init-execution --offline before:
 ./start.sh dev -d      # source + HMR
 </code></pre>
 <p>Image tags / digests, gateway, and sandbox-related variables are in <code>.env.example</code>. Agent API keys, GitHub / GitLab tokens, SSH keys, and similar credentials can only be saved in Settings → Credentials; putting them in the shared Agent config, Agent meta, or platform <code>sandbox.env</code> is rejected. Save a preset or custom API base and key in Credentials, then combine a coding tool, credential and selected model in the Models tab. Agents reference that named model configuration through <code>modelBinding.configurationId</code>. Model routing fields come from the selected configuration; Agent env cannot override them. Other non-secret options may go in Agent meta env (values may reference <code>${vars.&lt;name&gt;}</code>).</p>
@@ -77,12 +79,23 @@
 <h3>Per-reply time and execution details</h3>
 <p>Solo, workflows, Agent tests and PM share the same chat presentation. Hover a message to see its time. The reply information icon supports hover, keyboard focus and touch, showing the turn’s Agent, coding tool, model, reasoning, duration and token usage. Input, output, caches and individual models remain separate, with upstream or estimated attribution preserved.</p>
 <p>Each reply keeps its execution snapshot; later model changes do not relabel old replies. Missing historical fields remain unavailable rather than being inferred from the current selection. An unfinished reply shows only information already received.</p>
-<h2>COS / S3 payload storage</h2>
-<p>The migration release and source stack support an existing private object store. Configure <code>GRASP_STORAGE_DRIVER=cos</code> for COS or <code>s3</code> for other S3 services, then explicitly set <code>GRASP_S3_ENDPOINT</code>, bucket, region, prefix and credentials. <code>GRASP_S3_PATH_STYLE</code> controls addressing. External storage outages never select a different or empty storage location.</p>
-<p>Once a storage location is registered, changing endpoint, bucket or prefix requires offline copy, reference verification and explicit switch. Changing environment variables does not migrate existing data. Retain legacy local files until archival and integrity checks complete.</p>
+<h2>Local object storage and COS / S3</h2>
+<p>The Solo-continuation migration release and source stack can store message bodies, attachments and workspace archives in private object storage. Use the source stack to evaluate this branch and the migration image when upgrading.</p>
+<p>Without COS, add this to the root <code>.env</code>:</p>
+<pre><code class="language-dotenv">GRASP_STORAGE_DRIVER=s3
+GRASP_LOCAL_OBJECTSTORE=1
+GRASP_S3_BUCKET=grasp
+GRASP_S3_PREFIX=application
+</code></pre>
+<p>Leave <code>GRASP_S3_ENDPOINT</code>, access credentials and session token empty. Explicitly set <code>GRASP_LOCAL_OBJECTSTORE=1</code>; a missing S3 endpoint alone is rejected before any local store is provisioned. For a fresh installation, first run <code>./start.sh init-execution --offline</code>, or <code>./start.sh dev init-execution --offline</code> for source. It proves the app is stopped, prepares SeaweedFS with its retained local identity, then initializes independent execution control. Start the app with <code>./start.sh -d</code> (migration image) or <code>./start.sh dev -d</code> (source). Existing databases must follow <code>server/UPGRADING.md</code>; ordinary startup and restart never initialize authority.</p>
+<p>The script creates a private bucket and generates an application identity scoped to that bucket before starting Grasp. S3 binds only to <code>http://127.0.0.1:8333</code>; change its port with <code>GRASP_LOCAL_OBJECTSTORE_PORT</code>. Admin, Filer and Master ports are not published to the host. Payload credentials never implicitly configure independent execution control.</p>
+<p>SeaweedFS runs as a non-root user. A non-root launcher uses its host UID/GID. A root launcher retains an existing non-root data owner, defaults new stores to <code>10001:10001</code>, and changes ownership only of the private data and IAM mounts. Client credentials stay host-private with mode <code>0600</code>. Set <code>GRASP_LOCAL_OBJECTSTORE_UID</code> / <code>GRASP_LOCAL_OBJECTSTORE_GID</code> to choose a non-root identity; a non-root launcher must own the mounts with its own UID/GID.</p>
+<p>Data and credentials live in <code>.localdata/objectstore</code>, or <code>.devdata/objectstore</code> for the source stack. <code>client.env</code> and <code>iam.json</code> have mode 600. Stops, restarts and container recreation retain the same data and identity. Include the entire directory in backups; do not delete or regenerate credentials separately. Changing an existing bucket requires a storage migration.</p>
+<p>For an existing COS / S3 service, configure <code>GRASP_S3_ENDPOINT</code>, bucket, region, prefix and credentials. Use <code>GRASP_STORAGE_DRIVER=cos</code> for COS and <code>s3</code> for other S3 services; <code>GRASP_S3_PATH_STYLE</code> controls addressing. An external endpoint disables bundled storage, and an outage never switches to an empty local store. Credentials without an endpoint are rejected.</p>
+<p>After a storage location is registered, endpoint, bucket or prefix changes require an offline copy, verification and explicit switch. Retain legacy local files until archival and integrity checks complete; changing environment variables alone does not migrate data. Use <code>./start.sh logs objectstore</code> for component logs and <code>./start.sh down</code> to stop it while retaining data.</p>
 <h2>Database and attachment lifecycle</h2>
 <p>In the release stack, SQLite (<code>./.localdata/db</code>) and app-data / default blobs (<code>./.localdata/app-data</code>, or a custom <code>GRASP_BLOBS_ROOT</code>) must be <strong>backed up and cleaned as a pair</strong>; do not migrate only the database. Otherwise composite images can keep orphan <code>blob:</code> refs (GET <code>/api/blobs/:id</code> → 404). Historical orphans only get a permanent UI placeholder; this delivery does not add an inspection console. See <a href="../guide/quick-start.md#database-and-attachments-share-one-lifecycle-backup--cleanup">Quick start</a>.</p>
-<p>With object storage, the backup set must include the corresponding bucket / prefix and credentials. The database, retained legacy files and objects must form one reference-verified backup set.</p>
+<p>With object storage, the backup set must also include the corresponding bucket / prefix and bundled storage credentials. The database, retained legacy files and objects must form one reference-verified backup set; backing up only SeaweedFS or only SQLite is incomplete.</p>
 <h2>Related</h2>
 <ul>
 <li><a href="../gateway/">Gateway</a></li>
