@@ -49,6 +49,9 @@
 <li><strong>User path</strong>: platform proxy only — <code>/sandbox-vnc/:sandboxId/ws</code>, one desktop per sandbox showing the browser the Agent drives (Session required when platform Auth is enabled; validity only, no sandbox/run ownership check). “Open preview” opens sandbox console noVNC; it does not dial websockify.</li>
 <li><strong>Inventory window</strong>: Docker already-running <code>-p</code> needs TTL/Reinstall. K8s inventory <code>*-lb</code> may still expose <code>:9222</code> / <code>:6080</code> until gateway startup reconcile / Start / Reinstall.</li>
 </ul>
+<h2>Environment and file retention</h2>
+<p>An expired workflow debugging window stops compute while retaining the environment identity and workspace. Startup reconciliation and gateway orphan scans preserve Solo/workflow resources whose records are missing, stopped or temporarily unavailable. Operators restore control-plane records or reconcile untracked resources explicitly; physical release remains a separate deletion action.</p>
+<p>Kubernetes stop waits for the controller to observe scaling down and for live Pods to exit. The PVC is retained and services cold-start on resume; process memory is not saved. Stop is not reported as complete while it is waiting. Observation failures or a subsequent start superseding the stop return an error so operators can check the current state and retry.</p>
 <h2>Full documentation</h2>
 <ul>
 <li><a href="https://github.com/cocofhu/approving/blob/main/GATEWAY.md">GATEWAY.md</a></li>
