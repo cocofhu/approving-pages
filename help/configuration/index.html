@@ -48,9 +48,7 @@
 </ul>
 <p>该文档由 <code>go run ./cmd/gen-configdoc</code> 生成/校验，CI 会 <code>-check</code>。</p>
 <h2>本地快速路径</h2>
-<pre><code class="language-bash">./start.sh init-execution --offline # 仅全新安装，全部写入者已停止
-./start.sh -d          # 发布镜像栈
-# 源码栈用 ./start.sh dev init-execution --offline，再启动：
+<pre><code class="language-bash">./start.sh -d          # 发布镜像栈
 ./start.sh dev -d      # 源码 + HMR
 </code></pre>
 <p>镜像 tag / digest、网关与沙箱相关变量见 <code>.env.example</code>。Agent 侧 API key、GitHub / GitLab Token、SSH 等只能保存到工作区凭据设置；写进共享 Agent 配置、Agent meta 或平台 <code>sandbox.env</code> 会被拒绝。先在「凭据」标签保存预设或自定义服务的 API Base 和 Key，再在「模型」标签组合编码工具、凭据与所选模型，Agent 通过 <code>modelBinding.configurationId</code> 引用具名配置。模型路由字段由选定配置提供，Agent env 不能覆盖。其他非敏感项可放在 Agent meta env（值可引用 <code>${vars.&lt;name&gt;}</code>）。模型运行时参数只来自当前模型配置。</p>
@@ -88,8 +86,8 @@ GRASP_LOCAL_OBJECTSTORE=1
 GRASP_S3_BUCKET=grasp
 GRASP_S3_PREFIX=application
 </code></pre>
-<p>保留 <code>GRASP_S3_ENDPOINT</code>、访问密钥和会话令牌为空；必须显式设置 <code>GRASP_LOCAL_OBJECTSTORE=1</code>，只缺少 S3 地址会报错，不会创建空白本地存储。全新安装先执行 <code>./start.sh init-execution --offline</code>，源码栈使用 <code>./start.sh dev init-execution --offline</code>；命令先确认应用已停止，再准备 SeaweedFS 和原本地凭据，最后初始化独立执行控制。然后执行 <code>./start.sh -d</code>（迁移版本镜像）或 <code>./start.sh dev -d</code>（源码）。已有数据库按前述升级流程处理，普通启动和重启不自动初始化。</p>
-<p>脚本自动创建私有 bucket，生成只允许该 bucket 的应用密钥，并在确认服务就绪后启动 Grasp。默认 S3 地址为 <code>http://127.0.0.1:8333</code>，仅绑定本机；端口可用 <code>GRASP_LOCAL_OBJECTSTORE_PORT</code> 修改。管理界面、Filer 和 Master 端口不发布到宿主。正文组件的凭据不会自动用作独立执行控制配置。</p>
+<p>保留 <code>GRASP_S3_ENDPOINT</code>、访问密钥和会话令牌为空；必须显式设置 <code>GRASP_LOCAL_OBJECTSTORE=1</code>，只缺少 S3 地址会报错，不会创建空白本地存储。执行 <code>./start.sh -d</code>（迁移版本镜像）或 <code>./start.sh dev -d</code>（源码）时会先准备 SeaweedFS 和原本地凭据，再启动应用。已有数据库按前述升级流程处理。</p>
+<p>脚本自动创建私有 bucket，生成只允许该 bucket 的应用密钥，并在确认服务就绪后启动 Grasp。默认 S3 地址为 <code>http://127.0.0.1:8333</code>，仅绑定本机；端口可用 <code>GRASP_LOCAL_OBJECTSTORE_PORT</code> 修改。管理界面、Filer 和 Master 端口不发布到宿主。</p>
 <p>SeaweedFS 以非 root 身份运行。普通用户启动时沿用宿主 UID/GID；root 启动时沿用已有数据的非 root 属主，新数据默认使用 <code>10001:10001</code>，并仅调整私有数据目录与 IAM 挂载的属主。客户端密钥保持宿主用户可读的 <code>0600</code>。可用 <code>GRASP_LOCAL_OBJECTSTORE_UID</code> / <code>GRASP_LOCAL_OBJECTSTORE_GID</code> 指定非 root 身份；普通用户需先确保挂载目录属于自己的 UID/GID。</p>
 <p>数据和凭据保存在 <code>.localdata/objectstore</code>，源码栈使用 <code>.devdata/objectstore</code>；<code>client.env</code> 与 <code>iam.json</code> 权限为 600。停止、重启和重新创建容器会沿用原数据及密钥。备份时保留整个目录，不能单独删除或重新生成密钥；更换已有 bucket 需要执行存储迁移。</p>
 <p>已有 COS / S3 时配置 <code>GRASP_S3_ENDPOINT</code>、bucket、地域、前缀和访问密钥，COS 使用 <code>GRASP_STORAGE_DRIVER=cos</code>，其他 S3 使用 <code>s3</code>。路径式寻址可通过 <code>GRASP_S3_PATH_STYLE</code> 指定。配置外部地址后不会启动本地存储，外部故障也不会自动改用空白本地存储。配置了访问密钥却没有地址会直接报错。</p>
