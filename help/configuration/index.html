@@ -83,6 +83,9 @@
 <li>默认存放在服务端本地目录 <code>data/solo-backups</code>（正式栈位于 <code>./.localdata/app-data</code>，与附件一起备份），可用 <code>GRASP_SOLO_BACKUP_DIR</code> 修改。</li>
 <li>设置 <code>GRASP_SOLO_BACKUP_S3_BUCKET</code>、<code>GRASP_SOLO_BACKUP_S3_ACCESS_KEY_ID</code>、<code>GRASP_SOLO_BACKUP_S3_SECRET_ACCESS_KEY</code> 后改存 S3 兼容存储；MinIO、COS 等用 <code>GRASP_SOLO_BACKUP_S3_ENDPOINT</code> 指定地址，必要时设 <code>GRASP_SOLO_BACKUP_S3_PATH_STYLE=true</code>。只填一部分会启动失败。</li>
 <li>单个备份默认上限 4 GiB（<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>），超过时停止失败、会话继续运行。</li>
+<li>每个会话滚动保留最近 5 份备份（<code>GRASP_SOLO_BACKUP_KEEP</code>），更早的连同存储对象一起删除；关闭或删除会话时删除全部备份。</li>
+<li>运行中的会话距上次备份满 6 小时且期间有过对话时，会在当前回复结束后自动备份一次（<code>GRASP_SOLO_BACKUP_INTERVAL_MINUTES</code>，设为负数关闭）。已暂停的沙箱不会为备份而唤醒。</li>
+<li>恢复时可在「恢复」旁选择备份版本。选最新一份时照常恢复原沙箱；选更早的版本会新建沙箱并还原该版本，之后的改动不保留（较新的备份仍在）。沙箱意外消失时，有备份的会话会变为已停止，点「恢复」即可从最新备份还原。</li>
 </ul>
 <h2>数据库与附件同生命周期</h2>
 <p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>GRASP_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>
