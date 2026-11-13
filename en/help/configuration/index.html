@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Configuration · Grasp</title>
-  <meta name="description" content="Configuration highlights; full details live in source CONFIGURATION.md.">
+  <meta name="description" content="Grasp, gateway and sandbox configuration sources, defaults and precedence.">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/configuration/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/configuration/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/configuration/">
@@ -37,16 +37,23 @@
       <header class="doc__header">
         <p class="doc__eyebrow">Docs</p>
         <h1 class="doc__title">Configuration</h1>
-        <p class="doc__lead">Configuration highlights; full details live in source CONFIGURATION.md.</p>
+        <p class="doc__lead">Grasp, gateway and sandbox configuration sources, defaults and precedence.</p>
       </header>
       <div class="doc__body">
         <p>Grasp platform service configuration is primarily YAML / environment variables (local examples: <code>server/config.example.yaml</code> and the root <code>.env.example</code>). Runtime credentials such as ACP and Git credentials are managed only in Settings → Credentials.</p>
 <h2>Full documentation</h2>
-<p>Treat the in-repo docs as authoritative (avoids drift between this site and source):</p>
+<p>Choose the reference for the component you are configuring:</p>
 <ul>
-<li><a href="https://github.com/cocofhu/approving/blob/main/server/CONFIGURATION.md">server/CONFIGURATION.md</a></li>
+<li><a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">Grasp and sandbox configuration / defaults (Chinese)</a>: platform, gateway, E2B and sandbox runtime options, including defaults, Compose overrides, the minimum connection setup and troubleshooting.</li>
+<li><a href="https://github.com/cocofhu/grasp/blob/main/server/CONFIGURATION.md">Grasp environment reference</a>: environment variables and their YAML fields.</li>
+<li><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B deployment (Chinese)</a>: template preparation, gateway configuration and startup.</li>
 </ul>
-<p>That document is generated/checked by <code>go run ./cmd/gen-configdoc</code>; CI runs <code>-check</code>.</p>
+<p>The environment reference is generated/checked by <code>go run ./cmd/gen-configdoc</code>; CI runs <code>-check</code>.</p>
+<h2>Defaults and precedence</h2>
+<p>Use two YAML files: Grasp platform configuration and the selected backend’s gateway configuration. Grasp reads <code>CONFIG_PATH</code> (default <code>config.yaml</code>); select the gateway file explicitly with <code>SBGW_CONFIG</code> or <code>-config</code>. Docker, Kubernetes and E2B have separate examples. Mixed backend sections, unknown fields and inactive backend environment variables fail startup.</p>
+<p>Ordinary settings use environment &gt; YAML &gt; defaults. Settings-page controls use environment &gt; saved database value &gt; YAML &gt; defaults. Environment values lock the corresponding UI field.</p>
+<p>Grasp defaults to <code>http://127.0.0.1:8899</code> with <code>direct</code> transport, an empty image and memory override <code>0</code>, following the gateway or selected template. Setting memory back to <code>0</code> clears the override for future sandboxes. Docker and Kubernetes each default to <code>2 CPU / 4096 MiB / 25 GiB</code>. E2B has no built-in template or resource defaults: copy actual build results.</p>
+<p>E2B uses an explicit <code>apiURL</code>, optional <code>sandboxURL</code> and named <code>templates</code>. Self-hosted deployments use their own API and private sandbox proxy origins, without an implicit cloud address. In <code>templates.standard</code>, <code>standard</code> is your local template name; <code>templateID</code> is returned by E2B. One template is selected automatically; several require <code>defaultTemplate</code>. A named Grasp connection can select a template with <code>profile</code>. Grasp need not repeat its name or memory. See the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">build and paired configuration examples</a>.</p>
 <h2>Local quick path</h2>
 <pre><code class="language-bash">./start.sh -d          # published image stack
 ./start.sh dev -d      # source + HMR

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>配置 · Grasp</title>
-  <meta name="description" content="配置要点摘要；完整说明见源码 CONFIGURATION.md。">
+  <meta name="description" content="Grasp、gateway 与沙箱配置入口、默认值和覆盖顺序。">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/configuration/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/configuration/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/configuration/">
@@ -37,16 +37,23 @@
       <header class="doc__header">
         <p class="doc__eyebrow">文档</p>
         <h1 class="doc__title">配置</h1>
-        <p class="doc__lead">配置要点摘要；完整说明见源码 CONFIGURATION.md。</p>
+        <p class="doc__lead">Grasp、gateway 与沙箱配置入口、默认值和覆盖顺序。</p>
       </header>
       <div class="doc__body">
         <p>Grasp 平台服务配置以 YAML / 环境变量为主（本地示例见 <code>server/config.example.yaml</code> 与根目录 <code>.env.example</code>）。ACP、Git 等运行时凭据只在「设置 → 凭据」 中管理。</p>
 <h2>完整文档</h2>
-<p>请以仓库内权威文档为准（避免本站与源码双份漂移）：</p>
+<p>按需要选择配置文档：</p>
 <ul>
-<li><a href="https://github.com/cocofhu/approving/blob/main/server/CONFIGURATION.md">server/CONFIGURATION.md</a></li>
+<li><a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">Grasp 与沙箱配置、默认值</a>：按平台、gateway、E2B 和沙箱内部变量分组，包含每项用途、默认值、Compose 差异、最小接入清单和排错。</li>
+<li><a href="https://github.com/cocofhu/grasp/blob/main/server/CONFIGURATION.md">Grasp 完整环境变量表</a>：环境变量与 YAML 字段的对应关系。</li>
+<li><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B 部署</a>：模板构建、gateway 配置与启动步骤。</li>
 </ul>
-<p>该文档由 <code>go run ./cmd/gen-configdoc</code> 生成/校验，CI 会 <code>-check</code>。</p>
+<p>环境变量表由 <code>go run ./cmd/gen-configdoc</code> 生成/校验，CI 会 <code>-check</code>。</p>
+<h2>默认值与覆盖顺序</h2>
+<p>Grasp 读取 <code>CONFIG_PATH</code>（默认 <code>config.yaml</code>），gateway 通过 <code>SBGW_CONFIG</code> 或 <code>-config</code> 显式选择文件。一次部署使用两份 YAML：Grasp 平台配置，以及所选后端的 gateway 配置。Docker、Kubernetes、E2B 各有独立示例，不能混合后端段；未知字段或不属于当前后端的环境变量会导致启动失败。</p>
+<p>普通配置是环境变量 &gt; YAML &gt; 程序默认值；设置页管理的参数是环境变量 &gt; 设置页保存值 &gt; YAML &gt; 默认值。环境变量锁定相应设置页字段。</p>
+<p>Grasp 默认连接 <code>http://127.0.0.1:8899</code>，使用 <code>direct</code> transport，镜像为空、内存覆盖为 <code>0</code>，跟随网关或所选模板。设置页把内存填回 <code>0</code> 可清除覆盖，对之后新建的沙箱生效。Docker/Kubernetes 默认资源各自为 <code>2 CPU / 4096 MiB / 25 GiB</code>；E2B 没有内置模板和规格，必须填写实际构建结果。</p>
+<p>E2B 配置只包含明确的 <code>apiURL</code>、可选的 <code>sandboxURL</code> 和 <code>templates</code>。自建填写自己的 E2B API 与沙箱代理地址，没有隐式云服务地址。<code>templates.standard</code> 的 <code>standard</code> 是本地模板名，<code>templateID</code> 才是构建返回的实际标识；单模板自动选择，多模板指定 <code>defaultTemplate</code>，也可以在 Grasp 命名连接里用 <code>profile</code> 选择。Grasp 无需重复填写模板名和内存。见 <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B 构建与两份配置示例</a>。</p>
 <h2>本地快速路径</h2>
 <pre><code class="language-bash">./start.sh -d          # 发布镜像栈
 ./start.sh dev -d      # 源码 + HMR
