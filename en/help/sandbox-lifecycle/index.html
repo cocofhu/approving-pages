@@ -64,7 +64,7 @@ Workflow concurrency remains a separate task scheduling limit.</p>
 <td>Idle timeout or Stop environment</td>
 <td>Verify a workspace archive, then remove the container</td>
 <td>Verify a workspace archive, then remove Deployment, Pods, PVC and exclusive resources</td>
-<td>Verify a durable memory/disk snapshot, then report paused; no duplicate file archive</td>
+<td>Native pause, or independent checkpoint then release for multiple points; no file archive</td>
 </tr>
 <tr>
 <td>Next use</td>
@@ -82,7 +82,7 @@ Workflow concurrency remains a separate task scheduling limit.</p>
 <td>Cancel run or close session</td>
 <td>Delete its environment and every recovery point</td>
 <td>Same</td>
-<td>Delete its guest and recovery points; reclaim unreferenced disk layers</td>
+<td>Delete its guest and recovery points; provider reclaims physical storage</td>
 </tr>
 </tbody>
 </table>
@@ -109,11 +109,18 @@ It defaults to 1 and accepts larger positive counts. Pruning follows a
 successful new save. Restore always selects the newest successful point, with
 no version picker or silent fallback from a corrupt archive. Existing archives
 are migrated with their object references preserved.</p>
-<p>Archive or verification failure preserves the original workload. An E2B pause
-response alone does not establish successful persistence. Failed uploads retain
-the previous durable point and, with the supporting provider, pin the local
-pending snapshot. This cannot guarantee unsaved data against guest failure,
-host power loss or storage corruption.</p>
+<p>E2B uses native pause/connect with <code>keep: 1</code>. Larger counts use official named
+snapshot APIs, release the source guest after committing the exact checkpoint,
+and prune older independent checkpoints after the new save succeeds.
+Restore prefers the original paused guest. Only confirmed absence allows a new
+provider guest from the checkpoint committed by the latest save; the gateway ID
+stays stable. Multiple points cost additional storage and save time, without
+introducing periodic backups while running.</p>
+<p>Archive or verification failure preserves the original workload. E2B follows
+the provider’s official pause/snapshot recovery contract; failed saves do not
+prune prior points. Grasp requires no private upload or process-exit receipt.
+Provider storage monitoring and GC remain deployment responsibilities, and
+unsaved state is not guaranteed against host power loss or storage corruption.</p>
 <p>Failed deletion keeps persistent retry intent. Shared snapshot ancestors,
 templates and live readers protect referenced layers, so <code>keep: 1</code> does not mean
 one physical disk file. Once the VM is confirmed released it stops consuming a
@@ -121,9 +128,11 @@ running slot, while disk cleanup remains tracked.</p>
 <p>Upgrade migrates saved per-purpose capacities once using the larger value;
 an explicit new limit wins. Old purpose-specific timeouts, maximum retention,
 manual leases, periodic backup intervals and version-selection APIs are removed.
-Lowering capacity does not evict existing work. Self-hosted E2B requires its
-retention schema migration and matching orchestrator/API before gateway and
-Grasp. Missing capabilities fail closed. Update a single provider node only in
+Lowering capacity does not evict existing work. Standard E2B requires no private
+extension or custom Dashboard. Counts above one require the official independent
+snapshot API and fail explicitly when unavailable. Existing enhanced self-hosted
+deployments must update their storage-tracking API and migration before the
+gateway switches to standard calls. Update a single provider node only in
 a maintenance window without active business work, and validate with isolated
 test sandboxes.</p>
 
