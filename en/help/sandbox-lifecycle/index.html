@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>en/help/sandbox-lifecycle · Grasp</title>
+  <meta name="description" content="Grasp help documentation">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/sandbox-lifecycle/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/sandbox-lifecycle/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/sandbox-lifecycle/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/en/">Grasp</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
+        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="Language">
+        <a class="lang-switch__link" href="/help/sandbox-lifecycle/" data-locale-set="zh-CN">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link is-current" href="/en/help/sandbox-lifecycle/" data-locale-set="en" aria-current="page">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">Docs</p>
+        <h1 class="doc__title">en/help/sandbox-lifecycle</h1>
+        
+      </header>
+      <div class="doc__body">
+        <h1>Sandbox save, release and restore</h1>
+<p>Every sandbox purpose and Docker, Kubernetes and E2B share one idle timeout and
+one capacity limit in Settings. Defaults are <strong>60 minutes</strong> and <strong>15 sandboxes</strong>.
+Workflow concurrency remains a separate task scheduling limit.</p>
+<table>
+<thead>
+<tr>
+<th>Behavior</th>
+<th>Docker</th>
+<th>Kubernetes</th>
+<th>E2B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idle</td>
+<td>No executing task, queued request or terminal/background work</td>
+<td>Same</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Idle timeout or Stop environment</td>
+<td>Verify a workspace archive, then remove the container</td>
+<td>Verify a workspace archive, then remove Deployment, Pods, PVC and exclusive resources</td>
+<td>Verify a durable memory/disk snapshot, then report paused; no duplicate file archive</td>
+</tr>
+<tr>
+<td>Next use</td>
+<td>Recreate, restore the newest successful archive, reconnect</td>
+<td>Same</td>
+<td>Restore the newest successful snapshot and reconnect</td>
+</tr>
+<tr>
+<td>Periodic running backup</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Cancel run or close session</td>
+<td>Delete its environment and every recovery point</td>
+<td>Same</td>
+<td>Delete its guest and recovery points; reclaim unreferenced disk layers</td>
+</tr>
+</tbody>
+</table>
+<p>File archives cover the workspace, excluding regenerable <code>node_modules</code>,
+<code>.venv</code>, <code>__pycache__</code>, <code>.cache</code> and <code>.pnpm-store</code> directories. Docker/Kubernetes
+restore does not preserve process memory or temporary files outside the
+workspace. E2B preserves memory, but TCP connections and external requests must
+reconnect. Docker shared bind mounts are not removed. Kubernetes storage-class
+and CSI reclaim policies determine physical volume deletion.</p>
+<p>A workflow waiting for human input can release its idle environment while
+remaining in the waiting state. A reply restores it before continuing. Any
+active node protects a shared sandbox. Closing the browser does not establish
+idleness; status polling does not count as activity. Manual Stop uses the same
+save path and refuses while work or queued requests remain. Cancel is a separate
+terminal operation: conversation/workflow history stays, recovery points do not.</p>
+<pre><code class="language-yaml">sandbox:
+  idle_ttl_minutes: 60
+  max_sandboxes: 15
+solo_backup:
+  keep: 1
+</code></pre>
+<p>The existing <code>solo_backup.keep</code> name applies to all sandbox recovery points.
+It defaults to 1 and accepts larger positive counts. Pruning follows a
+successful new save. Restore always selects the newest successful point, with
+no version picker or silent fallback from a corrupt archive. Existing archives
+are migrated with their object references preserved.</p>
+<p>Archive or verification failure preserves the original workload. An E2B pause
+response alone does not establish successful persistence. Failed uploads retain
+the previous durable point and, with the supporting provider, pin the local
+pending snapshot. This cannot guarantee unsaved data against guest failure,
+host power loss or storage corruption.</p>
+<p>Failed deletion keeps persistent retry intent. Shared snapshot ancestors,
+templates and live readers protect referenced layers, so <code>keep: 1</code> does not mean
+one physical disk file. Once the VM is confirmed released it stops consuming a
+running slot, while disk cleanup remains tracked.</p>
+<p>Upgrade migrates saved per-purpose capacities once using the larger value;
+an explicit new limit wins. Old purpose-specific timeouts, maximum retention,
+manual leases, periodic backup intervals and version-selection APIs are removed.
+Lowering capacity does not evict existing work. Self-hosted E2B requires its
+retention schema migration and matching orchestrator/API before gateway and
+Grasp. Missing capabilities fail closed. Update a single provider node only in
+a maintenance window without active business work, and validate with isolated
+test sandboxes.</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Grasp</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/gateway/">Gateway</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

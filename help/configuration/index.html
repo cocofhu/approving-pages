@@ -84,15 +84,14 @@
 <h3>每条回复的时间与运行信息</h3>
 <p>Solo、工作流、Agent 测试和 PM 使用同一套聊天展示。悬停消息可查看时间；回复旁的信息图标支持悬停、键盘聚焦和触屏点击，显示该轮实际 Agent、编码工具、模型、推理强度、耗时和 Token 用量。输入、输出、缓存及不同模型的统计会分别显示，并保留服务商上报或估算的来源说明。</p>
 <p>这些信息属于该条回复的执行快照，后续切换模型不会改写旧回复。历史消息没有记录的字段显示为未提供，不使用当前选择推测；尚未完成的回复只显示已收到的信息。</p>
-<h2>Solo 停止环境的备份位置</h2>
-<p>Solo 会话「停止环境」时会先把工作区打包备份，再停止沙箱；恢复时原沙箱还在就直接启动（E2B 连进程一起恢复），原沙箱已不存在则新建沙箱并从备份还原。依赖与缓存目录（<code>node_modules</code>、<code>.venv</code>、<code>__pycache__</code>、<code>.cache</code>、<code>.pnpm-store</code>）不备份。</p>
+<h2>沙箱回收与备份位置</h2>
+<p>所有沙箱使用设置页同一空闲时长和容量上限，默认分别为 60 分钟、15 个。空闲时先保存环境再回收资源，使用时恢复最新成功版本。Docker/K8s 保存工作区归档并删除容器/PVC；E2B 使用完整快照，不重复文件备份。运行中的任务不做周期备份。</p>
 <ul>
-<li>默认存放在服务端本地目录 <code>data/solo-backups</code>（正式栈位于 <code>./.localdata/app-data</code>，与附件一起备份），可用 <code>GRASP_SOLO_BACKUP_DIR</code> 修改。</li>
-<li>设置 <code>GRASP_SOLO_BACKUP_S3_BUCKET</code>、<code>GRASP_SOLO_BACKUP_S3_ACCESS_KEY_ID</code>、<code>GRASP_SOLO_BACKUP_S3_SECRET_ACCESS_KEY</code> 后改存 S3 兼容存储；MinIO、COS 等用 <code>GRASP_SOLO_BACKUP_S3_ENDPOINT</code> 指定地址，必要时设 <code>GRASP_SOLO_BACKUP_S3_PATH_STYLE=true</code>。只填一部分会启动失败。</li>
-<li>单个备份默认上限 4 GiB（<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>），超过时停止失败、会话继续运行。</li>
-<li>每个会话滚动保留最近 5 份备份（<code>GRASP_SOLO_BACKUP_KEEP</code>），更早的连同存储对象一起删除；关闭或删除会话时删除全部备份。</li>
-<li>运行中的会话距上次备份满 6 小时且期间有过对话时，会在当前回复结束后自动备份一次（<code>GRASP_SOLO_BACKUP_INTERVAL_MINUTES</code>，设为负数关闭）。已暂停的沙箱不会为备份而唤醒。</li>
-<li>恢复时可在「恢复」旁选择备份版本。选最新一份时照常恢复原沙箱；选更早的版本会新建沙箱并还原该版本，之后的改动不保留（较新的备份仍在）。沙箱意外消失时，有备份的会话会变为已停止，点「恢复」即可从最新备份还原。</li>
+<li>文件备份默认位于 <code>data/solo-backups</code>，可用 <code>GRASP_SOLO_BACKUP_DIR</code> 修改；正式栈需与数据库一起备份。</li>
+<li>设置 <code>GRASP_SOLO_BACKUP_S3_BUCKET</code>、<code>GRASP_SOLO_BACKUP_S3_ACCESS_KEY_ID</code> 和 <code>GRASP_SOLO_BACKUP_S3_SECRET_ACCESS_KEY</code> 使用 S3。自托管存储可配置 <code>GRASP_SOLO_BACKUP_S3_ENDPOINT</code> 和 <code>GRASP_SOLO_BACKUP_S3_PATH_STYLE</code>；不完整配置会拒绝启动。</li>
+<li>单个文件归档默认上限 4 GiB（<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>）；超限或校验失败时保留原环境。</li>
+<li><code>solo_backup.keep</code>（<code>GRASP_SOLO_BACKUP_KEEP</code>）统一控制文件和快照的恢复点数量，默认 <strong>1</strong>。新保存成功后才淘汰旧版本，恢复总用最新成功版本。取消运行/关闭会话删除其全部恢复点，失败会重试。</li>
+<li><a href="sandbox-lifecycle.md">沙箱生命周期</a> 说明等待人工、手动停止、恢复和清理失败的行为。</li>
 </ul>
 <h2>数据库与附件同生命周期</h2>
 <p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>GRASP_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>
