@@ -52,7 +52,7 @@
 <h2>默认值与覆盖顺序</h2>
 <p>Grasp 读取 <code>CONFIG_PATH</code>（默认 <code>config.yaml</code>），gateway 通过 <code>SBGW_CONFIG</code> 或 <code>-config</code> 显式选择文件。一次部署使用两份 YAML：Grasp 平台配置，以及所选后端的 gateway 配置。Docker、Kubernetes、E2B 各有独立示例，不能混合后端段；未知字段或不属于当前后端的环境变量会导致启动失败。</p>
 <p>普通配置是环境变量 &gt; YAML &gt; 程序默认值；设置页管理的参数是环境变量 &gt; 设置页保存值 &gt; YAML &gt; 默认值。环境变量锁定相应设置页字段。</p>
-<p>Grasp 默认连接 <code>http://127.0.0.1:8899</code>，使用 <code>direct</code> transport，镜像为空、内存覆盖为 <code>0</code>，跟随网关或所选模板。设置页把内存填回 <code>0</code> 可清除覆盖，对之后新建的沙箱生效。Docker/Kubernetes 默认资源各自为 <code>2 CPU / 4096 MiB / 25 GiB</code>；E2B 没有内置模板和规格，必须填写实际构建结果。</p>
+<p>Grasp 默认连接 <code>http://127.0.0.1:8899</code>，使用 <code>direct</code> transport，镜像为空、内存覆盖为 <code>0</code>，跟随网关或所选模板。设置页把内存填回 <code>0</code> 可清除覆盖，对之后新建的沙箱生效。Docker 默认不限制 CPU 与内存，沙箱共享宿主资源；Kubernetes 默认 <code>2 CPU / 4096 MiB / 25 GiB</code>；E2B 没有内置模板和规格，必须填写实际构建结果。</p>
 <p>E2B 配置只包含明确的 <code>apiURL</code>、可选的 <code>sandboxURL</code> 和 <code>templates</code>。自建填写自己的 E2B API 与沙箱代理地址，没有隐式云服务地址。<code>templates.standard</code> 的 <code>standard</code> 是本地模板名，<code>templateID</code> 才是构建返回的实际标识；单模板自动选择，多模板指定 <code>defaultTemplate</code>，也可以在 Grasp 命名连接里用 <code>profile</code> 选择。Grasp 无需重复填写模板名和内存。见 <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B 构建与两份配置示例</a>。</p>
 <h2>本地快速路径</h2>
 <pre><code class="language-bash">./start.sh -d          # 发布镜像栈
