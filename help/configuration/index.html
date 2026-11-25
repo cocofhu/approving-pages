@@ -92,6 +92,7 @@
 <li>单个文件归档默认上限 4 GiB（<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>）；超限或校验失败时保留原环境。</li>
 <li><code>solo_backup.keep</code>（<code>GRASP_SOLO_BACKUP_KEEP</code>）统一控制文件和快照的恢复点数量，默认 <strong>1</strong>。新保存成功后才淘汰旧版本，恢复总用最新成功版本。取消运行/关闭会话删除其全部恢复点，失败会重试。</li>
 <li><a href="sandbox-lifecycle.md">沙箱生命周期</a> 说明等待人工、手动停止、恢复和清理失败的行为。</li>
+<li><a href="local-ide.md">用本地 IDE 连接沙箱</a> 说明内置 SSH 网关的开启、部署和使用。</li>
 </ul>
 <h2>数据库与附件同生命周期</h2>
 <p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>GRASP_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>

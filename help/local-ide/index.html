@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>help/local-ide · Grasp</title>
+  <meta name="description" content="Grasp 帮助文档">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/local-ide/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/local-ide/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/local-ide/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/">Grasp</a>
+      <nav class="site-header__nav" aria-label="主导航">
+        <a class="site-header__link" href="/guide/quick-start/">文档</a>
+        <a class="site-header__link" href="/guide/concepts/">概念</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="语言">
+        <a class="lang-switch__link is-current" href="/help/local-ide/" data-locale-set="zh-CN" aria-current="page">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link" href="/en/help/local-ide/" data-locale-set="en">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">文档</p>
+        <h1 class="doc__title">help/local-ide</h1>
+        
+      </header>
+      <div class="doc__body">
+        <h1>用本地 IDE 连接沙箱</h1>
+<p>开启内置 SSH 网关后，可以用本地的 VS Code、Cursor（Remote-SSH）或任意终端直接打开沙箱，E2B、Docker、Kubernetes 用同一种方式。本地只需要 IDE 和系统自带的 OpenSSH，不用安装其他程序。</p>
+<pre><code>VS Code / Cursor ──SSH──&gt; Grasp SSH 网关（默认 2222 端口）──&gt; 沙箱 sshd
+</code></pre>
+<p>SSH 用户名决定连哪个沙箱：<code>sbx-&lt;沙箱 ID&gt;</code>。网关用你在 Grasp 登记的公钥认证，再以 root 身份连进沙箱。公钥只保存在 Grasp，不会写入沙箱；删除公钥后，使用它的连接会立即断开。</p>
+<h2>管理员：开启网关</h2>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>环境变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh_gateway.enabled</code></td>
+<td><code>GRASP_SSH_GATEWAY_ENABLED</code></td>
+<td>设为 <code>true</code> 开启，默认关闭</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.listen</code></td>
+<td><code>GRASP_SSH_GATEWAY_LISTEN</code></td>
+<td>监听地址，默认 <code>:2222</code></td>
+</tr>
+<tr>
+<td><code>ssh_gateway.public_host</code></td>
+<td><code>GRASP_SSH_GATEWAY_PUBLIC_HOST</code></td>
+<td>用户连接的主机名；留空使用浏览器访问 Grasp 的主机名</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.public_port</code></td>
+<td><code>GRASP_SSH_GATEWAY_PUBLIC_PORT</code></td>
+<td>用户连接的端口；端口映射或负载均衡改了端口时设置</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.host_key_path</code></td>
+<td><code>GRASP_SSH_GATEWAY_HOST_KEY_PATH</code></td>
+<td>网关主机私钥，首次启动自动生成</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.max_conns</code> / <code>max_conns_per_sandbox</code></td>
+<td>同名大写</td>
+<td>全局 / 单沙箱连接上限，默认 200 / 10</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.admins_only</code></td>
+<td><code>GRASP_SSH_GATEWAY_ADMINS_ONLY</code></td>
+<td>只允许管理员账号连接</td>
+</tr>
+</tbody>
+</table>
+<p>部署时注意：</p>
+<ul>
+<li><strong>对外开放 TCP 端口。</strong> Docker Compose 示例使用主机网络，放行防火墙端口即可。Kubernetes 的 Ingress 只转发 HTTP，需要另建 <code>LoadBalancer</code> 或 <code>NodePort</code> 类型的 Service，示例见 <code>sandbox-gateway/deploy/k8s/stack.example.yaml</code> 末尾的 <code>grasp-ssh</code>。公司网络只放行 443 时，这个端口可能不通。</li>
+<li><strong>主机私钥要持久化。</strong> 所有沙箱共用这一把主机密钥，所以沙箱重建或 E2B 恢复后不会出现「主机密钥已变更」的提示。它必须放在持久卷上（示例都放在 <code>/data</code> 下），多副本部署时还要共享，否则每次重新部署客户端都会报警。</li>
+<li><strong>配置只在启动时读取</strong>，修改后需要重启服务。</li>
+</ul>
+<h2>安全说明</h2>
+<ul>
+<li>访问范围按账号授权：Solo 会话的所有者可以进入自己会话的沙箱，管理员可以进入任意沙箱；工作流、测试等没有所有者的沙箱只对管理员开放。不存在和无权访问的沙箱返回同样的提示。会话被删除或转给他人、公钥被删除、账号被移除时，已有连接会在一分钟内断开（删除公钥时立即断开）。开启 <code>admins_only</code> 后只有管理员能连接。</li>
+<li>网关会解开并重新建立 SSH 连接，能看到会话明文。平台本来就持有沙箱的 root 权限，安全边界不变。</li>
+<li>只支持公钥认证。同一来源地址在 5 分钟内连续认证失败 20 次后会被暂时拒绝；尚未完成认证的连接单独限量（全局 64 条、每个来源 8 条），不会占用已认证连接的名额。</li>
+<li>不支持远程端口转发（<code>-R</code>）、agent 转发和 X11 转发；本地端口转发（<code>-L</code>）、SFTP 和 VS Code/Cursor 需要的通道都可用。</li>
+<li>网关重启时现有连接会断开，IDE 会自动重连。</li>
+</ul>
+<h2>用户：第一次连接</h2>
+<ol>
+<li>在本机生成密钥（已有可跳过）：<code>ssh-keygen -t ed25519</code>。</li>
+<li>在左下角账号菜单打开 <strong>「SSH 公钥」</strong>，粘贴 <code>~/.ssh/id_ed25519.pub</code> 的内容。支持 ed25519、ECDSA 和至少 2048 位的 RSA。</li>
+<li>打开一个 Solo 会话，点击顶部右侧的 <strong>信息图标</strong>，在「本地 IDE」里点 <strong>「用 VS Code 打开」</strong>。旁边的下拉菜单可以换成 Cursor、CodeBuddy、Trae（点 <code>CN</code> 打开国内版）或 JetBrains Gateway，上次的选择会被记住。</li>
+<li>浏览器会询问是否打开对应应用，IDE 第一次还会确认是否打开这个远程文件夹，都选打开即可。IDE 连接 <code>sbx-12@grasp.example.com:2222</code>，直接打开 <code>/root/workspace</code>，不需要修改 <code>~/.ssh/config</code>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>IDE</th>
+<th>打开方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VS Code</td>
+<td>需要安装 Remote - SSH 扩展</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>首次使用时按提示安装 Cursor 的 Remote SSH 扩展</td>
+</tr>
+<tr>
+<td>CodeBuddy / Trae</td>
+<td>自带 Remote-SSH；国际版和国内版是两个应用，菜单里分别打开</td>
+</tr>
+<tr>
+<td>JetBrains Gateway</td>
+<td>不能一键打开：Gateway 的链接只能连接主机上已安装的 IDE。点它会显示连接信息，在 Gateway 中选择 SSH → New Connection，填写用户名、主机、端口，项目目录填 <code>/root/workspace</code>，首次会把 IDE 后端下载到沙箱</td>
+</tr>
+</tbody>
+</table>
+<p>下拉菜单里的 <strong>「SSH 连接信息」</strong> 列出用户名、主机、端口和一条 SSH 命令（例如 <code>ssh -p 2222 sbx-12@grasp.example.com</code>），可直接在终端运行。想用 <code>ssh grasp</code> 这样的短名字时，可以把面板里的可选配置加入 <code>~/.ssh/config</code>：</p>
+<pre><code>Host grasp
+  HostName grasp.example.com
+  Port 2222
+  ServerAliveInterval 30
+</code></pre>
+<p>一台电脑可以同时连接多个沙箱，每个沙箱一个窗口。</p>
+<h2>连接与沙箱状态</h2>
+<ul>
+<li><strong>已暂停的 E2B 沙箱</strong>会在连接时自动唤醒，可能需要几十秒。VS Code 默认 15 秒超时，如果连接失败，把设置 <code>remote.SSH.connectTimeout</code> 调到 60。</li>
+<li><strong>手动停止或已关闭的会话</strong>不会被 SSH 连接唤醒，终端会显示原因，例如「会话已手动停止，请先恢复」。先在 Grasp 中恢复会话再连接。</li>
+<li><strong>连接期间不会被空闲回收。</strong> 只要还有 IDE 连接，E2B 沙箱就不会被自动保存并暂停，也不会清理内存缓存；最后一个连接断开后重新开始计时。信息面板里会显示「本地 IDE 连接中，暂停计时」。</li>
+<li>信息面板还会显示环境类型、自动回收倒计时、最近模型活动和最近备份，并提供停止、唤醒、恢复和「保持运行」开关。</li>
+</ul>
+<h2>资源占用</h2>
+<p>VS Code / Cursor 会在沙箱里运行远程服务端，约占 0.5–1.5 GB 内存（JetBrains 约 2–4 GB），规格较小的模板可能挤占 Agent 的内存。Docker/Kubernetes 沙箱停止后，<code>~/.vscode-server</code>、<code>~/.cursor-server</code> 不在工作区归档内，下次连接会重新下载。</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Grasp</p>
+      <nav class="site-footer__nav" aria-label="页脚">
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置</a>
+        <a href="/help/gateway/">网关</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>

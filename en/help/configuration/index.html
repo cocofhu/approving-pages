@@ -92,6 +92,7 @@
 <li>A compressed file archive defaults to a 4 GiB limit (<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>). Exceeding it or failing verification preserves the original environment.</li>
 <li><code>solo_backup.keep</code> (<code>GRASP_SOLO_BACKUP_KEEP</code>) controls both file and snapshot recovery points, default <strong>1</strong>. Pruning follows a successful new save. Restore always uses the newest successful point. Cancelling a run or closing a session removes all its recovery points, with persistent retries on failure.</li>
 <li>See <a href="sandbox-lifecycle.md">Sandbox lifecycle</a> for waiting workflows, manual stop, restoration and failed cleanup.</li>
+<li>See <a href="local-ide.md">Open sandboxes from a local IDE</a> to enable, deploy and use the built-in SSH gateway.</li>
 </ul>
 <h2>Database and attachment lifecycle</h2>
 <p>In the release stack, SQLite (<code>./.localdata/db</code>) and app-data / default blobs (<code>./.localdata/app-data</code>, or a custom <code>GRASP_BLOBS_ROOT</code>) must be <strong>backed up and cleaned as a pair</strong>; do not migrate only the database. Otherwise composite images can keep orphan <code>blob:</code> refs (GET <code>/api/blobs/:id</code> → 404). Historical orphans only get a permanent UI placeholder; this delivery does not add an inspection console. See <a href="../guide/quick-start.md#database-and-attachments-share-one-lifecycle-backup--cleanup">Quick start</a>.</p>

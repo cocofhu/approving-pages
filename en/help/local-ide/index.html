@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-base="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>en/help/local-ide · Grasp</title>
+  <meta name="description" content="Grasp help documentation">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/local-ide/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/local-ide/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/local-ide/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js"></script>
+</head>
+<body class="page-doc">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/en/">Grasp</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
+        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
+        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <nav class="lang-switch" aria-label="Language">
+        <a class="lang-switch__link" href="/help/local-ide/" data-locale-set="zh-CN">中文</a>
+        <span class="lang-switch__sep" aria-hidden="true">|</span>
+        <a class="lang-switch__link is-current" href="/en/help/local-ide/" data-locale-set="en" aria-current="page">English</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <article class="doc">
+      <header class="doc__header">
+        <p class="doc__eyebrow">Docs</p>
+        <h1 class="doc__title">en/help/local-ide</h1>
+        
+      </header>
+      <div class="doc__body">
+        <h1>Open sandboxes from a local IDE</h1>
+<p>With the built-in SSH gateway enabled, you can open any sandbox (E2B, Docker or Kubernetes) from VS Code, Cursor (Remote-SSH) or a terminal on your own machine. You only need the IDE and the OpenSSH client that ships with your OS.</p>
+<pre><code>VS Code / Cursor ──SSH──&gt; Grasp SSH gateway (port 2222 by default) ──&gt; sandbox sshd
+</code></pre>
+<p>The SSH user name selects the sandbox: <code>sbx-&lt;sandbox id&gt;</code>. The gateway authenticates the public key you registered in Grasp, then logs into the sandbox as root. Keys stay in Grasp and are never written into sandboxes; deleting a key closes every connection that used it.</p>
+<h2>Admins: enable the gateway</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Environment variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh_gateway.enabled</code></td>
+<td><code>GRASP_SSH_GATEWAY_ENABLED</code></td>
+<td><code>true</code> turns it on; off by default</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.listen</code></td>
+<td><code>GRASP_SSH_GATEWAY_LISTEN</code></td>
+<td>Listen address, default <code>:2222</code></td>
+</tr>
+<tr>
+<td><code>ssh_gateway.public_host</code></td>
+<td><code>GRASP_SSH_GATEWAY_PUBLIC_HOST</code></td>
+<td>Host name users connect to; empty uses the host name the browser opened Grasp with</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.public_port</code></td>
+<td><code>GRASP_SSH_GATEWAY_PUBLIC_PORT</code></td>
+<td>Port users connect to; set it when a port mapping or load balancer changes it</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.host_key_path</code></td>
+<td><code>GRASP_SSH_GATEWAY_HOST_KEY_PATH</code></td>
+<td>Gateway host private key, generated on first start</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.max_conns</code> / <code>max_conns_per_sandbox</code></td>
+<td>Same names in upper case</td>
+<td>Global / per-sandbox connection limits, default 200 / 10</td>
+</tr>
+<tr>
+<td><code>ssh_gateway.admins_only</code></td>
+<td><code>GRASP_SSH_GATEWAY_ADMINS_ONLY</code></td>
+<td>Allow only admin accounts</td>
+</tr>
+</tbody>
+</table>
+<p>When deploying:</p>
+<ul>
+<li><strong>Expose the TCP port.</strong> The Docker Compose examples use host networking, so open the port in the firewall. A Kubernetes Ingress only carries HTTP; add a <code>LoadBalancer</code> or <code>NodePort</code> Service such as the commented <code>grasp-ssh</code> at the end of <code>sandbox-gateway/deploy/k8s/stack.example.yaml</code>. Networks that only allow port 443 may block it.</li>
+<li><strong>Persist the host key.</strong> Every sandbox is served under this one key, so rebuilt or resumed sandboxes never trigger a “host key changed” warning. Keep it on a persistent volume (the examples use <code>/data</code>) and share it between replicas, or clients will warn after every redeploy.</li>
+<li><strong>Settings are read at startup</strong>; restart the server after changing them.</li>
+</ul>
+<h2>Security notes</h2>
+<ul>
+<li>Access is authorized per account: the owner of a Solo session may enter that session’s sandbox, and admins may enter any sandbox; sandboxes without an owner (workflows, tests) are admin-only. Missing and forbidden sandboxes give the same message. Open connections close within a minute when the session is deleted or reassigned, the key is deleted (immediately) or the account is removed. With <code>admins_only</code> only admins may connect.</li>
+<li>The gateway terminates and re-opens the SSH connection, so it can see session contents. The platform already holds root on every sandbox, so the trust boundary does not change.</li>
+<li>Only public-key authentication is accepted. A source address is refused for a while after 20 failed attempts within 5 minutes; connections still authenticating are capped separately (64 in total, 8 per source) and never use the authenticated slots.</li>
+<li>Remote forwarding (<code>-R</code>), agent forwarding and X11 are not supported. Local forwarding (<code>-L</code>), SFTP and the channels VS Code and Cursor need all work.</li>
+<li>Restarting the server drops open connections; IDEs reconnect on their own.</li>
+</ul>
+<h2>Users: first connection</h2>
+<ol>
+<li>Create a key if you do not have one: <code>ssh-keygen -t ed25519</code>.</li>
+<li>Open <strong>SSH keys</strong> from the account menu at the bottom left and paste the contents of <code>~/.ssh/id_ed25519.pub</code>. ed25519, ECDSA and RSA of at least 2048 bits are supported.</li>
+<li>In a Solo session, click the <strong>info icon</strong> at the top right and choose <strong>Open in VS Code</strong> under <strong>Local IDE</strong>. The drop-down switches to Cursor, CodeBuddy, Trae (<code>CN</code> opens the China edition) or JetBrains Gateway, and remembers your choice.</li>
+<li>The browser asks to open the app, and the IDE asks once whether to open the remote folder; accept both. The IDE connects to <code>sbx-12@grasp.example.com:2222</code> and opens <code>/root/workspace</code> directly, with no <code>~/.ssh/config</code> change.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>IDE</th>
+<th>How it opens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VS Code</td>
+<td>Needs the Remote - SSH extension</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>Install Cursor’s Remote SSH extension when prompted the first time</td>
+</tr>
+<tr>
+<td>CodeBuddy / Trae</td>
+<td>Remote-SSH is built in; the international and China editions are separate apps with separate menu entries</td>
+</tr>
+<tr>
+<td>JetBrains Gateway</td>
+<td>No one-click link: Gateway links only attach to an IDE already installed on the host. The entry shows the connection details; in Gateway choose SSH → New Connection, enter the user, host and port, and use <code>/root/workspace</code> as the project folder. The first connection downloads the IDE backend into the sandbox</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SSH connection details</strong> in the drop-down lists the user, host, port and an SSH command such as <code>ssh -p 2222 sbx-12@grasp.example.com</code> that runs in any terminal. For a short name such as <code>ssh grasp</code>, add the optional snippet from the panel to <code>~/.ssh/config</code>:</p>
+<pre><code>Host grasp
+  HostName grasp.example.com
+  Port 2222
+  ServerAliveInterval 30
+</code></pre>
+<p>One machine can connect to several sandboxes at once, one window each.</p>
+<h2>Connections and sandbox state</h2>
+<ul>
+<li><strong>A paused E2B sandbox</strong> wakes when you connect, which can take tens of seconds. VS Code times out after 15 seconds by default; if it fails, raise <code>remote.SSH.connectTimeout</code> to 60.</li>
+<li><strong>A session you stopped or closed</strong> is not woken by SSH. The terminal shows why, for example that the session was stopped manually. Resume it in Grasp first.</li>
+<li><strong>Connected sandboxes are not reclaimed for idling.</strong> While any IDE connection is open, an E2B sandbox is neither saved and paused nor memory-trimmed; the idle countdown restarts when the last connection closes. The info panel shows “Local IDE connected; countdown paused”.</li>
+<li>The info panel also shows the environment type, the idle reclaim countdown, the last model activity and the last backup, and offers stop, wake, resume and <strong>Keep running</strong>.</li>
+</ul>
+<h2>Resource use</h2>
+<p>VS Code and Cursor run a remote server inside the sandbox that uses about 0.5–1.5 GB of memory (JetBrains about 2–4 GB), which can crowd the Agent on small templates. After a Docker/Kubernetes sandbox stops, <code>~/.vscode-server</code> and <code>~/.cursor-server</code> are not in the workspace archive, so the next connection downloads them again.</p>
+
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Grasp</p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/gateway/">Gateway</a>
+        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+      </nav>
+      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
+    </div>
+  </footer>
+</body>
+</html>
