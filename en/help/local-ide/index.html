@@ -110,7 +110,7 @@
 <ol>
 <li>Create a key if you do not have one: <code>ssh-keygen -t ed25519</code>.</li>
 <li>Open <strong>SSH keys</strong> from the account menu at the bottom left and paste the contents of <code>~/.ssh/id_ed25519.pub</code>. ed25519, ECDSA and RSA of at least 2048 bits are supported.</li>
-<li>In a Solo session, click the <strong>info icon</strong> at the top right and choose <strong>Open in VS Code</strong> under <strong>Local IDE</strong>. The drop-down switches to Cursor, CodeBuddy, Trae (<code>CN</code> opens the China edition) or JetBrains Gateway, and remembers your choice.</li>
+<li>In a Solo session, click the <strong>info icon</strong> at the top right, then open <strong>SSH connection</strong> to choose a local IDE. The menu lists VS Code, Cursor, CodeBuddy, CodeBuddy China, Trae, Trae China, Antigravity and Codex. The picker shows your last choice after you select one.</li>
 <li>The browser asks to open the app, and the IDE asks once whether to open the remote folder; accept both. The IDE connects to <code>sbx-12@grasp.example.com:2222</code> and opens <code>/root/workspace</code> directly, with no <code>~/.ssh/config</code> change.</li>
 </ol>
 <table>
@@ -131,15 +131,15 @@
 </tr>
 <tr>
 <td>CodeBuddy / Trae</td>
-<td>Remote-SSH is built in; the international and China editions are separate apps with separate menu entries</td>
+<td>Remote-SSH is built in; the international and China editions are separate apps, each with its own row</td>
 </tr>
 <tr>
-<td>JetBrains Gateway</td>
-<td>No one-click link: Gateway links only attach to an IDE already installed on the host. The entry shows the connection details; in Gateway choose SSH → New Connection, enter the user, host and port, and use <code>/root/workspace</code> as the project folder. The first connection downloads the IDE backend into the sandbox</td>
+<td>Antigravity / Codex</td>
+<td>Open <code>/root/workspace</code> through each app’s Remote-SSH link</td>
 </tr>
 </tbody>
 </table>
-<p><strong>SSH connection details</strong> in the drop-down lists the user, host, port and an SSH command such as <code>ssh -p 2222 sbx-12@grasp.example.com</code> that runs in any terminal. For a short name such as <code>ssh grasp</code>, add the optional snippet from the panel to <code>~/.ssh/config</code>:</p>
+<p><strong>SSH connection details</strong> at the bottom of the menu opens a dialog with the user, host, port, project folder and an SSH command such as <code>ssh -p 2222 sbx-12@grasp.example.com</code> that runs in any terminal. For a short name such as <code>ssh grasp</code>, add the optional snippet from the dialog to <code>~/.ssh/config</code>:</p>
 <pre><code>Host grasp
   HostName grasp.example.com
   Port 2222
@@ -150,8 +150,8 @@
 <ul>
 <li><strong>A paused E2B sandbox</strong> wakes when you connect, which can take tens of seconds. VS Code times out after 15 seconds by default; if it fails, raise <code>remote.SSH.connectTimeout</code> to 60.</li>
 <li><strong>A session you stopped or closed</strong> is not woken by SSH. The terminal shows why, for example that the session was stopped manually. Resume it in Grasp first.</li>
-<li><strong>Connected sandboxes are not reclaimed for idling.</strong> While any IDE connection is open, an E2B sandbox is neither saved and paused nor memory-trimmed; the idle countdown restarts when the last connection closes. The info panel shows “Local IDE connected; countdown paused”.</li>
-<li>The info panel also shows the environment type, the idle reclaim countdown, the last model activity and the last backup, and offers stop, wake, resume and <strong>Keep running</strong>.</li>
+<li><strong>A local IDE connection pauses the idle countdown.</strong> An E2B sandbox keeps running with its memory cache while it has an open local IDE connection. The Auto-pause row shows “Timer paused”, with the connection count below. The timer restarts after the last connection closes.</li>
+<li>The info panel shows the environment type, the idle countdown and the latest save. It offers <strong>Save and stop</strong>, <strong>Wake</strong>, <strong>Resume</strong> and <strong>Keep running</strong>. Expand <strong>Details</strong> to see the last model activity and workspace.</li>
 </ul>
 <h2>Resource use</h2>
 <p>VS Code and Cursor run a remote server inside the sandbox that uses about 0.5–1.5 GB of memory (JetBrains about 2–4 GB), which can crowd the Agent on small templates. After a Docker/Kubernetes sandbox stops, <code>~/.vscode-server</code> and <code>~/.cursor-server</code> are not in the workspace archive, so the next connection downloads them again.</p>
