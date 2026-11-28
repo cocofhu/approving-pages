@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Grasp 帮助中心</title>
+  <meta name="description" content="启动云端 Agent，查阅配置项说明，排查运行问题。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-hub" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+      <section class="help-hero">
+        <div class="help-hero__inner">
+          <div class="help-hero__copy">
+            <h1><span class="title-wordmark">Grasp</span> 帮助中心</h1>
+            <p>启动云端 Agent，查阅配置项说明，排查运行问题。</p>
+            <button type="button" class="search-trigger search-trigger--hero" data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索功能、配置名或错误信息</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+            <nav class="help-shortcuts" aria-label="常用配置">
+              <a href="/help/agents-models/#model-groups">模型组与账号</a><a href="/help/settings/#sandbox-capacity">沙箱容量与回收</a>
+            </nav>
+          </div>
+          <nav class="guide-shelf" aria-label="常用指南">
+    <a class="guide-volume" href="/guide/quick-start/">
+      <svg viewBox="0 0 400 104" aria-hidden="true" focusable="false">
+        <path class="volume-cover" d="M12 40 58 5q3-2 8-2h321q7 0 5 5l-41 35H18Z"/>
+        <path class="volume-rule" d="M28 37 67 8m270 28 32-26h-30"/>
+        <path class="volume-pages" d="m350 44 41-35v46q0 4-4 7l-37 31Z"/>
+        <path class="volume-leaves" d="m356 50 30-26m-30 36 30-26m-30 36 30-26m-30 36 30-26"/>
+        <path class="volume-board" d="m350 89 41-34v5q0 2-3 5l-37 31-11-1Z"/>
+        <path class="volume-spine" d="M17 39h332q5 0 5 5v46q0 6-6 6H17Q5 96 5 84V53q0-14 12-14Z"/>
+        <path class="volume-rib" d="M19 45v45m6-45v45"/>
+      </svg>
+      <span class="guide-volume__label">快速开始<span class="link-arrow" aria-hidden="true">→</span></span>
+    </a><a class="guide-volume" href="/help/configuration-reference/">
+      <svg viewBox="0 0 400 104" aria-hidden="true" focusable="false">
+        <path class="volume-cover" d="M12 40 58 5q3-2 8-2h321q7 0 5 5l-41 35H18Z"/>
+        <path class="volume-rule" d="M28 37 67 8m270 28 32-26h-30"/>
+        <path class="volume-pages" d="m350 44 41-35v46q0 4-4 7l-37 31Z"/>
+        <path class="volume-leaves" d="m356 50 30-26m-30 36 30-26m-30 36 30-26m-30 36 30-26"/>
+        <path class="volume-board" d="m350 89 41-34v5q0 2-3 5l-37 31-11-1Z"/>
+        <path class="volume-spine" d="M17 39h332q5 0 5 5v46q0 6-6 6H17Q5 96 5 84V53q0-14 12-14Z"/>
+        <path class="volume-rib" d="M19 45v45m6-45v45"/>
+      </svg>
+      <span class="guide-volume__label">配置项索引<span class="link-arrow" aria-hidden="true">→</span></span>
+    </a><a class="guide-volume" href="/help/troubleshooting/">
+      <svg viewBox="0 0 400 104" aria-hidden="true" focusable="false">
+        <path class="volume-cover" d="M12 40 58 5q3-2 8-2h321q7 0 5 5l-41 35H18Z"/>
+        <path class="volume-rule" d="M28 37 67 8m270 28 32-26h-30"/>
+        <path class="volume-pages" d="m350 44 41-35v46q0 4-4 7l-37 31Z"/>
+        <path class="volume-leaves" d="m356 50 30-26m-30 36 30-26m-30 36 30-26m-30 36 30-26"/>
+        <path class="volume-board" d="m350 89 41-34v5q0 2-3 5l-37 31-11-1Z"/>
+        <path class="volume-spine" d="M17 39h332q5 0 5 5v46q0 6-6 6H17Q5 96 5 84V53q0-14 12-14Z"/>
+        <path class="volume-rib" d="M19 45v45m6-45v45"/>
+      </svg>
+      <span class="guide-volume__label">故障排查<span class="link-arrow" aria-hidden="true">→</span></span>
+    </a>
+  </nav>
+        </div>
+      </section>
+      <div class="help-grid">
+        <section class="help-group" aria-labelledby="start">
+          <h2 id="start"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 6c-3-2.4-7-2.4-10-1v14c3-1.4 7-1.4 10 1 3-2.4 7-2.4 10-1V5c-3-1.4-7-1.4-10 1Zm0 0v14"/></svg>开始使用</h2>
+          <ul class="help-group__items"><li><a class="help-card" href="/guide/quick-start/">
+            <h3>快速开始</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>用 Docker Compose 启动本地演示，并检查 Grasp 和沙箱网关是否就绪。</p>
+          </a></li><li><a class="help-card" href="/guide/first-run/">
+            <h3>首次运行</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>配置凭据和模型组，选择 Agent，跑通一次 Solo 或默认工作流。</p>
+          </a></li><li><a class="help-card" href="/guide/concepts/">
+            <h3>核心概念</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>理解 Agent、模型组、运行、人工门禁、沙箱和产物之间的关系。</p>
+          </a></li></ul>
+        </section><section class="help-group" aria-labelledby="use">
+          <h2 id="use"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m6 9 3 3-3 3m6 0h5"/></svg>使用 Grasp</h2>
+          <ul class="help-group__items"><li><a class="help-card" href="/guide/solo/">
+            <h3>Solo 会话</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>打开会话、切换模型、查看预览，并在停止后恢复沙箱。</p>
+          </a></li><li><a class="help-card" href="/guide/workflows/">
+            <h3>工作流</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>用画布连接 Agent 节点与人工门禁，发布后启动、查看结果并处理待办。</p>
+          </a></li><li><a class="help-card" href="/help/agents-models/">
+            <h3>模型组与智能体</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>了解账号、编码工具、模型组和 Agent 的绑定关系，核对一次对话的实际模型。</p>
+          </a></li><li><a class="help-card" href="/help/repositories/">
+            <h3>仓库与 Git 授权</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>登记仓库，为私有克隆和推送配置授权，并核对运行采用的分支和提交身份。</p>
+          </a></li><li><a class="help-card" href="/help/settings/">
+            <h3>常规设置</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>查看每个界面字段的默认值、影响范围、生效时机和验证方式。</p>
+          </a></li><li><a class="help-card" href="/help/local-ide/">
+            <h3>本地 IDE</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>启用 SSH 网关，登记公钥并从桌面 IDE 或终端连接。</p>
+          </a></li></ul>
+        </section><section class="help-group" aria-labelledby="deploy">
+          <h2 id="deploy"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h11m4 0h3M3 17h4m4 0h10"/><circle cx="16" cy="7" r="2.5"/><circle cx="9" cy="17" r="2.5"/></svg>部署与配置</h2>
+          <ul class="help-group__items"><li><a class="help-card" href="/help/configuration/">
+            <h3>部署配置</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>选择 Docker、Kubernetes 或 E2B 后端，掌握配置入口、覆盖顺序和生效时机。</p>
+          </a></li><li><a class="help-card" href="/help/configuration-reference/">
+            <h3>配置项索引</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>按配置名查找 Grasp 环境变量、YAML 键、默认值与用途。</p>
+          </a></li><li><a class="help-card" href="/help/gateway/">
+            <h3>网关与预览</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>核对网关连接、后端选择与预览策略，连接本地 IDE 或排查启动失败。</p>
+          </a></li><li><a class="help-card" href="/help/gateway-reference/">
+            <h3>网关参数</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>查询 Gateway 公共字段、Docker、Kubernetes、E2B 与沙箱运行时变量的默认值和影响。</p>
+          </a></li><li><a class="help-card" href="/help/sandbox-lifecycle/">
+            <h3>沙箱生命周期</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>比较三个后端的空闲回收、停止、恢复、容量和清理行为。</p>
+          </a></li></ul>
+        </section><section class="help-group" aria-labelledby="support">
+          <h2 id="support"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4.7"/><path d="m5 5 3.7 3.7M15.3 15.3 19 19m0-14-3.7 3.7M8.7 15.3 5 19"/></svg>排查与贡献</h2>
+          <ul class="help-group__items"><li><a class="help-card" href="/help/troubleshooting/">
+            <h3>常见问题</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>按失败的阶段排查凭据、克隆、沙箱容量、预览和配置未生效。</p>
+          </a></li><li><a class="help-card" href="/help/contributing/">
+            <h3>贡献</h3><span class="link-arrow" aria-hidden="true">→</span>
+            <p>如何为 Grasp 做贡献；指向仓库贡献指南。</p>
+          </a></li></ul>
+        </section>
+      </div>
+    </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>常规设置逐项说明 · Grasp</title>
+  <meta name="description" content="查看每个界面字段的默认值、影响范围、生效时机和验证方式。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/settings/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/settings/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/settings/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/settings/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/settings/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/" aria-current="page">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/" aria-current="page">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#use">使用 Grasp</a></nav>
+      <header class="doc-title"><h1>常规设置逐项说明</h1><p>查看每个界面字段的默认值、影响范围、生效时机和验证方式。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#sandbox-idle">沙箱空闲回收时间</a></li><li class="outline-level-2"><a href="#sandbox-capacity">最大同时运行沙箱数</a></li><li class="outline-level-2"><a href="#sandbox-memory">沙箱内存覆盖</a></li><li class="outline-level-2"><a href="#agent-idle">Agent 无动作时限</a></li><li class="outline-level-2"><a href="#workspace-brand">工作区和品牌字段</a></li></ul></details>
+      <article class="doc-content"><p>打开「设置 → 常规」。数字字段会显示来源。环境变量锁定的项目在页面上只读，修改部署配置后由管理员重启对应服务。</p>
+<h2 id="sandbox-idle">沙箱空闲回收时间</h2>
+<p><strong>默认 360 分钟，最小 1 分钟。</strong> 仅对 E2B 环境的自动回收生效。完整模型回合结束且队列为空后开始计时。访问网页、预览或普通终端不续期。通过 Grasp SSH 网关连接本地 IDE 时，回收会等待最后一个连接断开，再开始新的计时。</p>
+<p>改动影响后续空闲检查。在 Solo 的沙箱信息里核对倒计时和环境类型。单次会话可选「永不自动回收」或当前界面的「保持运行」。Docker 和 Kubernetes 通过手动停止、关闭或取消释放环境。YAML 对应 <code>sandbox.idle_ttl_minutes</code>。</p>
+<h2 id="sandbox-capacity">最大同时运行沙箱数</h2>
+<p><strong>默认 15，最小 1。</strong> 所有用途和后端共用。创建中、运行中和仍在释放资源的沙箱占用名额。达到上限后会限制新建和恢复，新的工作流运行可排队。该值也用于工作流并发控制。</p>
+<p>保存后查看「沙箱占用 / 上限」。降低上限后，现有工作可以继续，直到释放足够名额才能接纳更多。YAML 对应 <code>sandbox.max_sandboxes</code>。</p>
+<h2 id="sandbox-memory">沙箱内存覆盖</h2>
+<p><strong>默认 0，跟随网关或模板。</strong> 非零值至少 1024 MiB，作用于之后新建的沙箱。Docker 和 Kubernetes 的值须符合网关资源上限。E2B 的值须与选中模板规格一致。浏览器、构建和 Agent 共用该环境的内存。</p>
+<p>保存后新建一个沙箱并检查规格。填回 <code>0</code> 清除覆盖。YAML 对应 <code>sandbox.sandbox_memory_mb</code>，环境变量 <code>GRASP_SANDBOX_MEMORY_MB</code> 可锁定界面。</p>
+<h2 id="agent-idle">Agent 无动作时限</h2>
+<p><strong>默认 20 分钟，界面范围 2–120 分钟。</strong> 连续没有输出、CPU 和磁盘活动达到时限后，系统先尝试恢复一次，持续无动作时结束当前回合。保存后从下一轮开始使用新值。</p>
+<p>可在运行详情看到因无活动结束的回合。画布上配置的节点总时限和等待沙箱就绪的超时是独立参数。YAML <code>sandbox.chat_idle_timeout_seconds</code> 和环境变量 <code>GRASP_CHAT_IDLE_SEC</code> 以秒计。</p>
+<h2 id="workspace-brand">工作区和品牌字段</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>修改后影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工作区名称和描述</td>
+<td>更新工作区展示信息。</td>
+</tr>
+<tr>
+<td>未知模型显示名</td>
+<td>用量统计、图例和运行明细的显示标签。最多 64 字符，留空使用默认名称。已记录用量保持原归属。</td>
+</tr>
+<tr>
+<td>产品名</td>
+<td>管理员可改侧栏与首页共用的产品名称，最多 40 字符。留空使用 Grasp。</td>
+</tr>
+<tr>
+<td>首页副标题</td>
+<td>管理员可改应用首页的副标题，最多 80 字符。留空使用当前语言的默认文案。</td>
+</tr>
+</tbody>
+</table></div>
+<p>部署参数见<a href="/help/configuration-reference/">配置索引</a>，网关与后端行为见<a href="/help/configuration/">部署与配置</a>。</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/settings.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/repositories/"><span>上一篇</span><strong>仓库与 Git 授权</strong></a><a href="/help/local-ide/"><span>下一篇</span><strong>本地 IDE</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#sandbox-idle">沙箱空闲回收时间</a></li><li class="outline-level-2"><a href="#sandbox-capacity">最大同时运行沙箱数</a></li><li class="outline-level-2"><a href="#sandbox-memory">沙箱内存覆盖</a></li><li class="outline-level-2"><a href="#agent-idle">Agent 无动作时限</a></li><li class="outline-level-2"><a href="#workspace-brand">工作区和品牌字段</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

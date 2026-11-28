@@ -1,121 +1,235 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-base="">
+<!doctype html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>配置 · Grasp</title>
-  <meta name="description" content="Grasp、gateway 与沙箱配置入口、默认值和覆盖顺序。">
+  <meta name="theme-color" content="#fafafb">
+  <title>部署与配置 Grasp</title>
+  <meta name="description" content="选择 Docker、Kubernetes 或 E2B 后端，掌握配置入口、覆盖顺序和生效时机。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/configuration/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/configuration/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/configuration/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/configuration/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/">Grasp</a>
-      <nav class="site-header__nav" aria-label="主导航">
-        <a class="site-header__link" href="/guide/quick-start/">文档</a>
-        <a class="site-header__link" href="/guide/concepts/">概念</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="语言">
-        <a class="lang-switch__link is-current" href="/help/configuration/" data-locale-set="zh-CN" aria-current="page">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link" href="/en/help/configuration/" data-locale-set="en">English</a>
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/configuration/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">文档</p>
-        <h1 class="doc__title">配置</h1>
-        <p class="doc__lead">Grasp、gateway 与沙箱配置入口、默认值和覆盖顺序。</p>
-      </header>
-      <div class="doc__body">
-        <p>Grasp 平台服务配置以 YAML / 环境变量为主（本地示例见 <code>server/config.example.yaml</code> 与根目录 <code>.env.example</code>）。ACP、Git 等运行时凭据只在「设置 → 凭据」 中管理。</p>
-<h2>完整文档</h2>
-<p>按需要选择配置文档：</p>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/" aria-current="page">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/" aria-current="page">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#deploy">部署与配置</a></nav>
+      <header class="doc-title"><h1>部署与配置 <span class="title-wordmark">Grasp</span></h1><p>选择 Docker、Kubernetes 或 E2B 后端，掌握配置入口、覆盖顺序和生效时机。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#where-to-configure">选择配置入口</a></li><li class="outline-level-2"><a href="#backends">选择沙箱后端</a></li><li class="outline-level-2"><a href="#precedence">判断哪个值生效</a></li><li class="outline-level-2"><a href="#time-limits">区分四类时限</a></li><li class="outline-level-2"><a href="#secrets">凭据、入口和备份</a></li><li class="outline-level-2"><a href="#verify">检查是否生效</a></li></ul></details>
+      <article class="doc-content"><h2 id="where-to-configure">选择配置入口</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>想改什么</th>
+<th>去哪里改</th>
+<th>如何生效</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 账号和工具平台授权</td>
+<td>「设置 → 凭据」</td>
+<td>Agent 运行解析已绑定的凭据。更新后按提示重开受影响的会话。</td>
+</tr>
+<tr>
+<td>模型、编码工具和推理</td>
+<td>「设置 → 凭据 → 模型组」，然后在智能体里绑定</td>
+<td>会话内选择从下一轮生效。自动运行采用默认组。</td>
+</tr>
+<tr>
+<td>Git 仓库、克隆授权、提交身份</td>
+<td>「设置 → 仓库」</td>
+<td>下次启动或恢复沙箱时解析。</td>
+</tr>
+<tr>
+<td>沙箱容量、空闲、内存和 Agent 无动作时限</td>
+<td>「设置 → 常规」</td>
+<td>保存后由运行时应用，具体时机见<a href="/help/settings/">常规设置</a>。</td>
+</tr>
+<tr>
+<td>端口、数据库、用户、网关连接</td>
+<td>Grasp YAML 或服务进程环境变量</td>
+<td>改完部署配置后重启相应服务。</td>
+</tr>
+<tr>
+<td>镜像、模板、CPU、内存、磁盘和网络</td>
+<td>对应后端的 Gateway YAML</td>
+<td>重启网关并用新沙箱验证。</td>
+</tr>
+<tr>
+<td>节点目标、总时限和人工门禁</td>
+<td>工作流画布</td>
+<td>保存并发布，适用于后续启动的运行。</td>
+</tr>
+</tbody>
+</table></div>
+<p>Grasp 通过 <code>CONFIG_PATH</code> 指定 YAML，默认路径为 <code>config.yaml</code>。Gateway 使用 <code>-config</code> 或 <code>SBGW_CONFIG</code>。部署时准备一份平台配置和一份与后端匹配的网关配置。</p>
+<h2 id="backends">选择沙箱后端</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>后端</th>
+<th>适用场景</th>
+<th>网关配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker</td>
+<td>单机演示或自托管服务</td>
+<td>Docker 镜像、资源限制和网络。未指定资源时共享宿主机 CPU 与内存。</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td>通过现有集群管理沙箱</td>
+<td>集群访问、命名空间、调度、存储类和资源。默认每沙箱 2 CPU、4096 MiB、25 GiB。</td>
+</tr>
+<tr>
+<td>E2B</td>
+<td>使用模板与快照的环境</td>
+<td>API 地址和已构建的模板 ID，规格由实际模板决定。</td>
+</tr>
+</tbody>
+</table></div>
+<p>按你的后端使用最新版部署示例。<a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/docker/README.md">Docker</a> · <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/k8s/README.md">Kubernetes</a> · <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B</a></p>
+<p>镜像和模板在 Gateway 配置。发布 Compose 的 <code>SANDBOX_IMAGE</code> 会映射到 Docker 网关镜像配置。Grasp 自身的 <code>sandbox.image</code> 和 <code>GRASP_SANDBOX_IMAGE</code> 已废弃。Docker 和 Kubernetes 的沙箱会保留到手动停止、关闭或取消。E2B 空闲回收默认 360 分钟，见<a href="/help/sandbox-lifecycle/">沙箱生命周期</a>。</p>
+<h2 id="precedence">判断哪个值生效</h2>
 <ul>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">Grasp 与沙箱配置、默认值</a>：按平台、gateway、E2B 和沙箱内部变量分组，包含每项用途、默认值、Compose 差异、最小接入清单和排错。</li>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/server/CONFIGURATION.md">Grasp 完整环境变量表</a>：环境变量与 YAML 字段的对应关系。</li>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B 部署</a>：模板构建、gateway 配置与启动步骤。</li>
+<li>服务端普通项按<strong>进程环境变量 → YAML → 内置默认值</strong>取值。</li>
+<li>支持在「常规」中修改的字段按<strong>进程环境变量 → 界面保存值 → YAML → 默认值</strong>取值。环境变量可锁定对应的界面字段。</li>
+<li>Compose 根目录的 <code>.env</code> 提供编排变量。服务通过 <code>environment</code> 或配置挂载获得对应值。新增键时核对实际注入位置。</li>
+<li>Grasp 的内存覆盖默认 <code>0</code>，沿用网关或模板。旧安装曾在界面保存覆盖时，将其改回 <code>0</code> 后新沙箱会跟随网关。</li>
 </ul>
-<p>环境变量表由 <code>go run ./cmd/gen-configdoc</code> 生成/校验，CI 会 <code>-check</code>。</p>
-<h2>默认值与覆盖顺序</h2>
-<p>Grasp 读取 <code>CONFIG_PATH</code>（默认 <code>config.yaml</code>），gateway 通过 <code>SBGW_CONFIG</code> 或 <code>-config</code> 显式选择文件。一次部署使用两份 YAML：Grasp 平台配置，以及所选后端的 gateway 配置。Docker、Kubernetes、E2B 各有独立示例，不能混合后端段；未知字段或不属于当前后端的环境变量会导致启动失败。</p>
-<p>普通配置是环境变量 &gt; YAML &gt; 程序默认值；设置页管理的参数是环境变量 &gt; 设置页保存值 &gt; YAML &gt; 默认值。环境变量锁定相应设置页字段。</p>
-<p>Grasp 默认连接 <code>http://127.0.0.1:8899</code>，使用 <code>direct</code> transport，镜像为空、内存覆盖为 <code>0</code>，跟随网关或所选模板。设置页把内存填回 <code>0</code> 可清除覆盖，对之后新建的沙箱生效。Docker 默认不限制 CPU 与内存，沙箱共享宿主资源；Kubernetes 默认 <code>2 CPU / 4096 MiB / 25 GiB</code>；E2B 没有内置模板和规格，必须填写实际构建结果。</p>
-<p>E2B 配置只包含明确的 <code>apiURL</code>、可选的 <code>sandboxURL</code> 和 <code>templates</code>。自建填写自己的 E2B API 与沙箱代理地址，没有隐式云服务地址。<code>templates.standard</code> 的 <code>standard</code> 是本地模板名，<code>templateID</code> 才是构建返回的实际标识；单模板自动选择，多模板指定 <code>defaultTemplate</code>，也可以在 Grasp 命名连接里用 <code>profile</code> 选择。Grasp 无需重复填写模板名和内存。见 <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B 构建与两份配置示例</a>。</p>
-<h2>本地快速路径</h2>
-<pre><code class="language-bash">./start.sh -d          # 发布镜像栈
-./start.sh dev -d      # 源码 + HMR
-</code></pre>
-<p>镜像 tag / digest、网关与沙箱相关变量见 <code>.env.example</code>。Agent 侧 API key、GitHub / GitLab Token、SSH 等只能保存到工作区凭据设置；写进共享 Agent 配置、Agent meta 或平台 <code>sandbox.env</code> 会被拒绝。先在「凭据」标签保存预设或自定义服务的 API Base 和 Key，再在「模型」标签组合编码工具、凭据与所选模型，Agent 通过 <code>modelBinding.configurationId</code> 引用具名配置。模型路由字段由选定配置提供，Agent env 不能覆盖。其他非敏感项可放在 Agent meta env（值可引用 <code>${vars.&lt;name&gt;}</code>）。模型运行时参数只来自当前模型配置。</p>
-<p>Git 授权属于仓库。在「设置 → 仓库」登记仓库时选择一个已保存的 GitHub、GitLab Token 或 SSH 密钥，并可填写提交用户名和邮箱。凭据必须与仓库地址的协议和主机一致，只对这个仓库地址生效；公开仓库可以不选凭据。工作流在设置里绑定要克隆的仓库，启动运行时可以取消部分仓库或修改分支，所选仓库在启动时固定到这次运行。沙箱每次启动都按仓库当前的凭据和提交身份配置，凭据被吊销或删除时启动失败，不会换用其他账号。Agent 不再保存 Git 授权，环境变量也不能设置 <code>GIT_REPOS</code>。</p>
-<p>GitHub / GitLab 凭据在同一表单配置 Host 与 Token，Host 默认是官方站点，也支持自建域名及端口；不再单独配置 GitLab URL。默认配置可保存多个模型组；每个 Agent 用开关选择是否继承默认模型，关闭时使用自己的选择，默认项失效时不会自动换用其他配置。</p>
-<h3>用 GitHub 登录（设备码）</h3>
-<p>配置后，新增 <a href="http://github.com">github.com</a> 的 GitHub 凭据时可以选「用 GitHub 登录」：页面显示 8 位验证码，用户在 <code>https://github.com/login/device</code> 输入并授权后，平台自动保存 Token，不需要手动创建 PAT。结果是一条普通 GitHub 凭据（<code>GITHUB_TOKEN</code>，Host 为 <code>https://github.com</code>），绑定和注入方式与粘贴的 Token 相同；凭据行会显示 GitHub 账号，并可「重新登录」更换 Token，凭据 ID、别名和已有绑定不变。未配置时界面只有粘贴 Token。</p>
-<p>部署方需要：</p>
+<h2 id="time-limits">区分四类时限</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>起算点与效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox.idle_ttl_minutes</code>，默认 360 分钟</td>
+<td>E2B 的模型回合结束且队列为空后，计时到期触发保存和回收。</td>
+</tr>
+<tr>
+<td><code>sandbox.chat_idle_timeout_seconds</code>，默认 1200 秒</td>
+<td>对话中持续没有输出和活动时，用于检测本轮是否卡住。</td>
+</tr>
+<tr>
+<td>画布节点总时限，空值回退 <code>sandbox.agent_node_hard_cap_hours</code>，默认 24 小时</td>
+<td>约束一个 Agent 节点的总执行时间。</td>
+</tr>
+<tr>
+<td><code>sandbox.sandbox_create_timeout_seconds</code>，默认 1200 秒</td>
+<td>等待网关报告沙箱就绪，包含冷启动准备。与网关的 finalize 时限配合。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="secrets">凭据、入口和备份</h2>
+<p>生产部署时设置明确的用户和 <code>GRASP_SECRETS_KEY</code>。密钥用于解密已保存的凭据，与部署配置和数据库成套备份。配置平台代理与沙箱回连地址时，确认浏览器与沙箱分别可以访问对应端点。</p>
+<p>如需 GitHub 设备登录，设置 <code>GRASP_GITHUB_OAUTH_CLIENT_ID</code> 并重启。模型凭据与仓库 Token 通过应用的凭据管理添加。启用本地 IDE 连接时，参阅<a href="/help/local-ide/">SSH 网关</a>的配置和链路。</p>
+<h2 id="verify">检查是否生效</h2>
 <ol>
-<li>在 GitHub 的 <strong>Settings → Developer settings → OAuth Apps</strong> 新建 OAuth App（个人或组织均可）。Homepage URL 填平台地址；设备码流程不用回调，Authorization callback URL 可填同一地址。</li>
-<li>在 App 设置中勾选 <strong>Enable Device Flow</strong>。没勾选时登录会提示 Device Flow 未开启。</li>
-<li>把 App 的 <strong>Client ID</strong> 配给服务端：环境变量 <code>GRASP_GITHUB_OAUTH_CLIENT_ID</code>，或 YAML <code>github.oauth_client_id</code>（环境变量优先），然后重启服务。不需要 client secret，也不要配置它。</li>
+<li>检查 Grasp <code>/api/health</code> 和 Gateway <code>/healthz</code>，然后核对启动日志中的后端和配置来源。</li>
+<li>打开「设置 → 常规」，核对实际值、来源和锁定状态。</li>
+<li>用同一个 Agent 启动测试环境，核对网关、模板、资源和预览入口。使用<a href="/guide/first-run/">首次运行指南</a>检查模型和仓库。</li>
+<li>查看<a href="/help/configuration-reference/">配置索引</a>以按字段查找 YAML 路径、环境变量与缺省值。完整网关字段见<a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">部署参数参考</a>。</li>
 </ol>
-<p>说明与限制：</p>
-<ul>
-<li>申请的 scope 固定为 <code>repo read:org workflow</code>。Token 对授权用户能访问的所有仓库都有 <code>repo</code> 权限；需要按仓库细分权限时，仍粘贴 fine-grained PAT。授权结果缺少 <code>repo</code> 时凭据照常保存，但会提示可能无法克隆私有仓库。</li>
-<li>组织开启了 OAuth App 访问限制时，需要组织管理员批准该 OAuth App，否则 Token 访问不到该组织的仓库。</li>
-<li>只支持 <a href="http://github.com">github.com</a>。自建 GitHub Enterprise Server 继续粘贴 Token。</li>
-<li>授权会话保存在服务进程内存，有效期以 GitHub 返回为准（通常 15 分钟）。服务重启后进行中的登录失效，重新获取验证码即可；多实例部署需要粘性会话。</li>
-<li>OAuth App 的 Token 一年未使用会被 GitHub 自动吊销，届时在凭据行「重新登录」。</li>
-</ul>
-<h3>多模型组与上下文接续</h3>
-<p>Agent 可绑定不同编码工具的多个模型组，并指定一个默认组。首页、Solo 新建会话及会话内的模型选择包含全部已绑定组的主模型和辅助模型；同名模型会标明所属模型组和工具。未主动选择时使用默认组的主模型，工作流自动执行也使用默认组。</p>
-<p>在会话内选择模型时，会同时选择该组的编码工具、账号和推理参数。正在生成的这一轮继续完成，新选择从下一轮生效。换工具会保留当前工作目录与未提交改动，并将早期要求、近期对话、附件引用和工具结果交给新工具；需要更早原文时，Agent 可通过 grasp-tool 的 <code>get_history</code> 分页回查。不同工具的原生会话状态不能完整互通，接续依据平台保存的任务记录和当前工作区。</p>
-<p>模型组或绑定保存成功后，本页和同一浏览器的其他标签页自动刷新可选项；其他用户刷新后看到最新配置。当前选择有效时保持不变，停用、删除或解除绑定后需要明确重新选择。暂时读取失败不会被当成模型已删除。使用不同专用沙箱镜像、或仓库凭据发生变化时，界面会提示需要重新打开会话。</p>
-<h3>每条回复的时间与运行信息</h3>
-<p>Solo、工作流和 Agent 测试使用同一套聊天展示。悬停消息可查看时间；回复旁的信息图标支持悬停、键盘聚焦和触屏点击，显示该轮实际 Agent、编码工具、模型、推理强度、耗时和 Token 用量。输入、输出、缓存及不同模型的统计会分别显示，并保留服务商上报或估算的来源说明。</p>
-<p>这些信息属于该条回复的执行快照，后续切换模型不会改写旧回复。历史消息没有记录的字段显示为未提供，不使用当前选择推测；尚未完成的回复只显示已收到的信息。</p>
-<h2>沙箱回收与备份位置</h2>
-<p>所有沙箱使用设置页同一空闲时长和容量上限，默认分别为 60 分钟、15 个。空闲时先保存环境再回收资源，使用时恢复最新成功版本。Docker/K8s 保存工作区归档并删除容器/PVC；E2B 使用完整快照，不重复文件备份。运行中的任务不做周期备份。</p>
-<ul>
-<li>文件备份默认位于 <code>data/solo-backups</code>，可用 <code>GRASP_SOLO_BACKUP_DIR</code> 修改；正式栈需与数据库一起备份。</li>
-<li>设置 <code>GRASP_SOLO_BACKUP_S3_BUCKET</code>、<code>GRASP_SOLO_BACKUP_S3_ACCESS_KEY_ID</code> 和 <code>GRASP_SOLO_BACKUP_S3_SECRET_ACCESS_KEY</code> 使用 S3。自托管存储可配置 <code>GRASP_SOLO_BACKUP_S3_ENDPOINT</code> 和 <code>GRASP_SOLO_BACKUP_S3_PATH_STYLE</code>；不完整配置会拒绝启动。</li>
-<li>单个文件归档默认上限 4 GiB（<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>）；超限或校验失败时保留原环境。</li>
-<li><code>solo_backup.keep</code>（<code>GRASP_SOLO_BACKUP_KEEP</code>）统一控制文件和快照的恢复点数量，默认 <strong>1</strong>。新保存成功后才淘汰旧版本，恢复总用最新成功版本。取消运行/关闭会话删除其全部恢复点，失败会重试。</li>
-<li><a href="sandbox-lifecycle.md">沙箱生命周期</a> 说明等待人工、手动停止、恢复和清理失败的行为。</li>
-<li><a href="local-ide.md">用本地 IDE 连接沙箱</a> 说明内置 SSH 网关的开启、部署和使用。</li>
-</ul>
-<h2>数据库与附件同生命周期</h2>
-<p>正式栈中 SQLite（<code>./.localdata/db</code>）与应用数据/默认 blobs（<code>./.localdata/app-data</code>，或自定义 <code>GRASP_BLOBS_ROOT</code>）必须<strong>成对备份与成对清理</strong>；迁移/升级勿只搬库。否则复合变量附图会出现孤儿 <code>blob:</code> 引用（GET <code>/api/blobs/:id</code> → 404）。历史孤儿仅界面永久失败占位，本次不做巡检台。详见 <a href="../guide/quick-start.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%99%84%E4%BB%B6%E5%90%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A4%87%E4%BB%BD--%E6%B8%85%E7%90%86">快速开始</a>。</p>
-<h2>相关</h2>
-<ul>
-<li><a href="../gateway/">网关</a></li>
-<li><a href="../contributing/">贡献</a></li>
-</ul>
-
-      </div>
-    </article>
-  </main>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/configuration.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/local-ide/"><span>上一篇</span><strong>本地 IDE</strong></a><a href="/help/configuration-reference/"><span>下一篇</span><strong>配置项索引</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#where-to-configure">选择配置入口</a></li><li class="outline-level-2"><a href="#backends">选择沙箱后端</a></li><li class="outline-level-2"><a href="#precedence">判断哪个值生效</a></li><li class="outline-level-2"><a href="#time-limits">区分四类时限</a></li><li class="outline-level-2"><a href="#secrets">凭据、入口和备份</a></li><li class="outline-level-2"><a href="#verify">检查是否生效</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="页脚">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
         <a href="/guide/quick-start/">快速开始</a>
-        <a href="/help/configuration/">配置</a>
-        <a href="/help/gateway/">网关</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
 </body>
 </html>

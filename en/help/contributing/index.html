@@ -1,46 +1,80 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
   <title>Contributing · Grasp</title>
   <meta name="description" content="How to contribute to Grasp; points to the repository contributing guide.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/contributing/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/contributing/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/contributing/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/contributing/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/help/contributing/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/help/contributing/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/contributing/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">Contributing</h1>
-        <p class="doc__lead">How to contribute to Grasp; points to the repository contributing guide.</p>
-      </header>
-      <div class="doc__body">
-        <p>Contributions are welcome. Please read:</p>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/" aria-current="page">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/" aria-current="page">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#support">Troubleshoot and contribute</a></nav>
+      <header class="doc-title"><h1>Contributing</h1><p>How to contribute to Grasp; points to the repository contributing guide.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#local-build-for-this-site-docs">Local build for this site (docs/)</a></li><li class="outline-level-2"><a href="#related-module-gates">Related module gates</a></li></ul></details>
+      <article class="doc-content"><p>Contributions are welcome. Please read:</p>
 <ul>
 <li><a href="https://github.com/cocofhu/approving/blob/main/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a></li>
 <li><a href="https://github.com/cocofhu/approving/blob/main/SECURITY.md">SECURITY.md</a></li>
@@ -50,7 +84,7 @@
 <ul>
 <li><a href="https://github.com/cocofhu/approving/blob/main/AGENTS.md">AGENTS.md</a></li>
 </ul>
-<h2>Local build for this site (<code>docs/</code>)</h2>
+<h2 id="local-build-for-this-site-docs">Local build for this site (<code>docs/</code>)</h2>
 <pre><code class="language-bash">cd docs
 npm ci --no-audit --no-fund
 npm run build
@@ -59,23 +93,43 @@ npm run build
 <pre><code class="language-bash">BASE_PATH=/ npm run server
 </code></pre>
 <p>Output lands in <code>docs/public/</code>. When changes under <code>docs/**</code> land on <code>main</code>, <code>ci-docs</code> builds and deploys to the separate Pages repo <code>cocofhu/approving-pages</code> (requires Secret <code>PAGES_DEPLOY_KEY</code>).</p>
-<h2>Related module gates</h2>
+<h2 id="related-module-gates">Related module gates</h2>
 <p>When you change <code>server/</code>, <code>web/</code>, or <code>sandbox-gateway/</code>, run the matching local suites from <code>AGENTS.md</code> — do not rely only on the always-on <code>ci</code> gate.</p>
-
-      </div>
-    </article>
-  </main>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/contributing.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/troubleshooting/"><span>Previous</span><strong>Troubleshooting</strong></a><span></span>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#local-build-for-this-site-docs">Local build for this site (docs/)</a></li><li class="outline-level-2"><a href="#related-module-gates">Related module gates</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

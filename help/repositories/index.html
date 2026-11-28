@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>仓库与 Git 授权 · Grasp</title>
+  <meta name="description" content="登记仓库，为私有克隆和推送配置授权，并核对运行采用的分支和提交身份。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/repositories/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/repositories/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/repositories/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/repositories/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/repositories/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/" aria-current="page">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/" aria-current="page">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#use">使用 Grasp</a></nav>
+      <header class="doc-title"><h1>仓库与 Git 授权</h1><p>登记仓库，为私有克隆和推送配置授权，并核对运行采用的分支和提交身份。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#register">登记仓库</a></li><li class="outline-level-2"><a href="#at-runtime">运行时如何使用</a></li><li class="outline-level-2"><a href="#github-login">用 GitHub 登录</a></li></ul></details>
+      <article class="doc-content"><h2 id="register">登记仓库</h2>
+<ol>
+<li>在「设置 → 凭据」保存 GitHub、GitLab Token 或 SSH 密钥。GitHub 与 GitLab 的 Host 可填官方站点或自己的域名。用 SSH 时一并配置可信主机。</li>
+<li>打开「设置 → 仓库」新增记录。填入仓库 URL，选择与协议和主机匹配的凭据。公开仓库可不选择凭据。</li>
+<li>填写需要的默认分支和提交身份。然后在工作流设置绑定仓库，或在新建 Solo 时选择。</li>
+</ol>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>仓库字段</th>
+<th>改动效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名称</td>
+<td>影响工作流和 Solo 选择仓库时的显示。</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>决定克隆地址，也用于校验凭据的适用主机和协议。</td>
+</tr>
+<tr>
+<td>默认分支</td>
+<td>提供启动运行时的分支选择。运行前仍可指定其他分支。</td>
+</tr>
+<tr>
+<td>凭据</td>
+<td>控制沙箱访问该仓库时使用的账号。凭据被撤销或删除后，新的启动可能失败。</td>
+</tr>
+<tr>
+<td>提交用户名和邮箱</td>
+<td>设置该仓库中的提交署名。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="at-runtime">运行时如何使用</h2>
+<p>启动工作流时固定选中的仓库列表、顺序、地址和分支。沙箱每次启动或恢复时使用已登记仓库的当前授权与提交身份。Agent 的模型配置决定编码工具和模型，Git 授权随仓库应用。</p>
+<p>在沙箱终端运行以下命令，核对当前目录的分支和署名。</p>
+<pre><code class="language-bash">git status --short --branch
+git config --get user.name
+git config --get user.email
+</code></pre>
+<p>如果无法克隆，先检查地址、凭据的 Host 和协议，再确认账号能访问该仓库。修改凭据后，按界面提示重开会话或重试初始化。</p>
+<h2 id="github-login">用 GitHub 登录</h2>
+<p>管理员为自己的 GitHub OAuth App 开启 <strong>Device Flow</strong> 后，可通过 <code>github.oauth_client_id</code> 或 <code>GRASP_GITHUB_OAUTH_CLIENT_ID</code> 提供 Client ID 并重启 Grasp。详见<a href="/help/configuration/#secrets">部署配置</a>。</p>
+<p>添加 <a href="http://github.com">github.com</a> 凭据时，选「用 GitHub 登录」，前往 GitHub 输入界面给出的验证码。授权成功后生成普通 GitHub 凭据，可在仓库记录里选用。使用已有凭据行的「重新登录」可以更新 Token 和保留引用。自建 GitHub 使用手动 Token，组织限制 OAuth App 时需要组织批准。申请的权限包括 <code>repo</code>、<code>read:org</code> 和 <code>workflow</code>。需要只授权单个仓库时，可选择细粒度 Token。</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/repositories.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/agents-models/"><span>上一篇</span><strong>模型组与智能体</strong></a><a href="/help/settings/"><span>下一篇</span><strong>常规设置</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#register">登记仓库</a></li><li class="outline-level-2"><a href="#at-runtime">运行时如何使用</a></li><li class="outline-level-2"><a href="#github-login">用 GitHub 登录</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

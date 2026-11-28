@@ -1,111 +1,188 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quick start · Grasp</title>
-  <meta name="description" content="Bring up Grasp on a Linux host with Docker Compose.">
+  <meta name="theme-color" content="#fafafb">
+  <title>Start Grasp</title>
+  <meta name="description" content="Launch the local demo with Docker Compose and verify that Grasp and the sandbox gateway are ready.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/guide/quick-start/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/quick-start/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/quick-start/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/quick-start/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/guide/quick-start/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/guide/quick-start/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/guide/quick-start/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">Quick start</h1>
-        <p class="doc__lead">Bring up Grasp on a Linux host with Docker Compose.</p>
-      </header>
-      <div class="doc__body">
-        <h2>Prerequisites</h2>
-<ul>
-<li>A Linux host</li>
-<li>Git, Docker, and Docker Compose installed</li>
-</ul>
-<h2>Clone the repository</h2>
-<pre><code class="language-bash">git clone https://github.com/cocofhu/approving.git
-cd approving
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/" aria-current="page">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/" aria-current="page">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#start">Get started</a></nav>
+      <header class="doc-title"><h1>Start <span class="title-wordmark">Grasp</span></h1><p>Launch the local demo with Docker Compose and verify that Grasp and the sandbox gateway are ready.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#prerequisites">Prepare a host</a></li><li class="outline-level-2"><a href="#start">Start the published stack</a></li><li class="outline-level-2"><a href="#commands">Everyday commands</a></li><li class="outline-level-2"><a href="#backup">Back up app data and attachments</a></li></ul></details>
+      <article class="doc-content"><h2 id="prerequisites">Prepare a host</h2>
+<p>Use a Linux host with Git, Docker, and Docker Compose. The startup script pulls published images and runs Grasp and its Docker gateway on the host. For a shared or production host, Kubernetes, or E2B, start with <a href="/en/help/configuration/">Deployment and configuration</a>.</p>
+<h2 id="start">Start the published stack</h2>
+<p>The published stack uses host networking. By default, Grasp and the Docker gateway listen on every host interface, on ports 8080 and 8899 respectively. Before starting the demo, use firewall or security group rules to restrict both ports to local access. Anyone who can reach port 8080 can sign in with the demo administrator account.</p>
+<pre><code class="language-bash">git clone https://github.com/cocofhu/grasp.git
+cd grasp
+./start.sh -d
 </code></pre>
-<h2>Start</h2>
-<p>By default this pulls published images from GHCR (no local image build required):</p>
-<pre><code class="language-bash">./start.sh -d
+<p>Open <a href="http://localhost:8080">http://localhost:8080</a> on the host. The local demo login is <code>admin</code> / <code>demo1234</code>. Set up dedicated users and a credential encryption key for a production deployment.</p>
+<p>Check both services from the host.</p>
+<pre><code class="language-bash">curl -fsS http://localhost:8080/api/health
+curl -fsS http://localhost:8899/healthz
 </code></pre>
-<p>Then open:</p>
-<ul>
-<li>UI / API: <a href="http://localhost:8080">http://localhost:8080</a></li>
-<li>API health: <a href="http://localhost:8080/api/health">http://localhost:8080/api/health</a></li>
-<li>Gateway health: <a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
-<li>Default login: <code>admin</code> / <code>demo1234</code> (local-demo)</li>
-</ul>
-<p>Default <code>./start.sh</code> / <code>-d</code> / <code>restart</code> do <strong>not</strong> pre-pull the sandbox runtime. The first time you create a sandbox, the Gateway pulls that image on demand (often multi-GB); Inbox starting and the run page show a “pulling image” loading state. Use <code>./start.sh pull</code> to warm it up front.</p>
-<p>Agent / workspace application configuration and SQLite data live under <code>.localdata</code> at the repo root (bind mounts: <code>gateway</code> / <code>db</code> / <code>app-data</code>). Sandbox working files are separate and need their own exports or backups. <code>./start.sh restart</code> and <code>./start.sh down</code> keep that directory. To wipe application data: <code>./start.sh down &amp;&amp; rm -rf .localdata</code>; this does not automatically remove all sandboxes.</p>
-<h3>Database and attachments share one lifecycle (backup / cleanup)</h3>
-<p>In the release stack (<code>compose.release.yaml</code>), <strong>SQLite</strong> is mounted at <code>./.localdata/db</code> and <strong>app data (including default attachment blobs under <code>data/blobs</code> relative to <code>WORKDIR</code>)</strong> at <code>./.localdata/app-data</code>. Composite variable images keep only <code>blob:{id}</code> refs in the DB / Run outputs; bytes live under the blobs directory. Backing up or cleaning only one side creates orphan refs (“ref still present, GET <code>/api/blobs/:id</code> → 404”), and Run detail shows <strong>Cannot display / Attachment unavailable</strong>.</p>
-<p>Ops rules:</p>
-<ul>
-<li><strong>Paired backup</strong>: every backup set must include both <code>./.localdata/db</code> and <code>./.localdata/app-data</code> (or the whole <code>.localdata</code> tree).</li>
-<li><strong>Gateway and keys</strong>: also preserve <code>./.localdata/gateway</code>, the original <code>GRASP_SECRETS_KEY</code> from <code>.env</code>, and deployment configuration. Losing or regenerating that key makes stored encrypted credentials unreadable. Pause writes or use a consistent backup method; save sandbox working files separately.</li>
-<li><strong>Paired cleanup / migration / upgrade</strong>: never move only SQLite or delete only the blobs directory; if you override <code>GRASP_BLOBS_ROOT</code>, include that path in the same lifecycle as the database.</li>
-<li><strong>Historical orphans</strong>: broken refs are not guaranteed recoverable; the UI only shows a permanent-failure placeholder. This delivery does <strong>not</strong> add an orphan inspection console, bulk scan page, or startup/health-check alerts.</li>
-</ul>
-<h2>Chat attachments</h2>
-<p>Drag one or more files from your file manager into the chat input and release when the drop hint appears. You can also use the attachment button or paste files. Pending attachments show their name, type and size, and can be removed individually. The per-file limit is <strong>50 MiB</strong>; folders are not supported. Send after the files finish loading. A failed read removes that file and displays a message, while other content can still be sent.</p>
-<p>Click an image thumbnail to enlarge it, or an audio/video attachment to open native browser playback controls. Previews include a download option. If the format is unsupported, preview fails, or the file is too large, download it to view locally. Preview and download use the current chat’s existing access permissions.</p>
-<h2>Common commands</h2>
-<pre><code class="language-bash">./start.sh logs
-./start.sh down
-./start.sh pull          # refresh compose images and warm the sandbox runtime
-./start.sh restart       # down + up -d (keeps .localdata)
-./start.sh dev -d        # source stack: go run + Vite HMR
-</code></pre>
-<p>Image tags / digests can be overridden in <code>.env</code> — see <a href="https://github.com/cocofhu/approving/blob/main/.env.example"><code>.env.example</code></a> at the repo root. The default is one <code>universal-sandbox</code> image (seven CLIs; Codex supports a ChatGPT login file or a Responses model connection; runtime switches by Agent backend). Publish and smoke checks are covered in <a href="https://github.com/cocofhu/approving/blob/main/CONTRIBUTING.md">Contributing</a>.</p>
-<h2>Next steps</h2>
-<ul>
-<li>For shared or production deployments, use the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/docker/README.md">Docker guide</a> or the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/k8s/README.md">Kubernetes guide and manifests</a>.</li>
-<li>After login, the existing setup window guides you through credentials, coding-tool configuration and Git. Save a coding-tool credential or API account, then name a configuration combining the coding tool, saved credential and upstream model. Empty steps open their forms directly. Saving credentials or a model advances to the next step without a completed-items list. Forms open within the current step, and existing credentials and models can be reused. The Git step lets you add credentials inline, then enter a repository URL with its credential and commit author, or skip it. A repository entered here is registered in Settings → Repositories and bound to the default workflow. The setup creates the default team, an empty <strong>Solo</strong> Agent for Solo conversations, and <strong>Default Workflow</strong>. Solo model selectors show the saved configuration name and offer reasoning levels when supported. The sidebar lists all workflows; shared configuration lives in Settings.</li>
-<li>Coding-tool credential cards save the tool vendor’s authorization: an OpenCode key for OpenCode CLI or a DeepSeek key for DeepSeek Harness. Configure general model API keys, endpoints and protocols in API accounts. Model configurations can use either the tool vendor’s authorization or a compatible API account. After selecting an API account, search its model directory to choose primary and auxiliary models. Retry failed reads or enter an original model ID manually.</li>
-<li><a href="../concepts/">Core concepts</a> — FSM, gates, sandbox, artifacts</li>
-<li><a href="../../help/configuration/">Configuration summary</a> — points to full <code>CONFIGURATION.md</code></li>
-<li><a href="../../help/gateway/">Gateway summary</a> — points to <code>GATEWAY.md</code></li>
-</ul>
-
-      </div>
-    </article>
-  </main>
+<p>The gateway pulls the sandbox image when you first create a sandbox. To warm the image beforehand, run <code>./start.sh pull</code>. Then follow <a href="/en/guide/first-run/">Your first run</a> to set up a model and an agent.</p>
+<h2 id="commands">Everyday commands</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./start.sh logs</code></td>
+<td>Follow service logs.</td>
+</tr>
+<tr>
+<td><code>./start.sh restart</code></td>
+<td>Recreate release-stack services and keep <code>.localdata</code>.</td>
+</tr>
+<tr>
+<td><code>./start.sh down</code></td>
+<td>Stop release-stack services and keep <code>.localdata</code>.</td>
+</tr>
+<tr>
+<td><code>./start.sh pull</code></td>
+<td>Refresh the release images and warm the default sandbox image.</td>
+</tr>
+<tr>
+<td><code>./start.sh dev -d</code></td>
+<td>Run the source development stack with frontend hot reload.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="backup">Back up app data and attachments</h2>
+<p>Keep the database, app data, gateway state, and original deployment key in one recovery set. This preserves attachment references, sandbox records, and saved credentials together.</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.localdata/db</code></td>
+<td>The SQLite database and its related files.</td>
+</tr>
+<tr>
+<td><code>.localdata/app-data</code></td>
+<td>Agent configuration and default attachment storage. Include the custom path if you set <code>GRASP_BLOBS_ROOT</code>.</td>
+</tr>
+<tr>
+<td><code>.localdata/gateway</code></td>
+<td>Gateway records.</td>
+</tr>
+<tr>
+<td>Deployment configuration and original <code>GRASP_SECRETS_KEY</code></td>
+<td>Restore deployment settings and decrypt existing credentials.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sandbox working files follow their own <a href="/en/help/sandbox-lifecycle/">save and restore policy</a>. Pause writes or take a consistent snapshot when backing up application data. If migrated attachments show <code>blob:</code> errors or return 404, check that the database and attachment directory came from the same backup.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/guide/quick-start.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <span></span><a href="/en/guide/first-run/"><span>Next</span><strong>First run</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#prerequisites">Prepare a host</a></li><li class="outline-level-2"><a href="#start">Start the published stack</a></li><li class="outline-level-2"><a href="#commands">Everyday commands</a></li><li class="outline-level-2"><a href="#backup">Back up app data and attachments</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

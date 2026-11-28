@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Build, run, and review a workflow · Grasp</title>
+  <meta name="description" content="Connect agent nodes and human gates on the canvas, publish a version, and review its runs.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/guide/workflows/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/workflows/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/workflows/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/workflows/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/guide/workflows/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/" aria-current="page">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/" aria-current="page">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#use">Use Grasp</a></nav>
+      <header class="doc-title"><h1>Build, run, and review a workflow</h1><p>Connect agent nodes and human gates on the canvas, publish a version, and review its runs.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#canvas">Define delivery steps on the canvas</a></li><li class="outline-level-2"><a href="#run">Start a run</a></li><li class="outline-level-2"><a href="#review">Review a human gate</a></li><li class="outline-level-2"><a href="#artifacts">Verify the outputs</a></li></ul></details>
+      <article class="doc-content"><h2 id="canvas">Define delivery steps on the canvas</h2>
+<p>Open an existing workflow or create one for your team’s delivery steps. Use input nodes for requirements and run parameters, agent nodes for roles and objectives, conditions for test outcomes, and output nodes for deliverables.</p>
+<p>Add a human gate at a decision that needs review. Decide what reviewers will inspect and what they can approve, then reference upstream inputs or artifacts in node instructions. Workflow variables can be used in supported nodes. Save your changes, validate the canvas, and publish the version you want your team to run.</p>
+<h2 id="run">Start a run</h2>
+<p>Choose <strong>Run</strong>, enter the request, and check which repositories and branches to clone. The selection, order, and branches are fixed for the run at launch. To add a repository, register and bind it in <a href="/en/help/repositories/">Repository settings</a>.</p>
+<p>Open run details to inspect each node and its inputs and artifacts. A run can queue while waiting for sandbox capacity. If a node reaches its total time limit, is cancelled, or is taken over, the run shows that reason.</p>
+<h2 id="review">Review a human gate</h2>
+<p>Open the pending item and inspect its conversation, preview, and artifacts. Use the actions available to submit a decision or continue the conversation so the run can advance or return for changes. Check the recipient and expiry before sharing a temporary approval link.</p>
+<p>A run remains in the waiting state until someone responds. An eligible E2B sandbox can save and reclaim its resources while the run waits, then resume on response. Docker and Kubernetes environments remain until an explicit stop or cleanup. See <a href="/en/help/sandbox-lifecycle/#active-work">Sandbox lifecycle</a>.</p>
+<h2 id="artifacts">Verify the outputs</h2>
+<p>Once the run finishes, inspect its output node and artifacts. Check that the test report belongs to this run, then verify the final changes and branch. To change how subsequent runs work, edit, save, and publish a new workflow version.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/guide/workflows.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/guide/solo/"><span>Previous</span><strong>Solo sessions</strong></a><a href="/en/help/agents-models/"><span>Next</span><strong>Model groups and agents</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#canvas">Define delivery steps on the canvas</a></li><li class="outline-level-2"><a href="#run">Start a run</a></li><li class="outline-level-2"><a href="#review">Review a human gate</a></li><li class="outline-level-2"><a href="#artifacts">Verify the outputs</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>

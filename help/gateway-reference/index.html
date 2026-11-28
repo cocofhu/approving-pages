@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>网关与沙箱参数索引 · Grasp</title>
+  <meta name="description" content="查询 Gateway 公共字段、Docker、Kubernetes、E2B 与沙箱运行时变量的默认值和影响。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/gateway-reference/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/gateway-reference/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/gateway-reference/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/gateway-reference/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/gateway-reference/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/" aria-current="page">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/" aria-current="page">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#deploy">部署与配置</a></nav>
+      <header class="doc-title"><h1>网关与沙箱参数索引</h1><p>查询 Gateway 公共字段、Docker、Kubernetes、E2B 与沙箱运行时变量的默认值和影响。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#common">网关公共设置</a></li><li class="outline-level-2"><a href="#docker">Docker 设置</a></li><li class="outline-level-2"><a href="#kubernetes">Kubernetes 设置</a></li><li class="outline-level-2"><a href="#e2b">E2B 设置</a></li><li class="outline-level-2"><a href="#runtime">沙箱运行时变量</a></li></ul></details>
+      <article class="doc-content"><p>修改网关配置后重启对应服务，并用新建测试环境验证。选用与 <code>driver</code> 一致的后端段。时间为秒，内存为 MiB，磁盘为 GiB。Grasp 平台字段在<a href="/help/configuration-reference/">配置项索引</a>，连接步骤见<a href="/help/gateway/">网关与预览</a>。</p>
+<h2 id="common">网关公共设置</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">YAML 路径</th>
+<th scope="col">环境变量</th>
+<th scope="col">默认值</th>
+<th scope="col">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-common-driver">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>driver</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>docker</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span><code>docker</code> / <code>kubernetes</code> / <code>e2b</code>；环境变量与文件不能冲突</span></td>
+</tr>
+<tr id="option-common-server-listen">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.listen</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_LISTEN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>:8080</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>网关 API 监听</span></td>
+</tr>
+<tr id="option-common-server-finalizetimeoutseconds">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.finalizeTimeoutSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_FINALIZE_TIMEOUT_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>1200</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>创建/重装就绪期限</span></td>
+</tr>
+<tr id="option-common-database-driver">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.driver</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DB_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>sqlite</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span><code>sqlite</code>、<code>mysql</code> 或 <code>postgres</code></span></td>
+</tr>
+<tr id="option-common-database-path">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.path</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DB_PATH</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>gateway.db</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>SQLite 持久化文件</span></td>
+</tr>
+<tr id="option-common-database-dsn">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.dsn</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DB_DSN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>PostgreSQL 必填。MySQL 优先使用 DSN，也可使用下方分项</span></td>
+</tr>
+<tr id="option-common-database-host-database-port">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.host</code> / <code>database.port</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DB_HOST</code> / <code>SBGW_DB_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空 / <code>0</code>（连接时用 <code>3306</code>）</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>MySQL 主机和端口</span></td>
+</tr>
+<tr id="option-common-database-user-database-password-database-name">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.user</code> / <code>database.password</code> / <code>database.name</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DB_USER</code> / <code>SBGW_DB_PASSWORD</code> / <code>SBGW_DB_NAME</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>MySQL 账号及数据库</span></td>
+</tr>
+<tr id="option-common-database-params">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.params</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>MySQL 默认补 <code>charset=utf8mb4&amp;parseTime=True&amp;loc=Local</code></span></td>
+</tr>
+<tr id="option-common-auth-apikeys">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>auth.apiKeys</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_API_KEYS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>[]</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>Bearer key，环境变量用逗号分隔；空禁用 v1 鉴权且不能使用 v2 transport</span></td>
+</tr>
+<tr id="option-common-orphangc-enabled">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>orphanGC.enabled</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_ORPHAN_GC_ENABLED</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>清理无数据库记录的本部署工作负载</span></td>
+</tr>
+<tr id="option-common-orphangc-intervalseconds">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>orphanGC.intervalSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_ORPHAN_GC_INTERVAL_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>300</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>扫描间隔</span></td>
+</tr>
+<tr id="option-common-orphangc-minageseconds">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>orphanGC.minAgeSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_ORPHAN_GC_MIN_AGE_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>600</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>最小清理年龄；<code>0</code> 无年龄限制</span></td>
+</tr>
+<tr id="option-common-ports-session-ports-codeserver-ports-ssh">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ports.session</code> / <code>ports.codeServer</code> / <code>ports.ssh</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>8765</code> / <code>8744</code> / <code>22</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>会话、IDE、SSH 端口</span></td>
+</tr>
+<tr id="option-common-ports-cdp-ports-novnc">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ports.cdp</code> / <code>ports.novnc</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>9222</code> / <code>6080</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>内部端口，不发布到 Docker 主机 / K8s LB</span></td>
+</tr>
+<tr id="option-common-ports-app">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ports.app</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>见各后端示例</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>额外应用端口</span></td>
+</tr>
+<tr id="option-common-sbgw-log-level">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_LOG_LEVEL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>info</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>网关日志级别，仅环境变量</span></td>
+</tr>
+<tr id="option-common-sbgw-log-pretty">
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_LOG_PRETTY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>网关日志人类可读格式，仅环境变量</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="docker">Docker 设置</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col"><code>docker</code> 字段</th>
+<th scope="col">环境变量</th>
+<th scope="col">默认值</th>
+<th scope="col">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-docker-image">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>image</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DOCKER_IMAGE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>universal-sandbox:local</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>真实 OCI 镜像</span></td>
+</tr>
+<tr id="option-docker-bindip">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>bindIP</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DOCKER_BIND_IP</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>127.0.0.1</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>发布端口的宿主地址</span></td>
+</tr>
+<tr id="option-docker-network">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>network</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_DOCKER_NETWORK</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>Docker 网络</span></td>
+</tr>
+<tr id="option-docker-nameprefix-shmsize">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>namePrefix</code> / <code>shmSize</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>sbx-</code> / <code>1g</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>容器名称前缀及共享内存</span></td>
+</tr>
+<tr id="option-docker-resources-default">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>resources.default</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>CPU <code>0</code>、memory <code>0</code>、disk <code>0</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>请求省略资源时采用；<code>0</code> 表示不限制；字段为 <code>cpuCores/memoryMB/diskGi</code></span></td>
+</tr>
+<tr id="option-docker-resources-max">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>resources.max</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>CPU <code>8</code>、memory <code>16384</code>、disk <code>500</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>API 请求上限；不等于 Docker 磁盘配额</span></td>
+</tr>
+<tr id="option-docker-profiles">
+<td><span class="reference-label" aria-hidden="true">docker 字段</span><span><code>profiles</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>{}</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>可选 <code>名称: {image: OCI镜像}</code>，供 Grasp 命名连接选择</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="kubernetes">Kubernetes 设置</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col"><code>kubernetes</code> 字段</th>
+<th scope="col">环境变量</th>
+<th scope="col">默认值</th>
+<th scope="col">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-kubernetes-image">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>image</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_IMAGE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>universal-sandbox:local</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>节点可获取的 OCI 镜像</span></td>
+</tr>
+<tr id="option-kubernetes-incluster">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>inCluster</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_IN_CLUSTER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>使用 Pod service account</span></td>
+</tr>
+<tr id="option-kubernetes-kubeconfig">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>kubeconfig</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_KUBECONFIG</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>留空使用标准 kubeconfig / in-cluster 发现</span></td>
+</tr>
+<tr id="option-kubernetes-namespace">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>namespace</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_NAMESPACE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>sandboxes</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>沙箱所在 namespace</span></td>
+</tr>
+<tr id="option-kubernetes-nameprefix">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>namePrefix</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>sbx-</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>工作负载名称前缀</span></td>
+</tr>
+<tr id="option-kubernetes-storageclass">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>storageClass</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_STORAGE_CLASS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>使用集群默认 StorageClass</span></td>
+</tr>
+<tr id="option-kubernetes-pvcannotations">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>pvcAnnotations</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>{}</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>新建 PVC 的注解</span></td>
+</tr>
+<tr id="option-kubernetes-imagepullsecret">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>imagePullSecret</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>私有镜像仓库 Secret</span></td>
+</tr>
+<tr id="option-kubernetes-imagepullpolicy">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>imagePullPolicy</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_IMAGE_PULL_POLICY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>IfNotPresent</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span><code>Always</code> / <code>IfNotPresent</code> / <code>Never</code></span></td>
+</tr>
+<tr id="option-kubernetes-enableloadbalancer">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>enableLoadBalancer</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_K8S_ENABLE_LB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>true</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>是否创建公开端口的 LB Service</span></td>
+</tr>
+<tr id="option-kubernetes-resources-default-resources-max">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>resources.default</code> / <code>resources.max</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>2/4096/25</code> / <code>8/16384/500</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>CPU、内存、PVC 容量；字段为 <code>cpuCores/memoryMB/diskGi</code></span></td>
+</tr>
+<tr id="option-kubernetes-cpurequestcores-memoryrequestmb">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>cpuRequestCores</code> / <code>memoryRequestMB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>0.25</code> / <code>512</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>调度 request，固定值优先；填 <code>0</code> 才使用对应比例</span></td>
+</tr>
+<tr id="option-kubernetes-cpurequestratio-memoryrequestratio">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>cpuRequestRatio</code> / <code>memoryRequestRatio</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>0.25</code> / <code>0.25</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span><code>request = limit × ratio</code>，范围 <code>(0,1]</code>，驱动应用最小 request 保护</span></td>
+</tr>
+<tr id="option-kubernetes-profiles">
+<td><span class="reference-label" aria-hidden="true">kubernetes 字段</span><span><code>profiles</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>{}</code></span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>可选环境名到 OCI 镜像映射</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="e2b">E2B 设置</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col"><code>e2b</code> 字段</th>
+<th scope="col">环境变量</th>
+<th scope="col">默认值 / 要求</th>
+<th scope="col">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-e2b-apiurl">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>apiURL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_API_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>必填，无默认</span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>你的 E2B 控制 API；自建填写自建地址，云服务填写 <code>https://api.e2b.app</code></span></td>
+</tr>
+<tr id="option-e2b-sandboxurl">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>sandboxURL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_SANDBOX_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>自建沙箱代理来源；留空使用 provider 返回的每个沙箱域名，返回为空则报错</span></td>
+</tr>
+<tr id="option-e2b-apikey">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>apiKey</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_API_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>必填</span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>E2B API key，建议仅环境变量</span></td>
+</tr>
+<tr id="option-e2b-ownerid">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>ownerID</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_OWNER_ID</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>必填</span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>稳定、唯一的部署标识，限制管理范围</span></td>
+</tr>
+<tr id="option-e2b-statedir">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>stateDir</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_STATE_DIR</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>必填，绝对路径且不能为 <code>/</code></span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>私有连接恢复记录，须持久化</span></td>
+</tr>
+<tr id="option-e2b-boottimeoutseconds">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>bootTimeoutSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_BOOT_TIMEOUT_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span><code>600</code></span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>guest 启动及私有连接准备期限</span></td>
+</tr>
+<tr id="option-e2b-leaseseconds">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>leaseSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_LEASE_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span><code>3600</code></span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>请求的 provider 租约，至少 <code>30</code></span></td>
+</tr>
+<tr id="option-e2b-renewintervalseconds">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>renewIntervalSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_RENEW_INTERVAL_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span><code>300</code></span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>必须大于 0 且小于租约一半</span></td>
+</tr>
+<tr id="option-e2b-autopause">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>autoPause</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>SBGW_E2B_AUTO_PAUSE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span><code>true</code></span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>新 guest 到期自动暂停；显式删除仍销毁</span></td>
+</tr>
+<tr id="option-e2b-templates">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>templates</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>必填，无默认模板</span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span><code>名称 → {templateID,cpuCores,memoryMB,diskGi}</code></span></td>
+</tr>
+<tr id="option-e2b-defaulttemplate">
+<td><span class="reference-label" aria-hidden="true">e2b 字段</span><span><code>defaultTemplate</code></span></td>
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值 / 要求</span><span>单模板自动选择，多模板必填</span></td>
+<td><span class="reference-label" aria-hidden="true">含义</span><span>必须是 <code>templates</code> 中的名称</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="runtime">沙箱运行时变量</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">箱内变量</th>
+<th scope="col">独立运行时默认值</th>
+<th scope="col">Grasp 管理沙箱时的来源 / 用途</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-runtime-grasp-runtime-url">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>GRASP_RUNTIME_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span>无，启动必填</span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>Grasp 自动提供运行时包下载地址</span></td>
+</tr>
+<tr id="option-runtime-sandbox-inject-sandbox-inject-headers">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>SANDBOX_INJECT</code> / <code>SANDBOX_INJECT_HEADERS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>Grasp 提供配置包与有作用域的下载凭据</span></td>
+</tr>
+<tr id="option-runtime-workspace-dir">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>WORKSPACE_DIR</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span><code>/root/workspace</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>沙箱内的代码目录；与 Grasp 的 <code>sandbox.work_dir</code> 不同</span></td>
+</tr>
+<tr id="option-runtime-root-password">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>ROOT_PASSWORD</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span><code>toor</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>Grasp 为沙箱注入密码；不要按独立脚本默认值推断平台沙箱密码</span></td>
+</tr>
+<tr id="option-runtime-ssh-key">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>SSH_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>可选 SSH 公钥</span></td>
+</tr>
+<tr id="option-runtime-code-server-port">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>CODE_SERVER_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span><code>8744</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>IDE 监听端口</span></td>
+</tr>
+<tr id="option-runtime-agent-provider">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>AGENT_PROVIDER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span><code>cursor</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>Grasp 按所选编码工具设置，与 gateway <code>driver</code> 无关</span></td>
+</tr>
+<tr id="option-runtime-acp-bridge-port">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>ACP_BRIDGE_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span><code>8765</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>Agent 会话服务端口</span></td>
+</tr>
+<tr id="option-runtime-acp-bridge-password">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>ACP_BRIDGE_PASSWORD</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>Grasp 创建时注入会话鉴权口令</span></td>
+</tr>
+<tr id="option-runtime-skip-inner-docker">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>SKIP_INNER_DOCKER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span>按 <code>0</code> 处理，启动内层 Docker</span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>设置 <code>1</code> 时跳过内层 dockerd</span></td>
+</tr>
+<tr id="option-runtime-inner-docker-storage-driver">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>INNER_DOCKER_STORAGE_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span><code>vfs</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>内层 Docker 存储驱动</span></td>
+</tr>
+<tr id="option-runtime-preview-direct-preview-port">
+<td><span class="reference-label" aria-hidden="true">箱内变量</span><span><code>PREVIEW_DIRECT</code> / <code>PREVIEW_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">独立运行时默认值</span><span>空</span></td>
+<td><span class="reference-label" aria-hidden="true">Grasp 管理沙箱时的来源 / 用途</span><span>直连预览注入开关与应用端口，由平台预览配置决定</span></td>
+</tr>
+</tbody>
+</table></div>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/gateway-reference.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/gateway/"><span>上一篇</span><strong>网关与预览</strong></a><a href="/help/sandbox-lifecycle/"><span>下一篇</span><strong>沙箱生命周期</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#common">网关公共设置</a></li><li class="outline-level-2"><a href="#docker">Docker 设置</a></li><li class="outline-level-2"><a href="#kubernetes">Kubernetes 设置</a></li><li class="outline-level-2"><a href="#e2b">E2B 设置</a></li><li class="outline-level-2"><a href="#runtime">沙箱运行时变量</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

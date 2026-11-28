@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>编排、运行和审查工作流 · Grasp</title>
+  <meta name="description" content="用画布连接 Agent 节点与人工门禁，发布后启动、查看结果并处理待办。">
+  <link rel="canonical" href="https://www.approving-ai.com/guide/workflows/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/workflows/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/workflows/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/workflows/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/guide/workflows/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/" aria-current="page">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/" aria-current="page">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#use">使用 Grasp</a></nav>
+      <header class="doc-title"><h1>编排、运行和审查工作流</h1><p>用画布连接 Agent 节点与人工门禁，发布后启动、查看结果并处理待办。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#canvas">在画布上定义交付步骤</a></li><li class="outline-level-2"><a href="#run">启动运行</a></li><li class="outline-level-2"><a href="#review">处理人工门禁</a></li><li class="outline-level-2"><a href="#artifacts">验证交付结果</a></li></ul></details>
+      <article class="doc-content"><h2 id="canvas">在画布上定义交付步骤</h2>
+<p>从「工作流」打开已存在的流程，或创建一个描述你团队步骤的流程。用输入节点声明需求与运行参数，用 Agent 节点设置角色和目标，用条件分支处理测试结果，用输出节点明确交付物。</p>
+<p>把需要确认的决定放在人工门禁上。先决定用户要看什么、允许做什么，再在节点目标中引用上游输入或产物。工作流级变量可用在适用节点上。编辑完成后先保存并检查画布，再发布要交给团队使用的版本。</p>
+<h2 id="run">启动运行</h2>
+<p>点击「运行」，输入需求并核对要克隆的仓库和分支。启动时固定本次运行的仓库列表、顺序和分支。需要增加仓库时，先在<a href="/help/repositories/">仓库设置</a>登记并绑定。</p>
+<p>从运行详情查看节点状态和上下游产物。等待沙箱容量时，运行可能排队。达到节点总时限、主动取消或接管时，运行详情会显示对应的原因。</p>
+<h2 id="review">处理人工门禁</h2>
+<p>在待办打开对应条目，检查 Agent 对话、预览和产物。按工作流允许的操作提交决定或继续对话，以推进或退回当前步骤。分享临时审批链接前，核对接收人和访问时限。</p>
+<p>状态处于等待人工时，工作流会保留等待状态。E2B 沙箱在符合空闲回收条件时可先保存，收到决定后恢复环境。Docker 和 Kubernetes 环境会保留到显式停止或清理。见<a href="/help/sandbox-lifecycle/#active-work">沙箱生命周期</a>。</p>
+<h2 id="artifacts">验证交付结果</h2>
+<p>任务完成后查看输出节点与运行产物。确认测试结果来自这次运行，并核对最终变更和关联的仓库分支。要更改后续运行的流程，回到工作流编辑、保存并发布新版。</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/guide/workflows.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/guide/solo/"><span>上一篇</span><strong>Solo 会话</strong></a><a href="/help/agents-models/"><span>下一篇</span><strong>模型组与智能体</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#canvas">在画布上定义交付步骤</a></li><li class="outline-level-2"><a href="#run">启动运行</a></li><li class="outline-level-2"><a href="#review">处理人工门禁</a></li><li class="outline-level-2"><a href="#artifacts">验证交付结果</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>常见问题与排查 · Grasp</title>
+  <meta name="description" content="按失败的阶段排查凭据、克隆、沙箱容量、预览和配置未生效。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/troubleshooting/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/troubleshooting/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/troubleshooting/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/troubleshooting/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/troubleshooting/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/" aria-current="page">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/" aria-current="page">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#support">排查与贡献</a></nav>
+      <header class="doc-title"><h1>常见问题与排查</h1><p>按失败的阶段排查凭据、克隆、沙箱容量、预览和配置未生效。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#diagnose">先找到失败的阶段</a></li><li class="outline-level-2"><a href="#timeouts">Agent 回合卡住或结束</a></li><li class="outline-level-2"><a href="#restore">看懂空闲回收与恢复</a></li></ul></details>
+      <article class="doc-content"><h2 id="diagnose">先找到失败的阶段</h2>
+<p>打开运行详情、待办或 Solo 的沙箱信息。记录失败的阶段、报错原文、Agent 与模型组、网关后端、是否新建环境。查看日志时保留错误上下文，隐藏密钥和凭据。根据第一个失败的阶段定位。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>先检查</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型组不可用、模型为空或 API 返回 401</td>
+<td>凭据是否有效、API 地址与协议、Agent 绑定</td>
+<td>在凭据页刷新账号或重选组，用一条短指令验证。<a href="/help/agents-models/">模型组</a></td>
+</tr>
+<tr>
+<td>仓库克隆返回 401、403 或找不到分支</td>
+<td>URL、Host、协议和仓库权限</td>
+<td>检查保存的凭据，再用已授权的分支重试。<a href="/help/repositories/">仓库与 Git</a></td>
+</tr>
+<tr>
+<td>一直在准备沙箱</td>
+<td>首次拉镜像、模板数据、启动日志和网关健康</td>
+<td>查看日志第一个失败步骤，核对就绪超时和模板规格。<a href="/help/gateway/">网关</a></td>
+</tr>
+<tr>
+<td>容量不足或排队</td>
+<td>当前占用与上限、是否有待释放的环境</td>
+<td>停止不用的会话或调大容量。Docker/Kubernetes 会持续占用直到显式释放。<a href="/help/settings/#sandbox-capacity">常规设置</a></td>
+</tr>
+<tr>
+<td>预览入口不可用</td>
+<td>应用是否监听、是否已登记预览、后端传输策略</td>
+<td>用终端验证服务，再查预览暴露规则。<a href="/help/gateway/#preview">预览配置</a></td>
+</tr>
+<tr>
+<td>设置保存后结果不符</td>
+<td>来源、锁定状态、修改的是运行时还是启动配置</td>
+<td>对照覆盖规则和生效时机，必要时用新环境验证。<a href="/help/configuration/#precedence">覆盖顺序</a></td>
+</tr>
+<tr>
+<td>迁移后附件无法显示</td>
+<td>数据库与附件目录的备份版本</td>
+<td>从同一恢复集恢复并核对自定义附件存储。<a href="/guide/quick-start/#backup">备份</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="timeouts">Agent 回合卡住或结束</h2>
+<p>先确认是等待沙箱、Agent 无动作、节点总时限还是在等待人工。运行详情的状态与失败原因决定下一步。任务持续产出或运行构建时，CPU、I/O 活动会影响 Agent 无动作判断。若回合已终止，保存需要的日志和产物后，在可用环境重新运行最小步骤确认。各时限见<a href="/help/configuration/#time-limits">部署配置</a>。</p>
+<h2 id="restore">看懂空闲回收与恢复</h2>
+<p>E2B 可以回收空闲环境并在再次使用时恢复。先确认环境是否显示已停止、保存中或正在恢复。若需要保持开发服务器，核对「保持运行」和本地 IDE 连接状态。Docker 和 Kubernetes 的自动空闲回收规则不同，见<a href="/help/sandbox-lifecycle/">生命周期对照</a>。</p>
+<p>提供问题反馈时，带上 Grasp 与 Gateway 的版本、后端类型、重现步骤和最早的错误信息。 <a href="https://github.com/cocofhu/grasp/issues/new">提交问题</a></p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/troubleshooting.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/sandbox-lifecycle/"><span>上一篇</span><strong>沙箱生命周期</strong></a><a href="/help/contributing/"><span>下一篇</span><strong>贡献</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#diagnose">先找到失败的阶段</a></li><li class="outline-level-2"><a href="#timeouts">Agent 回合卡住或结束</a></li><li class="outline-level-2"><a href="#restore">看懂空闲回收与恢复</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

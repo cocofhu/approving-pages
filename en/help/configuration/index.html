@@ -1,121 +1,235 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Configuration · Grasp</title>
-  <meta name="description" content="Grasp, gateway and sandbox configuration sources, defaults and precedence.">
+  <meta name="theme-color" content="#fafafb">
+  <title>Deploy and configure Grasp</title>
+  <meta name="description" content="Choose Docker, Kubernetes, or E2B and understand where settings live, which value wins, and when changes apply.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/configuration/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/configuration/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/configuration/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/configuration/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/help/configuration/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/help/configuration/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/configuration/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">Configuration</h1>
-        <p class="doc__lead">Grasp, gateway and sandbox configuration sources, defaults and precedence.</p>
-      </header>
-      <div class="doc__body">
-        <p>Grasp platform service configuration is primarily YAML / environment variables (local examples: <code>server/config.example.yaml</code> and the root <code>.env.example</code>). Runtime credentials such as ACP and Git credentials are managed only in Settings → Credentials.</p>
-<h2>Full documentation</h2>
-<p>Choose the reference for the component you are configuring:</p>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/" aria-current="page">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/" aria-current="page">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#deploy">Deploy and configure</a></nav>
+      <header class="doc-title"><h1>Deploy and configure <span class="title-wordmark">Grasp</span></h1><p>Choose Docker, Kubernetes, or E2B and understand where settings live, which value wins, and when changes apply.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#where-to-configure">Choose where to configure</a></li><li class="outline-level-2"><a href="#backends">Choose a sandbox backend</a></li><li class="outline-level-2"><a href="#precedence">Determine the effective value</a></li><li class="outline-level-2"><a href="#time-limits">Tell the time limits apart</a></li><li class="outline-level-2"><a href="#secrets">Credentials, access, and backups</a></li><li class="outline-level-2"><a href="#verify">Verify the deployment</a></li></ul></details>
+      <article class="doc-content"><h2 id="where-to-configure">Choose where to configure</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>What you want to change</th>
+<th>Where</th>
+<th>When it applies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API accounts and tool authorization</td>
+<td>Settings → Credentials</td>
+<td>Agents resolve bound credentials at runtime. Follow prompts to reopen affected sessions after updates.</td>
+</tr>
+<tr>
+<td>Models, coding tools, and reasoning</td>
+<td>Settings → Credentials → Model groups, then bind the group to an agent</td>
+<td>Session selections apply on the next turn. Automated runs use the default group.</td>
+</tr>
+<tr>
+<td>Git repository, clone access, and commit identity</td>
+<td>Settings → Repositories</td>
+<td>Credentials are resolved when a sandbox starts or restores.</td>
+</tr>
+<tr>
+<td>Capacity, idle reclaim, memory, and agent inactivity</td>
+<td>Settings → General</td>
+<td>Applies after saving. See <a href="/en/help/settings/">General settings</a> for timing by field.</td>
+</tr>
+<tr>
+<td>Ports, database, users, and gateway connections</td>
+<td>Grasp YAML or process environment</td>
+<td>Restart the relevant service after deployment changes.</td>
+</tr>
+<tr>
+<td>Images, templates, CPU, memory, storage, and networking</td>
+<td>Gateway YAML for the backend</td>
+<td>Restart the gateway and verify with a new sandbox.</td>
+</tr>
+<tr>
+<td>Node instructions, total duration, and human gates</td>
+<td>Workflow canvas</td>
+<td>Save and publish for future runs.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Grasp uses <code>CONFIG_PATH</code> to select its YAML, defaulting to <code>config.yaml</code>. The gateway uses <code>-config</code> or <code>SBGW_CONFIG</code>. A deployment uses one Grasp configuration and one gateway configuration for the selected backend.</p>
+<h2 id="backends">Choose a sandbox backend</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>Use when</th>
+<th>Gateway configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker</td>
+<td>You want a local demo or single-host service</td>
+<td>Docker image, resource caps, and networking. Sandboxes share host CPU and memory by default.</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td>You run sandboxes in an existing cluster</td>
+<td>Cluster access, namespace, scheduling, storage class, and resources. Defaults per sandbox are 2 CPU, 4096 MiB, and 25 GiB.</td>
+</tr>
+<tr>
+<td>E2B</td>
+<td>You use templates and snapshots</td>
+<td>API address and built template IDs. The actual template determines its resources.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use the current deployment examples for your backend. <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/docker/README.md">Docker</a> · <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/k8s/README.md">Kubernetes</a> · <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B</a></p>
+<p>The gateway owns image and template selection. Release Compose maps <code>SANDBOX_IMAGE</code> to the Docker gateway image setting. Grasp-level <code>sandbox.image</code> and <code>GRASP_SANDBOX_IMAGE</code> are retired. Docker and Kubernetes environments stay available until an explicit stop, close, or cancellation. E2B idle reclaim defaults to 360 minutes. See <a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a>.</p>
+<h2 id="precedence">Determine the effective value</h2>
 <ul>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">Grasp and sandbox configuration / defaults (Chinese)</a>: platform, gateway, E2B and sandbox runtime options, including defaults, Compose overrides, the minimum connection setup and troubleshooting.</li>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/server/CONFIGURATION.md">Grasp environment reference</a>: environment variables and their YAML fields.</li>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B deployment (Chinese)</a>: template preparation, gateway configuration and startup.</li>
+<li>Ordinary server options use <strong>process environment → YAML → built-in default</strong>.</li>
+<li>Fields available in General settings use <strong>process environment → saved value → YAML → default</strong>. Environment overrides lock the corresponding fields.</li>
+<li>Compose reads <code>.env</code> as input. Set the container’s <code>environment</code> or mount a configuration file to pass values to a service.</li>
+<li>Grasp’s memory override defaults to <code>0</code>, which follows the gateway or template. Reset a saved memory override to <code>0</code> for future sandboxes to follow the gateway.</li>
 </ul>
-<p>The environment reference is generated/checked by <code>go run ./cmd/gen-configdoc</code>; CI runs <code>-check</code>.</p>
-<h2>Defaults and precedence</h2>
-<p>Use two YAML files: Grasp platform configuration and the selected backend’s gateway configuration. Grasp reads <code>CONFIG_PATH</code> (default <code>config.yaml</code>); select the gateway file explicitly with <code>SBGW_CONFIG</code> or <code>-config</code>. Docker, Kubernetes and E2B have separate examples. Mixed backend sections, unknown fields and inactive backend environment variables fail startup.</p>
-<p>Ordinary settings use environment &gt; YAML &gt; defaults. Settings-page controls use environment &gt; saved database value &gt; YAML &gt; defaults. Environment values lock the corresponding UI field.</p>
-<p>Grasp defaults to <code>http://127.0.0.1:8899</code> with <code>direct</code> transport, an empty image and memory override <code>0</code>, following the gateway or selected template. Setting memory back to <code>0</code> clears the override for future sandboxes. Docker sandboxes default to no CPU or memory limit and share the host; Kubernetes defaults to <code>2 CPU / 4096 MiB / 25 GiB</code>. E2B has no built-in template or resource defaults: copy actual build results.</p>
-<p>E2B uses an explicit <code>apiURL</code>, optional <code>sandboxURL</code> and named <code>templates</code>. Self-hosted deployments use their own API and private sandbox proxy origins, without an implicit cloud address. In <code>templates.standard</code>, <code>standard</code> is your local template name; <code>templateID</code> is returned by E2B. One template is selected automatically; several require <code>defaultTemplate</code>. A named Grasp connection can select a template with <code>profile</code>. Grasp need not repeat its name or memory. See the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">build and paired configuration examples</a>.</p>
-<h2>Local quick path</h2>
-<pre><code class="language-bash">./start.sh -d          # published image stack
-./start.sh dev -d      # source + HMR
-</code></pre>
-<p>Image tags / digests, gateway, and sandbox-related variables are in <code>.env.example</code>. Agent API keys, GitHub / GitLab tokens, SSH keys, and similar credentials can only be saved in Settings → Credentials; putting them in the shared Agent config, Agent meta, or platform <code>sandbox.env</code> is rejected. Save a preset or custom API base and key in Credentials, then combine a coding tool, credential and selected model in the Models tab. Agents reference that named model configuration through <code>modelBinding.configurationId</code>. Model routing fields come from the selected configuration; Agent env cannot override them. Other non-secret options may go in Agent meta env (values may reference <code>${vars.&lt;name&gt;}</code>).</p>
-<p>Git authorization belongs to repositories. When registering a repository in Settings → Repositories, pick a saved GitHub or GitLab token or SSH key and optionally a commit name and email. The credential must match the repository URL’s protocol and host and only applies to that URL; public repositories need no credential. Workflows bind the repositories to clone in their settings. A launch can drop some of them or change branches, and the picked repositories are fixed for that run. Every sandbox start applies each repository’s current credential and commit author; a revoked or deleted credential fails the start instead of switching accounts. Agents no longer store Git authorization, and Agent env cannot set <code>GIT_REPOS</code>.</p>
-<p>GitHub and GitLab credentials configure Host and Token together. Host defaults to the official service and supports self-hosted sites and ports; there is no separate GitLab URL credential. Agent defaults can select multiple model groups. Each Agent opts into model inheritance with a switch; turning it off uses its local selection, and unavailable defaults never fall back to another account or model.</p>
-<h3>Sign in with GitHub (device code)</h3>
-<p>When configured, adding a <a href="http://github.com">github.com</a> GitHub credential offers “Sign in with GitHub”: the page shows an 8-character code, the user enters it at <code>https://github.com/login/device</code> and authorizes, and the platform saves the token. No personal access token has to be created. The result is a regular GitHub credential (<code>GITHUB_TOKEN</code>, Host <code>https://github.com</code>) that binds and injects like a pasted token. The credential row shows the GitHub account and offers “Sign in again” to replace the token while keeping the credential ID, alias and existing bindings. Without configuration only token pasting is shown.</p>
-<p>To enable it:</p>
+<h2 id="time-limits">Tell the time limits apart</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>When it starts and what it controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox.idle_ttl_minutes</code>, default 360 minutes</td>
+<td>An E2B model turn has ended and the queue is empty. The environment can be saved and reclaimed when this interval elapses.</td>
+</tr>
+<tr>
+<td><code>sandbox.chat_idle_timeout_seconds</code>, default 1200 seconds</td>
+<td>A running turn is producing no output or activity. It detects an unresponsive turn.</td>
+</tr>
+<tr>
+<td>Canvas node duration, falling back to <code>sandbox.agent_node_hard_cap_hours</code>, default 24 hours</td>
+<td>Caps total execution time for an agent node.</td>
+</tr>
+<tr>
+<td><code>sandbox.sandbox_create_timeout_seconds</code>, default 1200 seconds</td>
+<td>Waits for the gateway to report sandbox readiness, including cold-start work. Coordinate with the gateway finalize timeout.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="secrets">Credentials, access, and backups</h2>
+<p>Configure explicit users and <code>GRASP_SECRETS_KEY</code> for a production deployment. Keep the key with your deployment and database backups so existing credentials can be decrypted. When setting advertised URLs and proxies, check reachability separately from a browser and from a sandbox.</p>
+<p>To offer GitHub device login, set <code>GRASP_GITHUB_OAUTH_CLIENT_ID</code> and restart. Add model credentials and repository tokens in the application. For local IDE access, follow the <a href="/en/help/local-ide/">SSH gateway guide</a>.</p>
+<h2 id="verify">Verify the deployment</h2>
 <ol>
-<li>In GitHub, open <strong>Settings → Developer settings → OAuth Apps</strong> and create an OAuth App (personal or organization). Use the platform URL as Homepage URL; the device flow does not use the callback, so the Authorization callback URL can be the same address.</li>
-<li>Check <strong>Enable Device Flow</strong> in the App settings. Without it, sign-in reports that Device Flow is disabled.</li>
-<li>Give the App’s <strong>Client ID</strong> to the server through the <code>GRASP_GITHUB_OAUTH_CLIENT_ID</code> environment variable or YAML <code>github.oauth_client_id</code> (the environment variable wins), then restart. No client secret is needed; do not configure one.</li>
+<li>Check Grasp <code>/api/health</code> and gateway <code>/healthz</code>. Check the startup logs for the backend and configuration source.</li>
+<li>Open Settings → General and confirm the effective value, source, and lock state.</li>
+<li>Start a test environment with your agent and confirm its gateway, template, resources, and preview. Follow <a href="/en/guide/first-run/">First run</a> for model and repository checks.</li>
+<li>Use the <a href="/en/help/configuration-reference/">Configuration index</a> for YAML paths, environment variables, and defaults. Gateway and runtime fields are listed in the <a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">deployment reference</a>.</li>
 </ol>
-<p>Notes and limits:</p>
-<ul>
-<li>The requested scopes are fixed to <code>repo read:org workflow</code>. The token has <code>repo</code> access to every repository the user can reach; for per-repository permissions, paste a fine-grained PAT instead. If the grant lacks <code>repo</code>, the credential is still saved with a warning that private repositories may not clone.</li>
-<li>Organizations with OAuth App access restrictions must approve the OAuth App, otherwise the token cannot reach their repositories.</li>
-<li>Only <a href="http://github.com">github.com</a> is supported. GitHub Enterprise Server keeps using pasted tokens.</li>
-<li>Sign-in sessions live in server memory for the lifetime GitHub returns (usually 15 minutes). A restart drops sessions in progress; get a new code. Multi-instance deployments need sticky sessions.</li>
-<li>GitHub revokes OAuth App tokens unused for a year; use “Sign in again” on the credential row.</li>
-</ul>
-<h3>Multiple model groups and conversation continuity</h3>
-<p>Bind several groups, including groups for different coding tools, and choose an explicit default. Home, new Solo sessions and active Solo conversations offer primary and auxiliary models from every bound group. Identical models from different groups retain their group and tool labels. An unspecified choice and automated workflow execution use the default group’s primary model.</p>
-<p>A session choice selects the group’s tool, account and reasoning settings together. An active turn finishes with its original settings; the new choice applies before the next turn. Tool changes retain the current workspace and uncommitted changes, and hand early requirements, recent dialogue, attachment references and tool results to the new tool. Agents can retrieve older original messages through grasp-tool <code>get_history</code>. Native sessions are not interchangeable between tools; continuity uses persisted task records and the current workspace.</p>
-<p>Successful group or binding saves refresh selectors in the current page and other tabs in the same browser. Other users see changes after refreshing. Valid selections stay selected; disabled, deleted or unbound choices require an explicit replacement. A temporary read failure is not treated as deletion. Different dedicated sandbox images or a changed repository credential require reopening the session.</p>
-<h3>Per-reply time and execution details</h3>
-<p>Solo, workflows and Agent tests share the same chat presentation. Hover a message to see its time. The reply information icon supports hover, keyboard focus and touch, showing the turn’s Agent, coding tool, model, reasoning, duration and token usage. Input, output, caches and individual models remain separate, with upstream or estimated attribution preserved.</p>
-<p>Each reply keeps its execution snapshot; later model changes do not relabel old replies. Missing historical fields remain unavailable rather than being inferred from the current selection. An unfinished reply shows only information already received.</p>
-<h2>Sandbox reclamation and backup storage</h2>
-<p>Every sandbox shares one idle timeout and one capacity limit in Settings, defaulting to 60 minutes and 15 sandboxes. Idle environments are saved before releasing resources and resume from their newest successful recovery point. Docker/Kubernetes archive workspace files and remove the container/PVC; E2B uses a complete snapshot without a duplicate file archive. Running environments have no periodic backup schedule.</p>
-<ul>
-<li>File archives default to <code>data/solo-backups</code>; set <code>GRASP_SOLO_BACKUP_DIR</code> to change it. Back up the directory together with the database.</li>
-<li>Set <code>GRASP_SOLO_BACKUP_S3_BUCKET</code>, <code>GRASP_SOLO_BACKUP_S3_ACCESS_KEY_ID</code> and <code>GRASP_SOLO_BACKUP_S3_SECRET_ACCESS_KEY</code> for S3. Self-hosted storage can use <code>GRASP_SOLO_BACKUP_S3_ENDPOINT</code> and <code>GRASP_SOLO_BACKUP_S3_PATH_STYLE</code>. Partial configuration fails startup.</li>
-<li>A compressed file archive defaults to a 4 GiB limit (<code>GRASP_SOLO_BACKUP_MAX_BYTES</code>). Exceeding it or failing verification preserves the original environment.</li>
-<li><code>solo_backup.keep</code> (<code>GRASP_SOLO_BACKUP_KEEP</code>) controls both file and snapshot recovery points, default <strong>1</strong>. Pruning follows a successful new save. Restore always uses the newest successful point. Cancelling a run or closing a session removes all its recovery points, with persistent retries on failure.</li>
-<li>See <a href="sandbox-lifecycle.md">Sandbox lifecycle</a> for waiting workflows, manual stop, restoration and failed cleanup.</li>
-<li>See <a href="local-ide.md">Open sandboxes from a local IDE</a> to enable, deploy and use the built-in SSH gateway.</li>
-</ul>
-<h2>Database and attachment lifecycle</h2>
-<p>In the release stack, SQLite (<code>./.localdata/db</code>) and app-data / default blobs (<code>./.localdata/app-data</code>, or a custom <code>GRASP_BLOBS_ROOT</code>) must be <strong>backed up and cleaned as a pair</strong>; do not migrate only the database. Otherwise composite images can keep orphan <code>blob:</code> refs (GET <code>/api/blobs/:id</code> → 404). Historical orphans only get a permanent UI placeholder; this delivery does not add an inspection console. See <a href="../guide/quick-start.md#database-and-attachments-share-one-lifecycle-backup--cleanup">Quick start</a>.</p>
-<h2>Related</h2>
-<ul>
-<li><a href="../gateway/">Gateway</a></li>
-<li><a href="../contributing/">Contributing</a></li>
-</ul>
-
-      </div>
-    </article>
-  </main>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/configuration.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/local-ide/"><span>Previous</span><strong>Local IDE</strong></a><a href="/en/help/configuration-reference/"><span>Next</span><strong>Configuration index</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#where-to-configure">Choose where to configure</a></li><li class="outline-level-2"><a href="#backends">Choose a sandbox backend</a></li><li class="outline-level-2"><a href="#precedence">Determine the effective value</a></li><li class="outline-level-2"><a href="#time-limits">Tell the time limits apart</a></li><li class="outline-level-2"><a href="#secrets">Credentials, access, and backups</a></li><li class="outline-level-2"><a href="#verify">Verify the deployment</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

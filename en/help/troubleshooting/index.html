@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Troubleshoot common problems · Grasp</title>
+  <meta name="description" content="Diagnose credential, clone, capacity, preview, and configuration issues at the stage that failed.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/troubleshooting/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/troubleshooting/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/troubleshooting/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/troubleshooting/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/troubleshooting/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/" aria-current="page">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/" aria-current="page">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#support">Troubleshoot and contribute</a></nav>
+      <header class="doc-title"><h1>Troubleshoot common problems</h1><p>Diagnose credential, clone, capacity, preview, and configuration issues at the stage that failed.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#diagnose">Identify the failing stage</a></li><li class="outline-level-2"><a href="#timeouts">A turn stalls or ends</a></li><li class="outline-level-2"><a href="#restore">Understand reclaim and restore</a></li></ul></details>
+      <article class="doc-content"><h2 id="diagnose">Identify the failing stage</h2>
+<p>Open the run detail, inbox, or Solo sandbox information. Note the failing stage, original error, agent and model group, gateway backend, and whether the environment is new. Keep relevant log context and redact credentials. Start with the first failure.</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check first</th>
+<th>Next step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unavailable model group, empty model list, or API 401</td>
+<td>Credential validity, endpoint, protocol, and agent binding</td>
+<td>Refresh the account or pick another available group. Verify with a short turn. <a href="/en/help/agents-models/">Model groups</a></td>
+</tr>
+<tr>
+<td>Clone 401, 403, or missing branch</td>
+<td>URL, host, protocol, and repository access</td>
+<td>Check the saved credential, then retry with an accessible branch. <a href="/en/help/repositories/">Git access</a></td>
+</tr>
+<tr>
+<td>Sandbox remains in preparation</td>
+<td>Image pulls, templates, bootstrap logs, and gateway health</td>
+<td>Check the first bootstrap error and then the readiness timeout and template resources. <a href="/en/help/gateway/">Gateway</a></td>
+</tr>
+<tr>
+<td>Capacity error or a queued run</td>
+<td>Live usage, limit, and environments still releasing</td>
+<td>Stop unused sessions or adjust capacity. Docker and Kubernetes retain slots until an explicit release. <a href="/en/help/settings/#sandbox-capacity">Capacity</a></td>
+</tr>
+<tr>
+<td>Preview unavailable</td>
+<td>Listening app, preview registration, and transport policy</td>
+<td>Check the service from a terminal, then the exposure policy. <a href="/en/help/gateway/#preview">Preview settings</a></td>
+</tr>
+<tr>
+<td>Saved setting seems ineffective</td>
+<td>Source, lock state, and whether it applies at boot or runtime</td>
+<td>Check precedence and verify with a new environment if appropriate. <a href="/en/help/configuration/#precedence">Precedence</a></td>
+</tr>
+<tr>
+<td>Attachments missing after migration</td>
+<td>Database and attachment storage backup versions</td>
+<td>Restore the same recovery set and verify any custom blob path. <a href="/en/guide/quick-start/#backup">Backups</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="timeouts">A turn stalls or ends</h2>
+<p>Check whether it is waiting for a sandbox, detecting agent inactivity, hitting the node’s total limit, or waiting for a human. Use the run state and reason to choose the next action. Output and CPU or I/O activity affect agent inactivity detection. If a turn has ended, save needed logs and artifacts, then retry a minimal step in an available environment. See <a href="/en/help/configuration/#time-limits">Time limits</a>.</p>
+<h2 id="restore">Understand reclaim and restore</h2>
+<p>E2B can reclaim an idle environment and restore it on next use. Check whether the environment is stopped, saving, or restoring. To keep a development server running, check the keep-running setting and local IDE connection. Docker and Kubernetes behavior is listed in the <a href="/en/help/sandbox-lifecycle/">lifecycle comparison</a>.</p>
+<p>For a report, include the Grasp and gateway versions, backend type, reproduction steps, and the first error. <a href="https://github.com/cocofhu/grasp/issues/new">Open an issue</a></p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/troubleshooting.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/sandbox-lifecycle/"><span>Previous</span><strong>Sandbox lifecycle</strong></a><a href="/en/help/contributing/"><span>Next</span><strong>Contributing</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#diagnose">Identify the failing stage</a></li><li class="outline-level-2"><a href="#timeouts">A turn stalls or ends</a></li><li class="outline-level-2"><a href="#restore">Understand reclaim and restore</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>

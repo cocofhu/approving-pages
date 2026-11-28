@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Configure credentials, model groups, and agents · Grasp</title>
+  <meta name="description" content="Understand how accounts, tools, model groups, and agents fit together and verify the model a turn used.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/agents-models/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/agents-models/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/agents-models/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/agents-models/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/agents-models/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/" aria-current="page">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/" aria-current="page">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#use">Use Grasp</a></nav>
+      <header class="doc-title"><h1>Configure credentials, model groups, and agents</h1><p>Understand how accounts, tools, model groups, and agents fit together and verify the model a turn used.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#credentials">Add an account</a></li><li class="outline-level-2"><a href="#model-groups">Save a model group</a></li><li class="outline-level-2"><a href="#binding">Bind the group to an agent</a></li></ul></details>
+      <article class="doc-content"><h2 id="credentials">Add an account</h2>
+<p>Open Settings → Credentials and add a tool authorization or API account. Some tools use their own login. Tools with a compatible protocol can also use a model service. The form shows the options for the tool you choose.</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What to enter</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API account name</td>
+<td>A name that identifies the service or environment</td>
+<td>Identifies the account in pickers.</td>
+</tr>
+<tr>
+<td>API key or token</td>
+<td>A credential issued by the provider</td>
+<td>Authenticates upstream requests.</td>
+</tr>
+<tr>
+<td>API Base URL</td>
+<td>The provider’s API base</td>
+<td>Sets the destination for model requests.</td>
+</tr>
+<tr>
+<td>Protocol and authentication</td>
+<td>The provider’s supported protocol and way of sending a key</td>
+<td>Changes tool compatibility and request format. Enter a custom header only when the provider requires it.</td>
+</tr>
+<tr>
+<td>Model ID</td>
+<td>The provider’s complete model identifier</td>
+<td>Selects the model to call. Retry catalog loading or enter the ID manually.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Save secrets in the credentials form. Agent profiles keep references to credentials or groups. When an authorization expires, update the existing account so its valid bindings can continue to use it.</p>
+<h2 id="model-groups">Save a model group</h2>
+<p>Open Settings → Credentials → Model groups. A model group is a reusable combination of <strong>coding tool, account, models, and reasoning settings</strong>.</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model group name</td>
+<td>Identifies the group in pickers and run information. Models with the same name can be distinguished by group and tool.</td>
+</tr>
+<tr>
+<td>Coding tool</td>
+<td>Determines which agent CLI starts in the sandbox. Create another group when changing tools.</td>
+</tr>
+<tr>
+<td>Model source</td>
+<td>Chooses a tool authorization or a compatible API account and the connection used for calls.</td>
+</tr>
+<tr>
+<td>Main model</td>
+<td>The model used by default. Supported tools can select their own default.</td>
+</tr>
+<tr>
+<td>Auxiliary models</td>
+<td>Configure roles exposed by the tool or make additional models available. Roles depend on the coding tool.</td>
+</tr>
+<tr>
+<td>Reasoning options</td>
+<td>Set supported parameters for the tool and model. The options follow the selected group.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="binding">Bind the group to an agent</h2>
+<p>Open Settings → Agents, then the agent’s model settings. The shared defaults are pinned at the top of the agent list.</p>
+<ul>
+<li><strong>Inherit defaults</strong> to use the default configuration’s groups and default group.</li>
+<li><strong>Choose groups</strong> to bind a set of groups or all active groups. Select a default when several groups are available. Automated workflow runs use the main model in the default group.</li>
+<li><strong>Disable or delete a group</strong> to make its references unavailable. Pick an available group on the affected agent before running again.</li>
+</ul>
+<p>After a group is saved, other tabs in the same browser refresh their choices. A selection made in a session applies to the next turn. To verify a turn, open the run information beside the reply for its tool, model, reasoning effort, and usage.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/agents-models.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/guide/workflows/"><span>Previous</span><strong>Workflows</strong></a><a href="/en/help/repositories/"><span>Next</span><strong>Repositories and Git access</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#credentials">Add an account</a></li><li class="outline-level-2"><a href="#model-groups">Save a model group</a></li><li class="outline-level-2"><a href="#binding">Bind the group to an agent</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>

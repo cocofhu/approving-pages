@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>配置凭据、模型组和智能体 · Grasp</title>
+  <meta name="description" content="了解账号、编码工具、模型组和 Agent 的绑定关系，核对一次对话的实际模型。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/agents-models/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/agents-models/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/agents-models/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/agents-models/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/agents-models/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/" aria-current="page">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/" aria-current="page">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#use">使用 Grasp</a></nav>
+      <header class="doc-title"><h1>配置凭据、模型组和智能体</h1><p>了解账号、编码工具、模型组和 Agent 的绑定关系，核对一次对话的实际模型。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#credentials">添加账号</a></li><li class="outline-level-2"><a href="#model-groups">保存模型组</a></li><li class="outline-level-2"><a href="#binding">绑定到智能体</a></li></ul></details>
+      <article class="doc-content"><h2 id="credentials">添加账号</h2>
+<p>在「设置 → 凭据」添加工具平台授权或 API 账号。部分工具通过平台登录，有兼容协议的工具也可连接模型服务。在选择编码工具后查看表单提供的方式。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>填什么</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 账号名称</td>
+<td>能区分服务和环境的名称</td>
+<td>在选择器中识别要用的账号。</td>
+</tr>
+<tr>
+<td>API Key / Token</td>
+<td>服务商签发的密钥</td>
+<td>用于上游鉴权。</td>
+</tr>
+<tr>
+<td>API Base URL</td>
+<td>服务商的 API 基址</td>
+<td>决定模型请求发送到哪里。</td>
+</tr>
+<tr>
+<td>协议与鉴权方式</td>
+<td>服务商支持的协议和密钥传递方式</td>
+<td>决定可选编码工具及请求格式。按服务商要求填写自定义请求头。</td>
+</tr>
+<tr>
+<td>模型 ID</td>
+<td>服务商的完整模型标识</td>
+<td>用于调用模型。目录加载失败时可重试或手动填写。</td>
+</tr>
+</tbody>
+</table></div>
+<p>请在凭据表单保存密钥。Agent 配置只绑定凭据或模型组的引用。工具授权过期时，在凭据页更新原账号，让仍有效的引用继续使用。</p>
+<h2 id="model-groups">保存模型组</h2>
+<p>从「设置 → 凭据 → 模型组」新建。模型组把<strong>编码工具、账号、模型和推理配置</strong>保存成一条可复用的配置。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型组名称</td>
+<td>在选择器和执行记录中区分组。同名模型可通过组和工具识别。</td>
+</tr>
+<tr>
+<td>编码工具</td>
+<td>决定沙箱中启动哪个 Agent CLI。保存后需要换工具时，新建一组。</td>
+</tr>
+<tr>
+<td>模型来源</td>
+<td>选择工具平台授权或兼容的 API 账号，决定调用走哪条连接。</td>
+</tr>
+<tr>
+<td>主模型</td>
+<td>默认采用的模型。适用的工具允许使用工具默认模型。</td>
+</tr>
+<tr>
+<td>辅助模型</td>
+<td>配置该工具提供的辅助角色，或把额外的模型加入可选范围。实际支持的角色随编码工具变化。</td>
+</tr>
+<tr>
+<td>推理参数</td>
+<td>按工具和模型提供的选项设置。模型组的参数与选择一起生效。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="binding">绑定到智能体</h2>
+<p>打开「设置 → 智能体」，在 Agent 的模型设置中选择以下方式。默认配置位于智能体列表顶部。</p>
+<ul>
+<li><strong>继承默认配置</strong>会使用默认配置绑定的模型组和默认组。</li>
+<li><strong>选择模型组</strong>可以指定一个集合，也可以选择全部活跃组。多个组中需选出默认组。工作流自动执行时采用默认组的主模型。</li>
+<li><strong>停用和删除</strong>会让引用该组的选择失效。打开受影响的 Agent，重新选择可用组后再运行。</li>
+</ul>
+<p>模型组保存后，同一浏览器的其他标签页会更新可选项。会话中切换组从下一轮生效。要核对实际执行结果，在回复旁查看运行信息，其中记录该轮的工具、模型、推理强度和用量。</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/agents-models.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/guide/workflows/"><span>上一篇</span><strong>工作流</strong></a><a href="/help/repositories/"><span>下一篇</span><strong>仓库与 Git 授权</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#credentials">添加账号</a></li><li class="outline-level-2"><a href="#model-groups">保存模型组</a></li><li class="outline-level-2"><a href="#binding">绑定到智能体</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

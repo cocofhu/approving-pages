@@ -1,53 +1,86 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>en/help/sandbox-lifecycle · Grasp</title>
-  <meta name="description" content="Grasp help documentation">
+  <meta name="theme-color" content="#fafafb">
+  <title>Save, reclaim, and restore sandboxes · Grasp</title>
+  <meta name="description" content="Compare idle reclaim, stop, restore, capacity, and cleanup across the three backends.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/sandbox-lifecycle/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/sandbox-lifecycle/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/sandbox-lifecycle/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/sandbox-lifecycle/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/help/sandbox-lifecycle/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/help/sandbox-lifecycle/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/sandbox-lifecycle/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">en/help/sandbox-lifecycle</h1>
-        
-      </header>
-      <div class="doc__body">
-        <h1>Sandbox save, release and restore</h1>
-<p>Settings has one idle timeout and one capacity limit. The idle timeout applies
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/" aria-current="page">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/" aria-current="page">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#deploy">Deploy and configure</a></nav>
+      <header class="doc-title"><h1>Save, reclaim, and restore sandboxes</h1><p>Compare idle reclaim, stop, restore, capacity, and cleanup across the three backends.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#active-work">Waiting for humans and active work</a></li><li class="outline-level-2"><a href="#memory-trim">E2B idle memory return</a></li></ul></details>
+      <article class="doc-content"><p>Settings has one idle timeout and one capacity limit. The idle timeout applies
 to E2B only and defaults to <strong>6 hours (360 minutes)</strong> after the last model turn.
 Docker and Kubernetes sandboxes are never saved or released for idleness; their
 processes keep running until Stop, closing the session or cancelling the run.
 The capacity limit covers every backend and purpose and defaults to
-<strong>15 sandboxes</strong>. Workflow concurrency remains a separate task scheduling limit.</p>
-<table>
+<strong>15 sandboxes</strong>. The same setting supplies the workflow concurrency limit.</p>
+<div class="table-scroll" tabindex="0"><table>
 <thead>
 <tr>
 <th>Behavior</th>
@@ -61,7 +94,7 @@ The capacity limit covers every backend and purpose and defaults to
 <td>Idle timeout</td>
 <td>Not reclaimed; the environment and its processes keep running</td>
 <td>Same</td>
-<td>Counts once the model turn ended and no request is queued; terminals, background processes, pages and the IDE do not count. Native pause when it expires</td>
+<td>Counts once the model turn ended and no request is queued; regular terminal use, background processes, and page access leave the timer alone. A local IDE via the Grasp SSH gateway defers reclaim. Native pause when it expires</td>
 </tr>
 <tr>
 <td>Stop environment</td>
@@ -88,13 +121,14 @@ The capacity limit covers every backend and purpose and defaults to
 <td>Delete its guest and recovery points; provider reclaims physical storage</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>File archives cover the workspace, excluding regenerable <code>node_modules</code>,
 <code>.venv</code>, <code>__pycache__</code>, <code>.cache</code> and <code>.pnpm-store</code> directories. Docker/Kubernetes
 restore does not preserve process memory or temporary files outside the
 workspace. E2B preserves memory, but TCP connections and external requests must
 reconnect. Docker shared bind mounts are not removed. Kubernetes storage-class
 and CSI reclaim policies determine physical volume deletion.</p>
+<h2 id="active-work">Waiting for humans and active work</h2>
 <p>The idle interval and Never auto-reclaim below apply to E2B only. The idle
 interval starts when a complete model turn ends with no queued request,
 or when a new environment becomes ready. Generating, thinking, running tools or
@@ -103,7 +137,7 @@ interval. The interval is persisted across platform restarts. Page polling,
 WebSockets, IDE/preview access and terminal activity do not extend it, so dev
 servers, downloads or background commands left after a turn are saved and paused
 with the environment when it expires. The exception is a local IDE connected
-through the <a href="local-ide.md">SSH gateway</a>: while one is open the environment is not
+through the <a href="/en/help/local-ide/">SSH gateway</a>: while one is open the environment is not
 reclaimed, and the interval restarts when the last connection closes.</p>
 <p>To keep an environment, right-click the session or run under Running in the
 sidebar and check <strong>Never auto-reclaim</strong>. The choice is stored on the session or
@@ -117,7 +151,7 @@ environments stay up while it waits. A reply restores it before
 continuing. Any active node protects a shared sandbox. Manual Stop uses the same
 save path and refuses while a turn or queued request remains. Cancel is a separate
 terminal operation: conversation/workflow history stays, recovery points do not.</p>
-<h2>E2B idle memory return</h2>
+<h2 id="memory-trim">E2B idle memory return</h2>
 <p>Files an E2B guest has read stay in its page cache, and its free memory
 fragments, so the host hugepage pool cannot take that memory back and new
 sandboxes may fail to start. Ten minutes after the last model turn, Grasp
@@ -167,21 +201,41 @@ deployments must update their storage-tracking API and migration before the
 gateway switches to standard calls. Update a single provider node only in
 a maintenance window without active business work, and validate with isolated
 test sandboxes.</p>
-
-      </div>
-    </article>
-  </main>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/sandbox-lifecycle.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/gateway-reference/"><span>Previous</span><strong>Gateway options</strong></a><a href="/en/help/troubleshooting/"><span>Next</span><strong>Troubleshooting</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#active-work">Waiting for humans and active work</a></li><li class="outline-level-2"><a href="#memory-trim">E2B idle memory return</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

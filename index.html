@@ -1,554 +1,261 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-home-entry="1" data-base="">
+<!doctype html>
+<html lang="zh-CN" data-home-entry="1">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grasp</title>
-  <meta name="description" content="Agent 工作流与人类协同推进，开启多Agent协作新范式 — Grasp。">
+  <meta name="theme-color" content="#fafafb">
+  <title>Grasp · 自托管的云端 Coding Agent 基础设施</title>
+  <meta name="description" content="自托管 Grasp，把 Coding Agent 连接到 E2B、Kubernetes、Docker 或通过兼容网关接入的公有云沙箱。">
+  <link rel="canonical" href="https://www.approving-ai.com/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/home.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  <script type="module" src="/js/home.js"></script>
 </head>
-<body class="page-home">
+<body class="page-home" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/">Grasp</a>
-      <nav class="site-header__nav" aria-label="主导航">
-        <a class="site-header__link" href="/guide/quick-start/">文档</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="语言">
-          <a class="lang-switch__link is-current" href="/" data-locale-set="zh-CN" aria-current="page">中文</a>
-          <span class="lang-switch__sep" aria-hidden="true">|</span>
-          <a class="lang-switch__link" href="/en/" data-locale-set="en">English</a>
-        </nav>
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" data-section="deploy" href="#deploy">部署</a>
+        <a href="/help/">帮助中心</a>
       </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-
-  <main id="main">
-    <section class="hero" aria-label="Grasp 首页">
-      <div class="hero__atmosphere" aria-hidden="true"></div>
-      <div class="hero__shell">
-        <div class="hero__content">
-          <p class="hero__brand" data-reveal>Grasp</p>
-          <h1 class="hero__headline" data-reveal>
-            <span>Agent 工作流与人类协同推进，</span>
-            <span>开启多Agent协作新范式。</span>
-          </h1>
-          <p class="hero__support" data-reveal>Grasp 把 coding agent 编成可信任的工作流：可视化编排、沙箱执行，关键节点由人 Approve 后再继续。</p>
-          <div class="hero__cta" data-reveal>
-            <a class="btn btn--primary" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">项目仓库</a>
-            <a class="btn btn--ghost" href="/guide/quick-start/">快速开始</a>
-            <span class="hero__cta-note">此项目由该工作流构建</span>
-          </div>
-          <div class="hero__backends" data-reveal aria-label="支持的 Agent 后端">
-            <span class="hero__backends-label">支持</span>
-            <ul class="hero__backends-list">
-              <li>Cursor</li>
-              <li>Claude Code</li>
-              <li>CodeBuddy</li>
-              <li>Trae</li>
-            </ul>
-          </div>
+  <main id="main" class="home-main"><svg class="graphic-defs" width="0" height="0" aria-hidden="true"><defs><symbol viewBox="0 0 24 24" id="graphic-expand"><path d="M14 4h6v6M10 20H4v-6m15-9-6 6M5 19l6-6"/></symbol><symbol viewBox="0 0 24 24" id="graphic-focus"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><circle cx="12" cy="12" r="2.6"/></symbol></defs></svg>
+    <section class="hero" aria-labelledby="hero-title"><div class="home-wrap">
+      <header class="hero-intro">
+        <h1 id="hero-title"><span>让 Coding Agent</span> <span>在自己的云上运行。</span></h1>
+        <p>自托管 Grasp，让 Agent 写代码、跑测试，你随时接手。</p>
+        <div class="hero-actions"><a class="button hero-deploy" href="/guide/quick-start/">部署 Grasp<span aria-hidden="true">↗</span></a>
+          <a class="hero-architecture" href="#solo">看开发现场<span aria-hidden="true">↓</span></a></div>
+      </header>
+      <div class="runtime-deck" data-runtime-deck>
+    <fieldset class="runtime-tabs"><legend class="sr-only">选择工作区的运行环境</legend>
+      <label><input type="radio" name="cover-runtime" value="e2b"><span>E2B</span></label><label><input type="radio" name="cover-runtime" value="kubernetes"><span>Kubernetes</span></label><label><input type="radio" name="cover-runtime" value="docker" checked><span>Docker</span></label><label><input type="radio" name="cover-runtime" value="cloud"><span>公有云沙箱</span></label>
+    </fieldset>
+    <div class="runtime-sheets" data-sheets>
+      <article class="runtime-sheet" data-sheet="e2b" aria-label="E2B">
+        <div class="sheet-copy"><h2>E2B</h2><p>模板启动，快照恢复。</p>
+          <a class="sheet-link" href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md" data-sheet-config>接入方式<span aria-hidden="true">↗</span></a>
+        </div><svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polygon class="front" points="93.92,138.28 261.92,196.03 261.92,192.03 93.92,134.28"/><polygon class="side" points="329.92,156.93 261.92,196.03 261.92,192.03 329.92,152.93"/><polygon class="top" points="161.92,95.18 329.92,152.93 261.92,192.03 93.92,134.28"/><polygon class="boundary" points="162.4,101.96 315.04,154.43 260.64,185.71 108,133.24"/><polygon class="top" points="160.16,112.95 170.72,116.58 146.72,130.38 136.16,126.75"/><polygon class="top" points="180.32,119.88 190.88,123.51 166.88,137.31 156.32,133.68"/><polygon class="top" points="200.48,126.81 211.04,130.44 187.04,144.24 176.48,140.61"/><polygon class="top" points="220.64,133.74 231.2,137.37 207.2,151.17 196.64,147.54"/><polygon class="memory" points="240.8,140.67 251.36,144.3 227.36,158.1 216.8,154.47"/><polygon class="top" points="260.96,147.6 271.52,151.23 247.52,165.03 236.96,161.4"/><polygon class="top" points="281.12,154.53 291.68,158.16 267.68,171.96 257.12,168.33"/><polyline class="detail" points="127.36,131.81 207.04,159.2"/><polygon class="front" points="93.92,113.28 261.92,171.03 261.92,167.03 93.92,109.28"/><polygon class="side" points="329.92,131.93 261.92,171.03 261.92,167.03 329.92,127.93"/><polygon class="top" points="161.92,70.18 329.92,127.93 261.92,167.03 93.92,109.28"/><polygon class="boundary" points="162.4,76.96 315.04,129.43 260.64,160.71 108,108.24"/><polygon class="top" points="160.16,87.95 170.72,91.58 146.72,105.38 136.16,101.75"/><polygon class="top" points="180.32,94.88 190.88,98.51 166.88,112.31 156.32,108.68"/><polygon class="top" points="200.48,101.81 211.04,105.44 187.04,119.24 176.48,115.61"/><polygon class="top" points="220.64,108.74 231.2,112.37 207.2,126.17 196.64,122.54"/><polygon class="memory" points="240.8,115.67 251.36,119.3 227.36,133.1 216.8,129.47"/><polygon class="top" points="260.96,122.6 271.52,126.23 247.52,140.03 236.96,136.4"/><polygon class="top" points="281.12,129.53 291.68,133.16 267.68,146.96 257.12,143.33"/><polyline class="detail" points="127.36,106.81 207.04,134.2"/><polygon class="front" points="93.92,75.28 261.92,133.03 261.92,129.03 93.92,71.28"/><polygon class="side" points="329.92,93.93 261.92,133.03 261.92,129.03 329.92,89.93"/><polygon class="top" points="161.92,32.18 329.92,89.93 261.92,129.03 93.92,71.28"/><polygon class="boundary" points="162.4,38.96 315.04,91.43 260.64,122.71 108,70.24"/><polygon class="top" points="160.16,49.95 170.72,53.58 146.72,67.38 136.16,63.75"/><polygon class="top" points="180.32,56.88 190.88,60.51 166.88,74.31 156.32,70.68"/><polygon class="top" points="200.48,63.81 211.04,67.44 187.04,81.24 176.48,77.61"/><polygon class="top" points="220.64,70.74 231.2,74.37 207.2,88.17 196.64,84.54"/><polygon class="memory" points="240.8,77.67 251.36,81.3 227.36,95.1 216.8,91.47"/><polygon class="top" points="260.96,84.6 271.52,88.23 247.52,102.03 236.96,98.4"/><polygon class="top" points="281.12,91.53 291.68,95.16 267.68,108.96 257.12,105.33"/><polyline class="detail" points="127.36,68.81 207.04,96.2"/><polyline class="leader" pathLength="1" points="307,113 329,88 365,88"/><text class="legend" x="331" y="82">memory</text><polyline class="leader" pathLength="1" points="156,167 130,195 70,195"/><text class="legend" x="70" y="189">snapshot</text></g>
+  </svg>
+      </article><article class="runtime-sheet" data-sheet="kubernetes" aria-label="Kubernetes">
+        <div class="sheet-copy"><h2>Kubernetes</h2><p>集群中的 Pod 与持久卷。</p>
+          <a class="sheet-link" href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/k8s/README.md" data-sheet-config>接入方式<span aria-hidden="true">↗</span></a>
+        </div><svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polygon class="boundary" points="157.92,79.43 372,153.02 267.2,213.28 53.12,139.69"/><polyline class="route" points="169.12,117.09 133.12,137.79 257.92,180.69 299.52,156.77"/><polyline class="route" points="248.8,131.25 198.4,160.23"/><polygon class="front" points="132.8,109.75 173.12,123.61 173.12,118.61 132.8,104.75"/><polygon class="side" points="205.12,105.21 173.12,123.61 173.12,118.61 205.12,100.21"/><polygon class="top" points="164.8,86.35 205.12,100.21 173.12,118.61 132.8,104.75"/><polygon class="front" points="139.84,104.23 172.48,115.45 172.48,80.45 139.84,69.23"/><polygon class="side" points="198.08,100.73 172.48,115.45 172.48,80.45 198.08,65.73"/><polygon class="top" points="165.44,54.51 198.08,65.73 172.48,80.45 139.84,69.23"/><polyline class="detail" points="166.08,57.67 190.08,65.92 171.68,76.5 147.68,68.25 166.08,57.67"/><polyline class="accent" points="145.6,82.21 162.88,88.15"/><polygon class="front" points="217.44,130.76 257.76,144.62 257.76,139.62 217.44,125.76"/><polygon class="side" points="289.76,126.22 257.76,144.62 257.76,139.62 289.76,121.22"/><polygon class="top" points="249.44,107.36 289.76,121.22 257.76,139.62 217.44,125.76"/><polygon class="front" points="224.48,125.24 257.12,136.46 257.12,101.46 224.48,90.24"/><polygon class="side" points="282.72,121.74 257.12,136.46 257.12,101.46 282.72,86.74"/><polygon class="top" points="250.08,75.52 282.72,86.74 257.12,101.46 224.48,90.24"/><polyline class="detail" points="250.72,78.68 274.72,86.93 256.32,97.51 232.32,89.26 250.72,78.68"/><polyline class="accent" points="230.24,103.22 247.52,109.16"/><polygon class="front" points="119.36,144.82 159.68,158.68 159.68,153.68 119.36,139.82"/><polygon class="side" points="191.68,140.28 159.68,158.68 159.68,153.68 191.68,135.28"/><polygon class="top" points="151.36,121.42 191.68,135.28 159.68,153.68 119.36,139.82"/><polygon class="front" points="126.4,139.3 159.04,150.52 159.04,115.52 126.4,104.3"/><polygon class="side" points="184.64,135.8 159.04,150.52 159.04,115.52 184.64,100.8"/><polygon class="top" points="152,89.58 184.64,100.8 159.04,115.52 126.4,104.3"/><polyline class="detail" points="152.64,92.74 176.64,100.99 158.24,111.57 134.24,103.32 152.64,92.74"/><polyline class="accent" points="132.16,117.28 149.44,123.22"/><g transform="translate(299.36 154.98)"><path class="front" d="M-23 0a23 9 0 0 0 46 0v-27h-46z"/>
+    <ellipse class="top" cy="-27" rx="23" ry="9"/><path class="detail" d="M-23-9a23 9 0 0 0 46 0m-46-8a23 9 0 0 0 46 0"/></g><polyline class="leader" pathLength="1" points="188,77 201,48 237,48"/><text class="legend" x="209" y="42">Pod</text><polyline class="leader" pathLength="1" points="311,150 331,169 363,169"/><text class="legend" x="334" y="163">PVC</text></g>
+  </svg>
+      </article><article class="runtime-sheet" data-sheet="docker" aria-label="Docker">
+        <div class="sheet-copy"><h2>Docker</h2><p>在 Linux 主机上运行容器。</p>
+          <a class="sheet-link" href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/docker/README.md" data-sheet-config>接入方式<span aria-hidden="true">↗</span></a>
+        </div><svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polygon class="front" points="39.36,143.9 268.8,222.77 268.8,217.77 39.36,138.9"/><polygon class="side" points="368,165.73 268.8,222.77 268.8,217.77 368,160.73"/><polygon class="top" points="138.56,81.86 368,160.73 268.8,217.77 39.36,138.9"/><polygon class="front" points="94.08,108.2 203.52,145.82 203.52,102.82 94.08,65.2"/><polygon class="side" points="241.92,123.74 203.52,145.82 203.52,102.82 241.92,80.74"/><polygon class="top" points="132.48,43.12 241.92,80.74 203.52,102.82 94.08,65.2"/><polyline class="rib" points="99.84,106.18 99.84,71.18 101.76,71.84 101.76,106.84"/><polyline class="rib" points="135.84,46.48 102.24,65.8"/><polyline class="rib" points="106.56,108.49 106.56,73.49 108.48,74.15 108.48,109.15"/><polyline class="rib" points="142.56,48.79 108.96,68.11"/><polyline class="rib" points="113.28,110.8 113.28,75.8 115.2,76.46 115.2,111.46"/><polyline class="rib" points="149.28,51.1 115.68,70.42"/><polyline class="rib" points="120,113.11 120,78.11 121.92,78.77 121.92,113.77"/><polyline class="rib" points="156,53.41 122.4,72.73"/><polyline class="rib" points="126.72,115.42 126.72,80.42 128.64,81.08 128.64,116.08"/><polyline class="rib" points="162.72,55.72 129.12,75.04"/><polyline class="rib" points="133.44,117.73 133.44,82.73 135.36,83.39 135.36,118.39"/><polyline class="rib" points="169.44,58.03 135.84,77.35"/><polyline class="rib" points="140.16,120.04 140.16,85.04 142.08,85.7 142.08,120.7"/><polyline class="rib" points="176.16,60.34 142.56,79.66"/><polyline class="rib" points="146.88,122.35 146.88,87.35 148.8,88.01 148.8,123.01"/><polyline class="rib" points="182.88,62.65 149.28,81.97"/><polyline class="rib" points="153.6,124.66 153.6,89.66 155.52,90.32 155.52,125.32"/><polyline class="rib" points="189.6,64.96 156,84.28"/><polyline class="rib" points="160.32,126.97 160.32,91.97 162.24,92.63 162.24,127.63"/><polyline class="rib" points="196.32,67.27 162.72,86.59"/><polyline class="rib" points="167.04,129.28 167.04,94.28 168.96,94.94 168.96,129.94"/><polyline class="rib" points="203.04,69.58 169.44,88.9"/><polyline class="rib" points="173.76,131.59 173.76,96.59 175.68,97.25 175.68,132.25"/><polyline class="rib" points="209.76,71.89 176.16,91.21"/><polyline class="rib" points="180.48,133.9 180.48,98.9 182.4,99.56 182.4,134.56"/><polyline class="rib" points="216.48,74.2 182.88,93.52"/><polyline class="rib" points="187.2,136.21 187.2,101.21 189.12,101.87 189.12,136.87"/><polyline class="rib" points="223.2,76.51 189.6,95.83"/><polyline class="rib" points="193.92,138.52 193.92,103.52 195.84,104.18 195.84,139.18"/><polyline class="rib" points="229.92,78.82 196.32,98.14"/><polyline class="detail" points="239.52,122.12 205.92,141.44 205.92,104.44 239.52,85.12 239.52,122.12"/><polyline class="detail" points="232.32,125.26 232.32,90.26"/><polyline class="detail" points="222.72,130.78 222.72,95.78"/><polyline class="detail" points="213.12,136.3 213.12,101.3"/><polyline class="accent" points="234.72,109.88 229.92,112.64"/><polyline class="accent" points="215.52,120.92 210.72,123.68"/><polygon class="front" points="207.36,147.14 316.8,184.76 316.8,141.76 207.36,104.14"/><polygon class="side" points="355.2,162.68 316.8,184.76 316.8,141.76 355.2,119.68"/><polygon class="top" points="245.76,82.06 355.2,119.68 316.8,141.76 207.36,104.14"/><polyline class="rib" points="213.12,145.12 213.12,110.12 215.04,110.78 215.04,145.78"/><polyline class="rib" points="249.12,85.42 215.52,104.74"/><polyline class="rib" points="219.84,147.43 219.84,112.43 221.76,113.09 221.76,148.09"/><polyline class="rib" points="255.84,87.73 222.24,107.05"/><polyline class="rib" points="226.56,149.74 226.56,114.74 228.48,115.4 228.48,150.4"/><polyline class="rib" points="262.56,90.04 228.96,109.36"/><polyline class="rib" points="233.28,152.05 233.28,117.05 235.2,117.71 235.2,152.71"/><polyline class="rib" points="269.28,92.35 235.68,111.67"/><polyline class="rib" points="240,154.36 240,119.36 241.92,120.02 241.92,155.02"/><polyline class="rib" points="276,94.66 242.4,113.98"/><polyline class="rib" points="246.72,156.67 246.72,121.67 248.64,122.33 248.64,157.33"/><polyline class="rib" points="282.72,96.97 249.12,116.29"/><polyline class="rib" points="253.44,158.98 253.44,123.98 255.36,124.64 255.36,159.64"/><polyline class="rib" points="289.44,99.28 255.84,118.6"/><polyline class="rib" points="260.16,161.29 260.16,126.29 262.08,126.95 262.08,161.95"/><polyline class="rib" points="296.16,101.59 262.56,120.91"/><polyline class="rib" points="266.88,163.6 266.88,128.6 268.8,129.26 268.8,164.26"/><polyline class="rib" points="302.88,103.9 269.28,123.22"/><polyline class="rib" points="273.6,165.91 273.6,130.91 275.52,131.57 275.52,166.57"/><polyline class="rib" points="309.6,106.21 276,125.53"/><polyline class="rib" points="280.32,168.22 280.32,133.22 282.24,133.88 282.24,168.88"/><polyline class="rib" points="316.32,108.52 282.72,127.84"/><polyline class="rib" points="287.04,170.53 287.04,135.53 288.96,136.19 288.96,171.19"/><polyline class="rib" points="323.04,110.83 289.44,130.15"/><polyline class="rib" points="293.76,172.84 293.76,137.84 295.68,138.5 295.68,173.5"/><polyline class="rib" points="329.76,113.14 296.16,132.46"/><polyline class="rib" points="300.48,175.15 300.48,140.15 302.4,140.81 302.4,175.81"/><polyline class="rib" points="336.48,115.45 302.88,134.77"/><polyline class="rib" points="307.2,177.46 307.2,142.46 309.12,143.12 309.12,178.12"/><polyline class="rib" points="343.2,117.76 309.6,137.08"/><polyline class="detail" points="352.8,161.06 319.2,180.38 319.2,143.38 352.8,124.06 352.8,161.06"/><polyline class="detail" points="345.6,164.2 345.6,129.2"/><polyline class="detail" points="336,169.72 336,134.72"/><polyline class="detail" points="326.4,175.24 326.4,140.24"/><polyline class="accent" points="348,148.82 343.2,151.58"/><polyline class="accent" points="328.8,159.86 324,162.62"/><polygon class="front" points="148.16,85.26 257.6,122.88 257.6,79.88 148.16,42.26"/><polygon class="side" points="296,100.8 257.6,122.88 257.6,79.88 296,57.8"/><polygon class="top" points="186.56,20.18 296,57.8 257.6,79.88 148.16,42.26"/><polyline class="rib" points="153.92,83.24 153.92,48.24 155.84,48.9 155.84,83.9"/><polyline class="rib" points="189.92,23.54 156.32,42.86"/><polyline class="rib" points="160.64,85.55 160.64,50.55 162.56,51.21 162.56,86.21"/><polyline class="rib" points="196.64,25.85 163.04,45.17"/><polyline class="rib" points="167.36,87.86 167.36,52.86 169.28,53.52 169.28,88.52"/><polyline class="rib" points="203.36,28.16 169.76,47.48"/><polyline class="rib" points="174.08,90.17 174.08,55.17 176,55.83 176,90.83"/><polyline class="rib" points="210.08,30.47 176.48,49.79"/><polyline class="rib" points="180.8,92.48 180.8,57.48 182.72,58.14 182.72,93.14"/><polyline class="rib" points="216.8,32.78 183.2,52.1"/><polyline class="rib" points="187.52,94.79 187.52,59.79 189.44,60.45 189.44,95.45"/><polyline class="rib" points="223.52,35.09 189.92,54.41"/><polyline class="rib" points="194.24,97.1 194.24,62.1 196.16,62.76 196.16,97.76"/><polyline class="rib" points="230.24,37.4 196.64,56.72"/><polyline class="rib" points="200.96,99.41 200.96,64.41 202.88,65.07 202.88,100.07"/><polyline class="rib" points="236.96,39.71 203.36,59.03"/><polyline class="rib" points="207.68,101.72 207.68,66.72 209.6,67.38 209.6,102.38"/><polyline class="rib" points="243.68,42.02 210.08,61.34"/><polyline class="rib" points="214.4,104.03 214.4,69.03 216.32,69.69 216.32,104.69"/><polyline class="rib" points="250.4,44.33 216.8,63.65"/><polyline class="rib" points="221.12,106.34 221.12,71.34 223.04,72 223.04,107"/><polyline class="rib" points="257.12,46.64 223.52,65.96"/><polyline class="rib" points="227.84,108.65 227.84,73.65 229.76,74.31 229.76,109.31"/><polyline class="rib" points="263.84,48.95 230.24,68.27"/><polyline class="rib" points="234.56,110.96 234.56,75.96 236.48,76.62 236.48,111.62"/><polyline class="rib" points="270.56,51.26 236.96,70.58"/><polyline class="rib" points="241.28,113.27 241.28,78.27 243.2,78.93 243.2,113.93"/><polyline class="rib" points="277.28,53.57 243.68,72.89"/><polyline class="rib" points="248,115.58 248,80.58 249.92,81.24 249.92,116.24"/><polyline class="rib" points="284,55.88 250.4,75.2"/><polyline class="detail" points="293.6,99.18 260,118.5 260,81.5 293.6,62.18 293.6,99.18"/><polyline class="detail" points="286.4,102.32 286.4,67.32"/><polyline class="detail" points="276.8,107.84 276.8,72.84"/><polyline class="detail" points="267.2,113.36 267.2,78.36"/><polyline class="accent" points="288.8,86.94 284,89.7"/><polyline class="accent" points="269.6,97.98 264.8,100.74"/><polygon class="front" points="70.08,139.64 179.52,177.26 179.52,134.26 70.08,96.64"/><polygon class="side" points="217.92,155.18 179.52,177.26 179.52,134.26 217.92,112.18"/><polygon class="top" points="108.48,74.56 217.92,112.18 179.52,134.26 70.08,96.64"/><polyline class="rib" points="75.84,137.62 75.84,102.62 77.76,103.28 77.76,138.28"/><polyline class="rib" points="111.84,77.92 78.24,97.24"/><polyline class="rib" points="82.56,139.93 82.56,104.93 84.48,105.59 84.48,140.59"/><polyline class="rib" points="118.56,80.23 84.96,99.55"/><polyline class="rib" points="89.28,142.24 89.28,107.24 91.2,107.9 91.2,142.9"/><polyline class="rib" points="125.28,82.54 91.68,101.86"/><polyline class="rib" points="96,144.55 96,109.55 97.92,110.21 97.92,145.21"/><polyline class="rib" points="132,84.85 98.4,104.17"/><polyline class="rib" points="102.72,146.86 102.72,111.86 104.64,112.52 104.64,147.52"/><polyline class="rib" points="138.72,87.16 105.12,106.48"/><polyline class="rib" points="109.44,149.17 109.44,114.17 111.36,114.83 111.36,149.83"/><polyline class="rib" points="145.44,89.47 111.84,108.79"/><polyline class="rib" points="116.16,151.48 116.16,116.48 118.08,117.14 118.08,152.14"/><polyline class="rib" points="152.16,91.78 118.56,111.1"/><polyline class="rib" points="122.88,153.79 122.88,118.79 124.8,119.45 124.8,154.45"/><polyline class="rib" points="158.88,94.09 125.28,113.41"/><polyline class="rib" points="129.6,156.1 129.6,121.1 131.52,121.76 131.52,156.76"/><polyline class="rib" points="165.6,96.4 132,115.72"/><polyline class="rib" points="136.32,158.41 136.32,123.41 138.24,124.07 138.24,159.07"/><polyline class="rib" points="172.32,98.71 138.72,118.03"/><polyline class="rib" points="143.04,160.72 143.04,125.72 144.96,126.38 144.96,161.38"/><polyline class="rib" points="179.04,101.02 145.44,120.34"/><polyline class="rib" points="149.76,163.03 149.76,128.03 151.68,128.69 151.68,163.69"/><polyline class="rib" points="185.76,103.33 152.16,122.65"/><polyline class="rib" points="156.48,165.34 156.48,130.34 158.4,131 158.4,166"/><polyline class="rib" points="192.48,105.64 158.88,124.96"/><polyline class="rib" points="163.2,167.65 163.2,132.65 165.12,133.31 165.12,168.31"/><polyline class="rib" points="199.2,107.95 165.6,127.27"/><polyline class="rib" points="169.92,169.96 169.92,134.96 171.84,135.62 171.84,170.62"/><polyline class="rib" points="205.92,110.26 172.32,129.58"/><polyline class="detail" points="215.52,153.56 181.92,172.88 181.92,135.88 215.52,116.56 215.52,153.56"/><polyline class="detail" points="208.32,156.7 208.32,121.7"/><polyline class="detail" points="198.72,162.22 198.72,127.22"/><polyline class="detail" points="189.12,167.74 189.12,132.74"/><polyline class="accent" points="210.72,141.32 205.92,144.08"/><polyline class="accent" points="191.52,152.36 186.72,155.12"/><polyline class="leader" pathLength="1" points="284,71 309,48 343,48"/><text class="legend" x="312" y="42">container</text><polyline class="leader" pathLength="1" points="153,194 134,211 77,211"/><text class="legend" x="77" y="205">Linux host</text></g>
+  </svg>
+      </article><article class="runtime-sheet" data-sheet="cloud" aria-label="公有云沙箱">
+        <div class="sheet-copy"><h2>公有云沙箱</h2><p>通过兼容网关接入。</p>
+          <a class="sheet-link" href="/help/gateway/#cloud" data-sheet-config>接入方式<span aria-hidden="true">↗</span></a>
+        </div><svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polyline class="route" points="166.88,118.9 216.8,136.06 255.2,113.98 305.12,131.14"/><polyline class="route" points="166.88,118.9 216.8,136.06 190.4,151.24 240.32,168.4"/><polygon class="front" points="85.92,134.06 93.6,136.7 93.6,75.7 85.92,73.06"/><polygon class="side" points="144.8,107.26 93.6,136.7 93.6,75.7 144.8,46.26"/><polygon class="top" points="137.12,43.62 144.8,46.26 93.6,75.7 85.92,73.06"/><polyline class="accent" points="136,60.32 102.4,79.64"/><polygon class="front" points="112.8,143.3 120.48,145.94 120.48,84.94 112.8,82.3"/><polygon class="side" points="171.68,116.5 120.48,145.94 120.48,84.94 171.68,55.5"/><polygon class="top" points="164,52.86 171.68,55.5 120.48,84.94 112.8,82.3"/><polyline class="accent" points="162.88,69.56 129.28,88.88"/><polygon class="front" points="139.68,152.54 147.36,155.18 147.36,94.18 139.68,91.54"/><polygon class="side" points="198.56,125.74 147.36,155.18 147.36,94.18 198.56,64.74"/><polygon class="top" points="190.88,62.1 198.56,64.74 147.36,94.18 139.68,91.54"/><polyline class="accent" points="189.76,78.8 156.16,98.12"/><polygon class="front" points="276.16,156.09 323.2,172.26 323.2,136.26 276.16,120.09"/><polygon class="side" points="355.2,153.86 323.2,172.26 323.2,136.26 355.2,117.86"/><polygon class="top" points="308.16,101.69 355.2,117.86 323.2,136.26 276.16,120.09"/><polygon class="front" points="211.36,193.35 258.4,209.52 258.4,173.52 211.36,157.35"/><polygon class="side" points="290.4,191.12 258.4,209.52 258.4,173.52 290.4,155.12"/><polygon class="top" points="243.36,138.95 290.4,155.12 258.4,173.52 211.36,157.35"/><polyline class="leader" pathLength="1" points="286,124 305,81 347,81"/><text class="legend" x="313" y="75">API</text><polyline class="leader" pathLength="1" points="136,135 112,165 55,165"/><text class="legend" x="55" y="159">gateway</text></g>
+  </svg>
+      </article>
+    </div>
+  </div>
+    </div></section>
+    <section class="tool-rail" id="coding-tools" aria-labelledby="tools-title"><div class="home-wrap tool-rail__inner">
+      <h2 id="tools-title">可用编程工具</h2>
+      <ul class="tool-logos"><li><img src="/assets/coding-tools/codex.svg" width="25" height="25" alt="">Codex</li><li><img src="/assets/coding-tools/claude.svg" width="25" height="25" alt="">Claude Code</li><li><img src="/assets/coding-tools/cursor.svg" width="25" height="25" alt="">Cursor</li><li><img src="/assets/coding-tools/opencode.svg" width="25" height="25" alt="">OpenCode</li><li><img src="/assets/coding-tools/codebuddy.svg" width="25" height="25" alt="">CodeBuddy</li><li><img src="/assets/coding-tools/trae.svg" width="25" height="25" alt="">Trae</li><li><img src="/assets/coding-tools/deepseek.svg" width="25" height="25" alt="">DeepSeek Harness</li><li><img class="color-mark" src="/assets/coding-tools/kimi.svg" width="25" height="25" alt="">Kimi Code</li></ul>
+      <div class="tool-links"><a href="/help/agents-models/#model-groups">配置工具</a><details class="tool-adapters"><summary>另有 10 种适配</summary><p>独立沙箱运行时需要对应的 CLI 和凭据。</p><ul><li>Antigravity</li><li>DevEco</li><li>Gemini CLI</li><li>GitHub Copilot CLI</li><li>Grok</li><li>Hermes</li><li>Kiro</li><li>OpenClaw</li><li>Pi</li><li>Qoder</li></ul><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/sandbox/docs/BACKEND.md">接入说明</a></details></div>
+    </div></section>
+    <section class="evidence-band" id="solo" aria-label="云端开发工作区" data-access><div class="home-wrap access">
+    <div class="story-flow" data-story>
+      <div class="story-screen" data-screen hidden>
+        <div class="story-screen__window" data-window></div>
+        <nav class="story-nav" aria-label="云端开发工作区"><a href="#case-solo">Solo</a><a href="#case-preview">应用预览</a><a href="#case-ssh">本地 IDE</a></nav>
+      </div>
+      <div class="story-chapters"><article id="case-solo" data-interface="solo" class="story-step" aria-labelledby="title-solo">
+        <header><p class="story-role">Solo</p><h2 id="title-solo">交给 Agent。</h2></header>
+        <div class="case-visual" data-visual="solo"><div class="composer-scene"><div class="composer-mark">
+    <img src="/assets/logo-mark.svg" width="98" height="98" alt="Grasp"><i aria-hidden="true"></i></div>
+    <div class="composer-request"><p>给设置页加上深色模式。</p><div><span><img src="/assets/coding-tools/claude.svg" width="18" height="18" alt=""> Claude Code</span>
+    <a href="#case-preview" aria-label="查看这次请求的页面预览" title="查看这次请求的页面预览">↑</a></div></div></div></div>
+        <div class="case-detail"><a class="text-link" href="/assets/home-solo.webp" data-enlarge data-image-alt="Grasp Solo 界面中的诊断结果和修复选项。" aria-label="查看 Solo 界面">查看 Solo 界面</a></div>
+      </article><article id="case-preview" data-interface="preview" class="story-step" aria-labelledby="title-preview">
+        <header><p class="story-role">应用预览</p><h2 id="title-preview">指给 Agent 看。</h2></header>
+        <div class="case-visual" data-visual="preview"><div class="inspection" data-inspection>
+    <div class="inspection__view">
+      <a href="/assets/home-preview.webp" class="product-shot" data-enlarge aria-label="Grasp 预览中的外观设置和页面标注工具。">
+        <img src="/assets/home-preview.webp" alt="Grasp 预览中的外观设置和页面标注工具。" width="1600" height="1000" loading="lazy"><span class="enlarge-indicator" aria-hidden="true"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#graphic-expand"></use></svg></span>
+      </a>
+      <div class="inspection__markers" data-markers hidden>
+        <button type="button" data-pin="1" style="left:96.1%;top:26.3%" aria-label="设置页" title="设置页"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#graphic-focus"></use></svg></button><button type="button" data-pin="2" style="left:94.69999999999999%;top:10.100000000000001%" aria-label="标注" title="标注"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#graphic-focus"></use></svg></button>
+      </div>
+    </div>
+    <div class="inspection__controls" data-inspect-controls hidden role="group" aria-label="聚焦界面细节">
+      <button type="button" data-pose="0" aria-pressed="true">全图</button>
+      <button type="button" data-pose="1" data-x="0.81" data-y="0.45" data-scale="2.15" data-detail="检查 Agent 交付的主题设置。" aria-pressed="false">设置页</button><button type="button" data-pose="2" data-x="0.806" data-y="0.148" data-scale="1.95" data-detail="选中页面上的位置，发回给 Agent。" aria-pressed="false">标注</button>
+    </div>
+  </div></div>
+        <div class="case-detail"><p>在运行的页面上标注要改的位置。</p><a class="text-link" href="/help/gateway/#preview">预览指南</a></div>
+      </article><article id="case-ssh" data-interface="ssh" class="story-step" aria-labelledby="title-ssh">
+        <header><p class="story-role">本地 IDE</p><h2 id="title-ssh">用自己的 IDE 接手。</h2></header>
+        <div class="case-visual" data-visual="ssh"><figure class="ssh-drawing">
+    <svg viewBox="0 0 640 252" aria-hidden="true" focusable="false">
+      <path class="ssh-guide" d="M160 125H467"/><path class="ssh-trace" pathLength="1" d="M160 125H467"/>
+      <g class="ssh-device"><rect x="36" y="73" width="123" height="84" rx="7"/><path d="M45 82h105v65H45zM36 157l-13 13h149l-13-13"/><path class="ssh-feature" d="m76 103 11 10-11 10m18 0h16"/></g>
+      <g class="ssh-device"><rect x="284" y="89" width="72" height="72" rx="15"/><image href="/assets/logo-mark.svg" x="296" y="100" width="48" height="48"/></g>
+      <g class="ssh-device"><rect x="468" y="75" width="133" height="94" rx="7"/><path d="M468 95h133m-99 0v74m-23-83h3m5 0h3"/><path class="ssh-feature" d="M515 110h49m-49 13h32m-32 13h54"/></g>
+    </svg><figcaption><span>本地 IDE</span><span>Grasp SSH 网关</span><span>云端工作区</span></figcaption>
+  </figure></div>
+        <div class="case-detail"><p>通过 SSH 继续编辑同一份代码。</p><a class="text-link" href="/help/local-ide/">连接指南</a></div>
+      </article></div>
+    </div>
+    <dialog class="product-dialog" data-image-dialog aria-label="云端开发工作区"><button type="button" data-close-image>关闭大图</button><img alt="" width="1600" height="1000"></dialog>
+  </div></section>
+    <section class="runtime-section" id="sandbox" aria-labelledby="runtime-title"><div class="home-wrap">
+    <figure class="network" data-network>
+      <div class="network-heading"><h2 id="runtime-title">连接你的基础设施。</h2>
+        <fieldset class="destinations"><legend class="sr-only">选择运行环境</legend>
+          <label class="destination"><input type="radio" name="provider" value="e2b"><span>E2B</span></label><label class="destination"><input type="radio" name="provider" value="kubernetes"><span>Kubernetes</span></label><label class="destination"><input type="radio" name="provider" value="docker" checked><span>Docker</span></label><label class="destination"><input type="radio" name="provider" value="cloud"><span>公有云沙箱</span></label>
+        </fieldset>
+      </div>
+      <div class="network__plot" data-plot>
+        <svg class="gateway-art gateway-art--wide" viewBox="0 0 1200 358" aria-hidden="true" focusable="false">
+    <defs><linearGradient id="flow-wide" x1="0" y1="0" x2="1" y2=".15" gradientUnits="objectBoundingBox"><stop stop-color="#94b8ee"/><stop offset=".48" stop-color="#7962dc"/><stop offset="1" stop-color="#8dacf2"/></linearGradient>
+      <g id="strands-wide"><path d="M164 159.4 C292 149.5 363 -10.200000000000003 485 77.2 S564 153.9 594 156.87 C705 115.5 766 194.4 878 185.1 S988 157.2 1042 159.4" pathLength="100"/><path d="M164 160 C292 151 363 -3 485 81 S564 155 594 157.7 C705 120 766 200 878 187 S988 158 1042 160" pathLength="100"/><path d="M164 160.6 C292 152.5 363 4.200000000000003 485 84.80000000000001 S564 156.1 594 158.53 C705 124.5 766 205.6 878 188.9 S988 158.8 1042 160.6" pathLength="100"/><path d="M164 161.2 C292 154 363 11.399999999999999 485 88.6 S564 157.2 594 159.36 C705 129 766 211.2 878 190.8 S988 159.6 1042 161.2" pathLength="100"/><path d="M164 161.8 C292 155.5 363 18.6 485 92.4 S564 158.3 594 160.19 C705 133.5 766 216.8 878 192.7 S988 160.4 1042 161.8" pathLength="100"/><path d="M164 162.4 C292 157 363 25.799999999999997 485 96.2 S564 159.4 594 161.02 C705 138 766 222.4 878 194.6 S988 161.2 1042 162.4" pathLength="100"/><path d="M164 163 C292 158.5 363 33 485 100 S564 160.5 594 161.85 C705 142.5 766 228 878 196.5 S988 162 1042 163" pathLength="100"/><path d="M164 163.6 C292 160 363 40.2 485 103.8 S564 161.6 594 162.68 C705 147 766 233.6 878 198.4 S988 162.8 1042 163.6" pathLength="100"/><path d="M164 164.2 C292 161.5 363 47.4 485 107.6 S564 162.7 594 163.51 C705 151.5 766 239.2 878 200.3 S988 163.6 1042 164.2" pathLength="100"/><path d="M164 164.8 C292 163 363 54.6 485 111.4 S564 163.8 594 164.34 C705 156 766 244.8 878 202.2 S988 164.4 1042 164.8" pathLength="100"/><path d="M164 165.4 C292 164.5 363 61.8 485 115.2 S564 164.9 594 165.17 C705 160.5 766 250.4 878 204.1 S988 165.2 1042 165.4" pathLength="100"/><path d="M164 166 C292 166 363 69 485 119 S564 166 594 166 C705 165 766 256 878 206 S988 166 1042 166" pathLength="100"/><path d="M164 166.6 C292 167.5 363 76.2 485 122.8 S564 167.1 594 166.83 C705 169.5 766 261.6 878 207.9 S988 166.8 1042 166.6" pathLength="100"/><path d="M164 167.2 C292 169 363 83.4 485 126.6 S564 168.2 594 167.66 C705 174 766 267.2 878 209.8 S988 167.6 1042 167.2" pathLength="100"/><path d="M164 167.8 C292 170.5 363 90.6 485 130.4 S564 169.3 594 168.49 C705 178.5 766 272.8 878 211.7 S988 168.4 1042 167.8" pathLength="100"/><path d="M164 168.4 C292 172 363 97.8 485 134.2 S564 170.4 594 169.32 C705 183 766 278.4 878 213.6 S988 169.2 1042 168.4" pathLength="100"/><path d="M164 169 C292 173.5 363 105 485 138 S564 171.5 594 170.15 C705 187.5 766 284 878 215.5 S988 170 1042 169" pathLength="100"/><path d="M164 169.6 C292 175 363 112.2 485 141.8 S564 172.6 594 170.98 C705 192 766 289.6 878 217.4 S988 170.8 1042 169.6" pathLength="100"/><path d="M164 170.2 C292 176.5 363 119.4 485 145.6 S564 173.7 594 171.81 C705 196.5 766 295.2 878 219.3 S988 171.6 1042 170.2" pathLength="100"/><path d="M164 170.8 C292 178 363 126.6 485 149.4 S564 174.8 594 172.64 C705 201 766 300.8 878 221.2 S988 172.4 1042 170.8" pathLength="100"/><path d="M164 171.4 C292 179.5 363 133.8 485 153.2 S564 175.9 594 173.47 C705 205.5 766 306.4 878 223.1 S988 173.2 1042 171.4" pathLength="100"/><path d="M164 172 C292 181 363 141 485 157 S564 177 594 174.3 C705 210 766 312 878 225 S988 174 1042 172" pathLength="100"/><path d="M164 172.6 C292 182.5 363 148.2 485 160.8 S564 178.1 594 175.13 C705 214.5 766 317.6 878 226.9 S988 174.8 1042 172.6" pathLength="100"/></g></defs>
+    <g class="gateway-rings" transform="translate(594 166) rotate(-11)"><ellipse cx="-12.5" cy="0" rx="24" ry="88"/><ellipse cx="-7.5" cy="0" rx="24" ry="88"/><ellipse cx="-2.5" cy="0" rx="24" ry="88"/><ellipse cx="2.5" cy="0" rx="24" ry="88"/><ellipse cx="7.5" cy="0" rx="24" ry="88"/><ellipse cx="12.5" cy="0" rx="24" ry="88"/></g>
+    <use href="#strands-wide" class="gateway-wire" stroke="url(#flow-wide)"/>
+    <use href="#strands-wide" class="gateway-signal"/>
+  </svg><svg class="gateway-art gateway-art--mobile" viewBox="0 0 420 380" aria-hidden="true" focusable="false">
+    <defs><linearGradient id="flow-mobile" x1="0" y1="0" x2="1" y2=".15" gradientUnits="objectBoundingBox"><stop stop-color="#94b8ee"/><stop offset=".48" stop-color="#7962dc"/><stop offset="1" stop-color="#8dacf2"/></linearGradient>
+      <g id="strands-mobile"><path d="M88 85.15 C163 45.2 112 94.5 188 173.3 S252 226.2 321 262.6" pathLength="100"/><path d="M88 85.5 C163 49 112 99 188 174 S252 230 321 263" pathLength="100"/><path d="M88 85.85 C163 52.800000000000004 112 103.5 188 174.7 S252 233.8 321 263.4" pathLength="100"/><path d="M88 86.2 C163 56.6 112 108 188 175.4 S252 237.6 321 263.8" pathLength="100"/><path d="M88 86.55 C163 60.400000000000006 112 112.5 188 176.1 S252 241.4 321 264.2" pathLength="100"/><path d="M88 86.9 C163 64.2 112 117 188 176.8 S252 245.2 321 264.6" pathLength="100"/><path d="M88 87.25 C163 68 112 121.5 188 177.5 S252 249 321 265" pathLength="100"/><path d="M88 87.6 C163 71.8 112 126 188 178.2 S252 252.8 321 265.4" pathLength="100"/><path d="M88 87.95 C163 75.6 112 130.5 188 178.9 S252 256.6 321 265.8" pathLength="100"/><path d="M88 88.3 C163 79.4 112 135 188 179.6 S252 260.4 321 266.2" pathLength="100"/><path d="M88 88.65 C163 83.2 112 139.5 188 180.3 S252 264.2 321 266.6" pathLength="100"/><path d="M88 89 C163 87 112 144 188 181 S252 268 321 267" pathLength="100"/><path d="M88 89.35 C163 90.8 112 148.5 188 181.7 S252 271.8 321 267.4" pathLength="100"/><path d="M88 89.7 C163 94.6 112 153 188 182.4 S252 275.6 321 267.8" pathLength="100"/><path d="M88 90.05 C163 98.4 112 157.5 188 183.1 S252 279.4 321 268.2" pathLength="100"/><path d="M88 90.4 C163 102.2 112 162 188 183.8 S252 283.2 321 268.6" pathLength="100"/><path d="M88 90.75 C163 106 112 166.5 188 184.5 S252 287 321 269" pathLength="100"/><path d="M88 91.1 C163 109.8 112 171 188 185.2 S252 290.8 321 269.4" pathLength="100"/><path d="M88 91.45 C163 113.6 112 175.5 188 185.9 S252 294.6 321 269.8" pathLength="100"/><path d="M88 91.8 C163 117.4 112 180 188 186.6 S252 298.4 321 270.2" pathLength="100"/><path d="M88 92.15 C163 121.19999999999999 112 184.5 188 187.3 S252 302.2 321 270.6" pathLength="100"/><path d="M88 92.5 C163 125 112 189 188 188 S252 306 321 271" pathLength="100"/><path d="M88 92.85 C163 128.8 112 193.5 188 188.7 S252 309.8 321 271.4" pathLength="100"/></g></defs>
+    <g class="gateway-rings" transform="translate(188 181) rotate(-28) scale(.67)"><ellipse cx="-12.5" cy="0" rx="24" ry="88"/><ellipse cx="-7.5" cy="0" rx="24" ry="88"/><ellipse cx="-2.5" cy="0" rx="24" ry="88"/><ellipse cx="2.5" cy="0" rx="24" ry="88"/><ellipse cx="7.5" cy="0" rx="24" ry="88"/><ellipse cx="12.5" cy="0" rx="24" ry="88"/></g>
+    <use href="#strands-mobile" class="gateway-wire" stroke="url(#flow-mobile)"/>
+    <use href="#strands-mobile" class="gateway-signal"/>
+  </svg>
+        <div class="network-origin"><img src="/assets/logo-mark.svg" width="118" height="118" alt="">
+          <strong>Grasp</strong><span>控制面</span></div>
+        <span class="gate-caption">命名网关</span>
+        <div class="network-output" aria-live="polite"><div class="provider-note" data-note="e2b">
+          <svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polygon class="front" points="93.92,138.28 261.92,196.03 261.92,192.03 93.92,134.28"/><polygon class="side" points="329.92,156.93 261.92,196.03 261.92,192.03 329.92,152.93"/><polygon class="top" points="161.92,95.18 329.92,152.93 261.92,192.03 93.92,134.28"/><polygon class="boundary" points="162.4,101.96 315.04,154.43 260.64,185.71 108,133.24"/><polygon class="top" points="160.16,112.95 170.72,116.58 146.72,130.38 136.16,126.75"/><polygon class="top" points="180.32,119.88 190.88,123.51 166.88,137.31 156.32,133.68"/><polygon class="top" points="200.48,126.81 211.04,130.44 187.04,144.24 176.48,140.61"/><polygon class="top" points="220.64,133.74 231.2,137.37 207.2,151.17 196.64,147.54"/><polygon class="memory" points="240.8,140.67 251.36,144.3 227.36,158.1 216.8,154.47"/><polygon class="top" points="260.96,147.6 271.52,151.23 247.52,165.03 236.96,161.4"/><polygon class="top" points="281.12,154.53 291.68,158.16 267.68,171.96 257.12,168.33"/><polyline class="detail" points="127.36,131.81 207.04,159.2"/><polygon class="front" points="93.92,113.28 261.92,171.03 261.92,167.03 93.92,109.28"/><polygon class="side" points="329.92,131.93 261.92,171.03 261.92,167.03 329.92,127.93"/><polygon class="top" points="161.92,70.18 329.92,127.93 261.92,167.03 93.92,109.28"/><polygon class="boundary" points="162.4,76.96 315.04,129.43 260.64,160.71 108,108.24"/><polygon class="top" points="160.16,87.95 170.72,91.58 146.72,105.38 136.16,101.75"/><polygon class="top" points="180.32,94.88 190.88,98.51 166.88,112.31 156.32,108.68"/><polygon class="top" points="200.48,101.81 211.04,105.44 187.04,119.24 176.48,115.61"/><polygon class="top" points="220.64,108.74 231.2,112.37 207.2,126.17 196.64,122.54"/><polygon class="memory" points="240.8,115.67 251.36,119.3 227.36,133.1 216.8,129.47"/><polygon class="top" points="260.96,122.6 271.52,126.23 247.52,140.03 236.96,136.4"/><polygon class="top" points="281.12,129.53 291.68,133.16 267.68,146.96 257.12,143.33"/><polyline class="detail" points="127.36,106.81 207.04,134.2"/><polygon class="front" points="93.92,75.28 261.92,133.03 261.92,129.03 93.92,71.28"/><polygon class="side" points="329.92,93.93 261.92,133.03 261.92,129.03 329.92,89.93"/><polygon class="top" points="161.92,32.18 329.92,89.93 261.92,129.03 93.92,71.28"/><polygon class="boundary" points="162.4,38.96 315.04,91.43 260.64,122.71 108,70.24"/><polygon class="top" points="160.16,49.95 170.72,53.58 146.72,67.38 136.16,63.75"/><polygon class="top" points="180.32,56.88 190.88,60.51 166.88,74.31 156.32,70.68"/><polygon class="top" points="200.48,63.81 211.04,67.44 187.04,81.24 176.48,77.61"/><polygon class="top" points="220.64,70.74 231.2,74.37 207.2,88.17 196.64,84.54"/><polygon class="memory" points="240.8,77.67 251.36,81.3 227.36,95.1 216.8,91.47"/><polygon class="top" points="260.96,84.6 271.52,88.23 247.52,102.03 236.96,98.4"/><polygon class="top" points="281.12,91.53 291.68,95.16 267.68,108.96 257.12,105.33"/><polyline class="detail" points="127.36,68.81 207.04,96.2"/><polyline class="leader" pathLength="1" points="307,113 329,88 365,88"/><text class="legend" x="331" y="82">memory</text><polyline class="leader" pathLength="1" points="156,167 130,195 70,195"/><text class="legend" x="70" y="189">snapshot</text></g>
+  </svg><strong>E2B</strong><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B 部署指南 <span aria-hidden="true">↗</span></a>
+        </div><div class="provider-note" data-note="kubernetes">
+          <svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polygon class="boundary" points="157.92,79.43 372,153.02 267.2,213.28 53.12,139.69"/><polyline class="route" points="169.12,117.09 133.12,137.79 257.92,180.69 299.52,156.77"/><polyline class="route" points="248.8,131.25 198.4,160.23"/><polygon class="front" points="132.8,109.75 173.12,123.61 173.12,118.61 132.8,104.75"/><polygon class="side" points="205.12,105.21 173.12,123.61 173.12,118.61 205.12,100.21"/><polygon class="top" points="164.8,86.35 205.12,100.21 173.12,118.61 132.8,104.75"/><polygon class="front" points="139.84,104.23 172.48,115.45 172.48,80.45 139.84,69.23"/><polygon class="side" points="198.08,100.73 172.48,115.45 172.48,80.45 198.08,65.73"/><polygon class="top" points="165.44,54.51 198.08,65.73 172.48,80.45 139.84,69.23"/><polyline class="detail" points="166.08,57.67 190.08,65.92 171.68,76.5 147.68,68.25 166.08,57.67"/><polyline class="accent" points="145.6,82.21 162.88,88.15"/><polygon class="front" points="217.44,130.76 257.76,144.62 257.76,139.62 217.44,125.76"/><polygon class="side" points="289.76,126.22 257.76,144.62 257.76,139.62 289.76,121.22"/><polygon class="top" points="249.44,107.36 289.76,121.22 257.76,139.62 217.44,125.76"/><polygon class="front" points="224.48,125.24 257.12,136.46 257.12,101.46 224.48,90.24"/><polygon class="side" points="282.72,121.74 257.12,136.46 257.12,101.46 282.72,86.74"/><polygon class="top" points="250.08,75.52 282.72,86.74 257.12,101.46 224.48,90.24"/><polyline class="detail" points="250.72,78.68 274.72,86.93 256.32,97.51 232.32,89.26 250.72,78.68"/><polyline class="accent" points="230.24,103.22 247.52,109.16"/><polygon class="front" points="119.36,144.82 159.68,158.68 159.68,153.68 119.36,139.82"/><polygon class="side" points="191.68,140.28 159.68,158.68 159.68,153.68 191.68,135.28"/><polygon class="top" points="151.36,121.42 191.68,135.28 159.68,153.68 119.36,139.82"/><polygon class="front" points="126.4,139.3 159.04,150.52 159.04,115.52 126.4,104.3"/><polygon class="side" points="184.64,135.8 159.04,150.52 159.04,115.52 184.64,100.8"/><polygon class="top" points="152,89.58 184.64,100.8 159.04,115.52 126.4,104.3"/><polyline class="detail" points="152.64,92.74 176.64,100.99 158.24,111.57 134.24,103.32 152.64,92.74"/><polyline class="accent" points="132.16,117.28 149.44,123.22"/><g transform="translate(299.36 154.98)"><path class="front" d="M-23 0a23 9 0 0 0 46 0v-27h-46z"/>
+    <ellipse class="top" cy="-27" rx="23" ry="9"/><path class="detail" d="M-23-9a23 9 0 0 0 46 0m-46-8a23 9 0 0 0 46 0"/></g><polyline class="leader" pathLength="1" points="188,77 201,48 237,48"/><text class="legend" x="209" y="42">Pod</text><polyline class="leader" pathLength="1" points="311,150 331,169 363,169"/><text class="legend" x="334" y="163">PVC</text></g>
+  </svg><strong>Kubernetes</strong><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/k8s/README.md">Kubernetes 部署指南 <span aria-hidden="true">↗</span></a>
+        </div><div class="provider-note" data-note="docker">
+          <svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polygon class="front" points="39.36,143.9 268.8,222.77 268.8,217.77 39.36,138.9"/><polygon class="side" points="368,165.73 268.8,222.77 268.8,217.77 368,160.73"/><polygon class="top" points="138.56,81.86 368,160.73 268.8,217.77 39.36,138.9"/><polygon class="front" points="94.08,108.2 203.52,145.82 203.52,102.82 94.08,65.2"/><polygon class="side" points="241.92,123.74 203.52,145.82 203.52,102.82 241.92,80.74"/><polygon class="top" points="132.48,43.12 241.92,80.74 203.52,102.82 94.08,65.2"/><polyline class="rib" points="99.84,106.18 99.84,71.18 101.76,71.84 101.76,106.84"/><polyline class="rib" points="135.84,46.48 102.24,65.8"/><polyline class="rib" points="106.56,108.49 106.56,73.49 108.48,74.15 108.48,109.15"/><polyline class="rib" points="142.56,48.79 108.96,68.11"/><polyline class="rib" points="113.28,110.8 113.28,75.8 115.2,76.46 115.2,111.46"/><polyline class="rib" points="149.28,51.1 115.68,70.42"/><polyline class="rib" points="120,113.11 120,78.11 121.92,78.77 121.92,113.77"/><polyline class="rib" points="156,53.41 122.4,72.73"/><polyline class="rib" points="126.72,115.42 126.72,80.42 128.64,81.08 128.64,116.08"/><polyline class="rib" points="162.72,55.72 129.12,75.04"/><polyline class="rib" points="133.44,117.73 133.44,82.73 135.36,83.39 135.36,118.39"/><polyline class="rib" points="169.44,58.03 135.84,77.35"/><polyline class="rib" points="140.16,120.04 140.16,85.04 142.08,85.7 142.08,120.7"/><polyline class="rib" points="176.16,60.34 142.56,79.66"/><polyline class="rib" points="146.88,122.35 146.88,87.35 148.8,88.01 148.8,123.01"/><polyline class="rib" points="182.88,62.65 149.28,81.97"/><polyline class="rib" points="153.6,124.66 153.6,89.66 155.52,90.32 155.52,125.32"/><polyline class="rib" points="189.6,64.96 156,84.28"/><polyline class="rib" points="160.32,126.97 160.32,91.97 162.24,92.63 162.24,127.63"/><polyline class="rib" points="196.32,67.27 162.72,86.59"/><polyline class="rib" points="167.04,129.28 167.04,94.28 168.96,94.94 168.96,129.94"/><polyline class="rib" points="203.04,69.58 169.44,88.9"/><polyline class="rib" points="173.76,131.59 173.76,96.59 175.68,97.25 175.68,132.25"/><polyline class="rib" points="209.76,71.89 176.16,91.21"/><polyline class="rib" points="180.48,133.9 180.48,98.9 182.4,99.56 182.4,134.56"/><polyline class="rib" points="216.48,74.2 182.88,93.52"/><polyline class="rib" points="187.2,136.21 187.2,101.21 189.12,101.87 189.12,136.87"/><polyline class="rib" points="223.2,76.51 189.6,95.83"/><polyline class="rib" points="193.92,138.52 193.92,103.52 195.84,104.18 195.84,139.18"/><polyline class="rib" points="229.92,78.82 196.32,98.14"/><polyline class="detail" points="239.52,122.12 205.92,141.44 205.92,104.44 239.52,85.12 239.52,122.12"/><polyline class="detail" points="232.32,125.26 232.32,90.26"/><polyline class="detail" points="222.72,130.78 222.72,95.78"/><polyline class="detail" points="213.12,136.3 213.12,101.3"/><polyline class="accent" points="234.72,109.88 229.92,112.64"/><polyline class="accent" points="215.52,120.92 210.72,123.68"/><polygon class="front" points="207.36,147.14 316.8,184.76 316.8,141.76 207.36,104.14"/><polygon class="side" points="355.2,162.68 316.8,184.76 316.8,141.76 355.2,119.68"/><polygon class="top" points="245.76,82.06 355.2,119.68 316.8,141.76 207.36,104.14"/><polyline class="rib" points="213.12,145.12 213.12,110.12 215.04,110.78 215.04,145.78"/><polyline class="rib" points="249.12,85.42 215.52,104.74"/><polyline class="rib" points="219.84,147.43 219.84,112.43 221.76,113.09 221.76,148.09"/><polyline class="rib" points="255.84,87.73 222.24,107.05"/><polyline class="rib" points="226.56,149.74 226.56,114.74 228.48,115.4 228.48,150.4"/><polyline class="rib" points="262.56,90.04 228.96,109.36"/><polyline class="rib" points="233.28,152.05 233.28,117.05 235.2,117.71 235.2,152.71"/><polyline class="rib" points="269.28,92.35 235.68,111.67"/><polyline class="rib" points="240,154.36 240,119.36 241.92,120.02 241.92,155.02"/><polyline class="rib" points="276,94.66 242.4,113.98"/><polyline class="rib" points="246.72,156.67 246.72,121.67 248.64,122.33 248.64,157.33"/><polyline class="rib" points="282.72,96.97 249.12,116.29"/><polyline class="rib" points="253.44,158.98 253.44,123.98 255.36,124.64 255.36,159.64"/><polyline class="rib" points="289.44,99.28 255.84,118.6"/><polyline class="rib" points="260.16,161.29 260.16,126.29 262.08,126.95 262.08,161.95"/><polyline class="rib" points="296.16,101.59 262.56,120.91"/><polyline class="rib" points="266.88,163.6 266.88,128.6 268.8,129.26 268.8,164.26"/><polyline class="rib" points="302.88,103.9 269.28,123.22"/><polyline class="rib" points="273.6,165.91 273.6,130.91 275.52,131.57 275.52,166.57"/><polyline class="rib" points="309.6,106.21 276,125.53"/><polyline class="rib" points="280.32,168.22 280.32,133.22 282.24,133.88 282.24,168.88"/><polyline class="rib" points="316.32,108.52 282.72,127.84"/><polyline class="rib" points="287.04,170.53 287.04,135.53 288.96,136.19 288.96,171.19"/><polyline class="rib" points="323.04,110.83 289.44,130.15"/><polyline class="rib" points="293.76,172.84 293.76,137.84 295.68,138.5 295.68,173.5"/><polyline class="rib" points="329.76,113.14 296.16,132.46"/><polyline class="rib" points="300.48,175.15 300.48,140.15 302.4,140.81 302.4,175.81"/><polyline class="rib" points="336.48,115.45 302.88,134.77"/><polyline class="rib" points="307.2,177.46 307.2,142.46 309.12,143.12 309.12,178.12"/><polyline class="rib" points="343.2,117.76 309.6,137.08"/><polyline class="detail" points="352.8,161.06 319.2,180.38 319.2,143.38 352.8,124.06 352.8,161.06"/><polyline class="detail" points="345.6,164.2 345.6,129.2"/><polyline class="detail" points="336,169.72 336,134.72"/><polyline class="detail" points="326.4,175.24 326.4,140.24"/><polyline class="accent" points="348,148.82 343.2,151.58"/><polyline class="accent" points="328.8,159.86 324,162.62"/><polygon class="front" points="148.16,85.26 257.6,122.88 257.6,79.88 148.16,42.26"/><polygon class="side" points="296,100.8 257.6,122.88 257.6,79.88 296,57.8"/><polygon class="top" points="186.56,20.18 296,57.8 257.6,79.88 148.16,42.26"/><polyline class="rib" points="153.92,83.24 153.92,48.24 155.84,48.9 155.84,83.9"/><polyline class="rib" points="189.92,23.54 156.32,42.86"/><polyline class="rib" points="160.64,85.55 160.64,50.55 162.56,51.21 162.56,86.21"/><polyline class="rib" points="196.64,25.85 163.04,45.17"/><polyline class="rib" points="167.36,87.86 167.36,52.86 169.28,53.52 169.28,88.52"/><polyline class="rib" points="203.36,28.16 169.76,47.48"/><polyline class="rib" points="174.08,90.17 174.08,55.17 176,55.83 176,90.83"/><polyline class="rib" points="210.08,30.47 176.48,49.79"/><polyline class="rib" points="180.8,92.48 180.8,57.48 182.72,58.14 182.72,93.14"/><polyline class="rib" points="216.8,32.78 183.2,52.1"/><polyline class="rib" points="187.52,94.79 187.52,59.79 189.44,60.45 189.44,95.45"/><polyline class="rib" points="223.52,35.09 189.92,54.41"/><polyline class="rib" points="194.24,97.1 194.24,62.1 196.16,62.76 196.16,97.76"/><polyline class="rib" points="230.24,37.4 196.64,56.72"/><polyline class="rib" points="200.96,99.41 200.96,64.41 202.88,65.07 202.88,100.07"/><polyline class="rib" points="236.96,39.71 203.36,59.03"/><polyline class="rib" points="207.68,101.72 207.68,66.72 209.6,67.38 209.6,102.38"/><polyline class="rib" points="243.68,42.02 210.08,61.34"/><polyline class="rib" points="214.4,104.03 214.4,69.03 216.32,69.69 216.32,104.69"/><polyline class="rib" points="250.4,44.33 216.8,63.65"/><polyline class="rib" points="221.12,106.34 221.12,71.34 223.04,72 223.04,107"/><polyline class="rib" points="257.12,46.64 223.52,65.96"/><polyline class="rib" points="227.84,108.65 227.84,73.65 229.76,74.31 229.76,109.31"/><polyline class="rib" points="263.84,48.95 230.24,68.27"/><polyline class="rib" points="234.56,110.96 234.56,75.96 236.48,76.62 236.48,111.62"/><polyline class="rib" points="270.56,51.26 236.96,70.58"/><polyline class="rib" points="241.28,113.27 241.28,78.27 243.2,78.93 243.2,113.93"/><polyline class="rib" points="277.28,53.57 243.68,72.89"/><polyline class="rib" points="248,115.58 248,80.58 249.92,81.24 249.92,116.24"/><polyline class="rib" points="284,55.88 250.4,75.2"/><polyline class="detail" points="293.6,99.18 260,118.5 260,81.5 293.6,62.18 293.6,99.18"/><polyline class="detail" points="286.4,102.32 286.4,67.32"/><polyline class="detail" points="276.8,107.84 276.8,72.84"/><polyline class="detail" points="267.2,113.36 267.2,78.36"/><polyline class="accent" points="288.8,86.94 284,89.7"/><polyline class="accent" points="269.6,97.98 264.8,100.74"/><polygon class="front" points="70.08,139.64 179.52,177.26 179.52,134.26 70.08,96.64"/><polygon class="side" points="217.92,155.18 179.52,177.26 179.52,134.26 217.92,112.18"/><polygon class="top" points="108.48,74.56 217.92,112.18 179.52,134.26 70.08,96.64"/><polyline class="rib" points="75.84,137.62 75.84,102.62 77.76,103.28 77.76,138.28"/><polyline class="rib" points="111.84,77.92 78.24,97.24"/><polyline class="rib" points="82.56,139.93 82.56,104.93 84.48,105.59 84.48,140.59"/><polyline class="rib" points="118.56,80.23 84.96,99.55"/><polyline class="rib" points="89.28,142.24 89.28,107.24 91.2,107.9 91.2,142.9"/><polyline class="rib" points="125.28,82.54 91.68,101.86"/><polyline class="rib" points="96,144.55 96,109.55 97.92,110.21 97.92,145.21"/><polyline class="rib" points="132,84.85 98.4,104.17"/><polyline class="rib" points="102.72,146.86 102.72,111.86 104.64,112.52 104.64,147.52"/><polyline class="rib" points="138.72,87.16 105.12,106.48"/><polyline class="rib" points="109.44,149.17 109.44,114.17 111.36,114.83 111.36,149.83"/><polyline class="rib" points="145.44,89.47 111.84,108.79"/><polyline class="rib" points="116.16,151.48 116.16,116.48 118.08,117.14 118.08,152.14"/><polyline class="rib" points="152.16,91.78 118.56,111.1"/><polyline class="rib" points="122.88,153.79 122.88,118.79 124.8,119.45 124.8,154.45"/><polyline class="rib" points="158.88,94.09 125.28,113.41"/><polyline class="rib" points="129.6,156.1 129.6,121.1 131.52,121.76 131.52,156.76"/><polyline class="rib" points="165.6,96.4 132,115.72"/><polyline class="rib" points="136.32,158.41 136.32,123.41 138.24,124.07 138.24,159.07"/><polyline class="rib" points="172.32,98.71 138.72,118.03"/><polyline class="rib" points="143.04,160.72 143.04,125.72 144.96,126.38 144.96,161.38"/><polyline class="rib" points="179.04,101.02 145.44,120.34"/><polyline class="rib" points="149.76,163.03 149.76,128.03 151.68,128.69 151.68,163.69"/><polyline class="rib" points="185.76,103.33 152.16,122.65"/><polyline class="rib" points="156.48,165.34 156.48,130.34 158.4,131 158.4,166"/><polyline class="rib" points="192.48,105.64 158.88,124.96"/><polyline class="rib" points="163.2,167.65 163.2,132.65 165.12,133.31 165.12,168.31"/><polyline class="rib" points="199.2,107.95 165.6,127.27"/><polyline class="rib" points="169.92,169.96 169.92,134.96 171.84,135.62 171.84,170.62"/><polyline class="rib" points="205.92,110.26 172.32,129.58"/><polyline class="detail" points="215.52,153.56 181.92,172.88 181.92,135.88 215.52,116.56 215.52,153.56"/><polyline class="detail" points="208.32,156.7 208.32,121.7"/><polyline class="detail" points="198.72,162.22 198.72,127.22"/><polyline class="detail" points="189.12,167.74 189.12,132.74"/><polyline class="accent" points="210.72,141.32 205.92,144.08"/><polyline class="accent" points="191.52,152.36 186.72,155.12"/><polyline class="leader" pathLength="1" points="284,71 309,48 343,48"/><text class="legend" x="312" y="42">container</text><polyline class="leader" pathLength="1" points="153,194 134,211 77,211"/><text class="legend" x="77" y="205">Linux host</text></g>
+  </svg><strong>Docker</strong><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/docker/README.md">Docker 部署指南 <span aria-hidden="true">↗</span></a>
+        </div><div class="provider-note" data-note="cloud">
+          <svg class="runtime-art" viewBox="0 0 425 235" aria-hidden="true" focusable="false">
+    <g stroke-linecap="round" stroke-linejoin="round"><polyline class="route" points="166.88,118.9 216.8,136.06 255.2,113.98 305.12,131.14"/><polyline class="route" points="166.88,118.9 216.8,136.06 190.4,151.24 240.32,168.4"/><polygon class="front" points="85.92,134.06 93.6,136.7 93.6,75.7 85.92,73.06"/><polygon class="side" points="144.8,107.26 93.6,136.7 93.6,75.7 144.8,46.26"/><polygon class="top" points="137.12,43.62 144.8,46.26 93.6,75.7 85.92,73.06"/><polyline class="accent" points="136,60.32 102.4,79.64"/><polygon class="front" points="112.8,143.3 120.48,145.94 120.48,84.94 112.8,82.3"/><polygon class="side" points="171.68,116.5 120.48,145.94 120.48,84.94 171.68,55.5"/><polygon class="top" points="164,52.86 171.68,55.5 120.48,84.94 112.8,82.3"/><polyline class="accent" points="162.88,69.56 129.28,88.88"/><polygon class="front" points="139.68,152.54 147.36,155.18 147.36,94.18 139.68,91.54"/><polygon class="side" points="198.56,125.74 147.36,155.18 147.36,94.18 198.56,64.74"/><polygon class="top" points="190.88,62.1 198.56,64.74 147.36,94.18 139.68,91.54"/><polyline class="accent" points="189.76,78.8 156.16,98.12"/><polygon class="front" points="276.16,156.09 323.2,172.26 323.2,136.26 276.16,120.09"/><polygon class="side" points="355.2,153.86 323.2,172.26 323.2,136.26 355.2,117.86"/><polygon class="top" points="308.16,101.69 355.2,117.86 323.2,136.26 276.16,120.09"/><polygon class="front" points="211.36,193.35 258.4,209.52 258.4,173.52 211.36,157.35"/><polygon class="side" points="290.4,191.12 258.4,209.52 258.4,173.52 290.4,155.12"/><polygon class="top" points="243.36,138.95 290.4,155.12 258.4,173.52 211.36,157.35"/><polyline class="leader" pathLength="1" points="286,124 305,81 347,81"/><text class="legend" x="313" y="75">API</text><polyline class="leader" pathLength="1" points="136,135 112,165 55,165"/><text class="legend" x="55" y="159">gateway</text></g>
+  </svg><strong>公有云沙箱</strong><a href="/help/gateway/#cloud">公有云接入契约 <span aria-hidden="true">↗</span></a>
+        </div></div>
+      </div>
+    </figure>
+    <details class="deploy-section" id="deploy">
+    <summary>配置示例<span aria-hidden="true"></span></summary>
+    <div class="deployment">
+      <fieldset class="deployment__tabs"><legend class="sr-only">部署示例</legend>
+        <label><input type="radio" name="deploy-example" value="gateway" checked>网关配置</label>
+        <label><input type="radio" name="deploy-example" value="start">启动服务</label>
+      </fieldset>
+      <div class="terminal" data-snippet="start"><div class="terminal__bar">Terminal</div><pre><code><span class="code-key">git clone</span> https://github.com/cocofhu/grasp.git
+<span class="code-key">cd</span> grasp
+./start.sh -d</code></pre><p class="deployment__note">适用于已安装 Docker 和 Compose 的 Linux 主机。</p></div>
+      <div class="terminal" data-snippet="gateway">
+        <div class="config-picker">
+          <label data-config-picker hidden>运行环境<select name="deploy-provider"><option value="e2b">E2B</option><option value="kubernetes">Kubernetes</option><option value="docker">Docker</option><option value="cloud">公有云沙箱</option></select></label>
+          <a data-config-jump href="#sandbox">更换运行环境</a>
         </div>
-        <aside class="hero__visual" data-reveal aria-hidden="true">
-          <div class="hero-flow" data-hero-flow>
-            <div class="hero-flow__chrome">
-              <span class="hero-flow__chip" data-hero-title>需求交付 · 编排</span>
-              <span class="hero-flow__chip hero-flow__chip--live" data-hero-live>● idle</span>
-            </div>
-            <div class="hf-board">
-              <div class="hf-chain">
-                <div class="hf-node" data-hf="research" data-kind="research">
-                  <span class="hf-node__stripe"></span>
-                  <span class="hf-node__icon">研</span>
-                  <span class="hf-node__body">
-                    <span class="hf-node__name">代码调研</span>
-                    <span class="hf-node__meta">调研</span>
-                  </span>
-                  <span class="hf-node__badge"></span>
-                </div>
-                <span class="hf-link" data-hf-e="e1"><i></i></span>
-                <div class="hf-node" data-hf="clarify" data-kind="react">
-                  <span class="hf-node__stripe"></span>
-                  <span class="hf-node__icon">澄</span>
-                  <span class="hf-node__body">
-                    <span class="hf-node__name">需求澄清</span>
-                    <span class="hf-node__meta">需求澄清</span>
-                  </span>
-                  <span class="hf-node__badge"></span>
-                </div>
-                <span class="hf-link" data-hf-e="e2"><i></i></span>
-                <div class="hf-node" data-hf="visual" data-kind="visual">
-                  <span class="hf-node__stripe"></span>
-                  <span class="hf-node__icon">视</span>
-                  <span class="hf-node__body">
-                    <span class="hf-node__name">视觉网页</span>
-                    <span class="hf-node__meta">视觉网页</span>
-                  </span>
-                  <span class="hf-node__badge"></span>
-                </div>
-                <span class="hf-link" data-hf-e="e3"><i></i></span>
-                <div class="hf-node hf-node--gate" data-hf="gate" data-kind="gate">
-                  <span class="hf-node__stripe"></span>
-                  <div class="hf-node__main">
-                    <span class="hf-node__icon">审</span>
-                    <span class="hf-node__body">
-                      <span class="hf-node__name">人工确认</span>
-                      <span class="hf-node__meta">人工门禁</span>
-                    </span>
-                    <span class="hf-node__badge"></span>
-                  </div>
-                  <div class="hf-node__actions">
-                    <span class="hf-action" data-hf-action="approve"><em>动作</em>批准</span>
-                    <span class="hf-action" data-hf-action="revise"><em>动作</em>退回修改</span>
-                  </div>
-                </div>
-                <span class="hf-link" data-hf-e="e4"><i></i></span>
-                <div class="hf-node" data-hf="plan" data-kind="plan">
-                  <span class="hf-node__stripe"></span>
-                  <span class="hf-node__icon">方</span>
-                  <span class="hf-node__body">
-                    <span class="hf-node__name">制定方案</span>
-                    <span class="hf-node__meta">方案</span>
-                  </span>
-                  <span class="hf-node__badge"></span>
-                </div>
-              </div>
-              <div class="hf-loop" data-hf-loop aria-hidden="true">
-                <span class="hf-loop__line"></span>
-                <span class="hf-loop__label">退回修改</span>
-              </div>
-            </div>
-          </div>
-        </aside>
+        <div data-example="e2b" class="provider-example"><div class="terminal__bar">config.yaml</div><pre><code><span class="code-key">sandbox:</span>
+  <span class="code-key">default_gateway:</span> e2b-v1
+  <span class="code-key">gateways:</span>
+    - <span class="code-key">id:</span> e2b-v1
+      <span class="code-key">url:</span> https://gateway.example.test
+      <span class="code-key">api_key_env:</span> E2B_GATEWAY_KEY
+      <span class="code-key">transport:</span> gateway</code></pre></div><div data-example="kubernetes" class="provider-example"><div class="terminal__bar">config.yaml</div><pre><code><span class="code-key">sandbox:</span>
+  <span class="code-key">default_gateway:</span> k8s-v1
+  <span class="code-key">gateways:</span>
+    - <span class="code-key">id:</span> k8s-v1
+      <span class="code-key">url:</span> https://gateway.example.test
+      <span class="code-key">api_key_env:</span> K8S_GATEWAY_KEY
+      <span class="code-key">transport:</span> gateway</code></pre></div><div data-example="docker" class="provider-example"><div class="terminal__bar">config.yaml</div><pre><code><span class="code-key">sandbox:</span>
+  <span class="code-key">default_gateway:</span> docker-v1
+  <span class="code-key">gateways:</span>
+    - <span class="code-key">id:</span> docker-v1
+      <span class="code-key">url:</span> https://gateway.example.test
+      <span class="code-key">api_key_env:</span> DOCKER_GATEWAY_KEY
+      <span class="code-key">transport:</span> gateway</code></pre></div><div data-example="cloud" class="provider-example"><div class="terminal__bar">config.yaml</div><pre><code><span class="code-key">sandbox:</span>
+  <span class="code-key">default_gateway:</span> cloud-v1
+  <span class="code-key">gateways:</span>
+    - <span class="code-key">id:</span> cloud-v1
+      <span class="code-key">url:</span> https://gateway.example.test
+      <span class="code-key">api_key_env:</span> CLOUD_GATEWAY_KEY
+      <span class="code-key">transport:</span> gateway</code></pre></div>
+        <p class="deployment__note">替换网关地址，并在 Grasp 服务环境中设置对应密钥。</p>
       </div>
-    </section>
-
-    <!-- Big page 1: Approve — unified Inbox (clarify + gates) -->
-    <section class="showcase showcase--alt" id="showcase-approve" data-showcase="approve" aria-label="Approve 演示">
-      <div class="showcase__inner showcase__inner--wide">
-        <header class="showcase__intro">
-          <h2 class="showcase__title">人机协作 从未如此简单</h2>
-          <p class="showcase__lead showcase__lead--single">多 Agent 协作最大瓶颈就是审核。统一 Inbox：集中澄清与集中审批后，各 Run 继续推进。</p>
-        </header>
-        <div class="showcase__stage" data-stage="approve">
-          <div class="panel panel--light">
-            <div class="panel__chrome panel__chrome--light">
-              <span class="panel__dot"></span><span class="panel__dot"></span><span class="panel__dot"></span>
-              <span class="panel__title">
-                Gates Inbox
-                <span class="approve-count" data-approve-total aria-hidden="true">0</span>
-              </span>
-            </div>
-            <div class="panel__body panel__body--approve">
-              <aside class="approve-lanes-col">
-                <p class="approve-lanes-label">工作流 Runs</p>
-                <div class="approve-lanes" data-approve-lanes>
-                  <div class="approve-lane" data-lane-id="a" data-status="running">
-                    <div class="approve-lane__name">官网落地页改版</div>
-                    <div class="approve-lane__status">running</div>
-                  </div>
-                  <div class="approve-lane" data-lane-id="b" data-status="running">
-                    <div class="approve-lane__name">API 契约评审</div>
-                    <div class="approve-lane__status">running</div>
-                  </div>
-                  <div class="approve-lane" data-lane-id="c" data-status="running">
-                    <div class="approve-lane__name">沙箱预览验收</div>
-                    <div class="approve-lane__status">running</div>
-                  </div>
-                </div>
-              </aside>
-              <div class="approve-inbox" data-approve-inbox>
-                <div class="approve-funnel" data-approve-funnel aria-hidden="true">
-                  <div class="approve-funnel__card">
-                    <h4 class="approve-funnel__title">多 Run 待办汇入</h4>
-                    <div class="approve-funnel__arrows">
-                      <span>Run A</span><span>Run B</span><span>Run C</span>
-                      <span class="approve-funnel__to">→ Inbox</span>
-                    </div>
-                    <p class="approve-funnel__text">待澄清与待审批从不同工作流汇入统一入口，再按队列连续处理。</p>
-                  </div>
-                </div>
-                <div class="approve-inbox-tabs" role="tablist" aria-label="Inbox 队列">
-                  <button type="button" class="approve-inbox-tab is-active" data-approve-tab="clarify" role="tab" tabindex="-1">
-                    <span class="approve-inbox-tab__dot approve-inbox-tab__dot--c" aria-hidden="true"></span>
-                    <span>集中澄清</span>
-                    <span class="approve-q" data-approve-clarify-count aria-hidden="true">0</span>
-                  </button>
-                  <button type="button" class="approve-inbox-tab" data-approve-tab="gate" role="tab" tabindex="-1">
-                    <span class="approve-inbox-tab__dot approve-inbox-tab__dot--g" aria-hidden="true"></span>
-                    <span>集中审批</span>
-                    <span class="approve-q" data-approve-gate-count aria-hidden="true">0</span>
-                  </button>
-                </div>
-                <div class="approve-inbox-split">
-                  <div class="approve-list" data-approve-list>
-                    <div class="approve-list-empty">—</div>
-                  </div>
-                  <div class="approve-detail" data-approve-detail>
-                    <div class="approve-detail-empty">选择一项查看详情</div>
-                  </div>
-                </div>
-                <div class="demo-cursor" data-cursor="approve"></div>
-              </div>
-            </div>
-            <p class="panel__caption panel__caption--light" data-caption="approve">多条工作流并行运行；部分节点即将需要人工澄清或审批。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Big page 2: Parallel (stacked) -->
-    <section class="showcase" id="showcase-parallel" data-showcase="parallel" aria-label="并行演示">
-      <div class="showcase__inner showcase__inner--wide">
-        <header class="showcase__intro">
-          <h2 class="showcase__title">并行调度，加速迭代</h2>
-          <p class="showcase__lead">所有 Agent 在独立沙箱执行，互不干扰，迭代速度更进一步。</p>
-        </header>
-        <div class="showcase__stage" data-stage="parallel">
-          <div class="panel">
-            <div class="panel__chrome">
-              <span class="panel__dot"></span><span class="panel__dot"></span><span class="panel__dot"></span>
-              <span class="panel__title">Canvas · checkout / parallel-sprint</span>
-            </div>
-            <div class="canvas-toolbar">
-              <span class="canvas-chip">workflow · release</span>
-              <span class="canvas-chip is-live" data-chip-live>● idle</span>
-              <span class="canvas-chip">∥ 3 requirements</span>
-              <span class="canvas-chip is-gate" data-gates-badge>Gates <b>0</b></span>
-              <span class="canvas-chip is-muted" data-sb-chip>runtime <b>0</b></span>
-            </div>
-            <div class="panel__body panel__body--lanes">
-              <div class="launch-sheet is-open" data-launch-sheet>
-                <div class="launch-im" data-launch-im>
-                  <header class="launch-im__head">
-                    <span class="launch-im__avatar">G</span>
-                    <div>
-                      <p class="launch-im__title">Grasp</p>
-                      <p class="launch-im__sub">并行启动工作流</p>
-                    </div>
-                  </header>
-                  <div class="launch-im__thread" data-par-thread>
-                    <div class="chat-msg chat-msg--you" data-par-msg="1">
-                      <span class="chat-msg__who">你</span>
-                      <div class="chat-msg__bubble" data-par-text="并行推进登录鉴权、计费结算、消息通知这三个需求，现在启动。"><span data-par-typeout></span></div>
-                    </div>
-                    <div class="chat-msg" data-par-msg="2">
-                      <span class="chat-msg__who">Grasp</span>
-                      <div class="chat-msg__bubble" data-par-text="收到。已按三条需求拉起并行工作流，开始执行。"><span data-par-typeout></span></div>
-                    </div>
-                  </div>
-                  <div class="launch-im__composer">
-                    <span class="chat-input" data-par-composer data-placeholder="描述要启动的需求…"></span>
-                    <span class="chat-send" aria-hidden="true">发送</span>
-                  </div>
-                </div>
-              </div>
-              <div class="demo-cursor" data-cursor="parallel"></div>
-              <div class="canvas-shell">
-                <div class="canvas-lanes">
-                  <div class="demo-lane" data-lane="auth">
-                    <div class="demo-lane__head">
-                      <div>
-                        <span class="demo-lane__id">REQ-12</span>
-                        <span class="demo-lane__label">登录鉴权</span>
-                      </div>
-                      <span class="demo-lane__pill" data-lane-pill="auth">queued</span>
-                    </div>
-                    <div class="demo-lane__flow">
-                      <div class="vf-node" data-node="auth-research" data-type="research">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">R</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">research</span>
-                          <span class="vf-node__type">Agent · OAuth 方案</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">artifact · brief</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="auth-1"></span>
-                      <div class="vf-node" data-node="auth-impl" data-type="agent">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">A</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">implement</span>
-                          <span class="vf-node__type">Agent · middleware</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">exec · run</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="auth-2"></span>
-                      <div class="vf-node" data-node="auth-test" data-type="test">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">T</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">e2e check</span>
-                          <span class="vf-node__type">Agent · Playwright</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">tests · green</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="auth-3"></span>
-                      <div class="vf-node" data-node="auth-ship" data-type="react">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">S</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">submit MR</span>
-                          <span class="vf-node__type">React · !482</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">gitlab · mr</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="demo-lane" data-lane="billing">
-                    <div class="demo-lane__head">
-                      <div>
-                        <span class="demo-lane__id">REQ-18</span>
-                        <span class="demo-lane__label">计费结算</span>
-                      </div>
-                      <span class="demo-lane__pill" data-lane-pill="billing">queued</span>
-                    </div>
-                    <div class="demo-lane__flow">
-                      <div class="vf-node" data-node="billing-plan" data-type="research">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">P</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">plan</span>
-                          <span class="vf-node__type">Agent · 计费模型</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">artifact · plan</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="billing-1"></span>
-                      <div class="vf-node" data-node="billing-impl" data-type="agent">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">A</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">implement</span>
-                          <span class="vf-node__type">Agent · ledger</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">exec · run</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="billing-2"></span>
-                      <div class="vf-node" data-node="billing-gate" data-type="gate">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">G</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">human gate</span>
-                          <span class="vf-node__type">Gate · 方案对照</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">waiting human</span>
-                      </div>
-                      <span class="demo-edge" data-edge="billing-3"></span>
-                      <div class="vf-node" data-node="billing-ship" data-type="react">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">S</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">submit MR</span>
-                          <span class="vf-node__type">React · pending</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">gitlab · mr</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="demo-lane" data-lane="notify">
-                    <div class="demo-lane__head">
-                      <div>
-                        <span class="demo-lane__id">REQ-21</span>
-                        <span class="demo-lane__label">消息通知</span>
-                      </div>
-                      <span class="demo-lane__pill" data-lane-pill="notify">queued</span>
-                    </div>
-                    <div class="demo-lane__flow">
-                      <div class="vf-node" data-node="notify-research" data-type="research">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">R</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">research</span>
-                          <span class="vf-node__type">Agent · 通道选型</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">artifact · brief</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="notify-1"></span>
-                      <div class="vf-node" data-node="notify-impl" data-type="agent">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">A</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">implement</span>
-                          <span class="vf-node__type">Agent · webhook</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">exec · run</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="notify-2"></span>
-                      <div class="vf-node" data-node="notify-test" data-type="test">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">T</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">contract test</span>
-                          <span class="vf-node__type">Agent · retries</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">tests · flaky→ok</span>
-                        <span class="vf-node__bar"><i></i></span>
-                      </div>
-                      <span class="demo-edge" data-edge="notify-3"></span>
-                      <div class="vf-node" data-node="notify-ship" data-type="react">
-                        <span class="vf-node__stripe"></span>
-                        <span class="vf-node__icon">S</span>
-                        <span class="vf-node__text">
-                          <span class="vf-node__name">submit MR</span>
-                          <span class="vf-node__type">React · !491</span>
-                        </span>
-                        <span class="vf-node__badge"></span>
-                        <span class="vf-node__meta">gitlab · mr</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <aside class="side-peek" aria-label="执行环境与门禁">
-                  <div class="sb-peek">
-                    <p class="sb-peek__title">Runtime</p>
-                                        <div class="sb-card" data-sb="auth">
-                      <div class="sb-card__chrome" aria-hidden="true">
-                        <span></span><span></span><span></span>
-                        <i>ctr-auth</i>
-                      </div>
-                      <div class="sb-card__top">
-                        <strong>登录鉴权</strong>
-                        <span class="sb-card__status" data-sb-status>idle</span>
-                      </div>
-                      <div class="sb-term" data-sb-term aria-hidden="true">
-                        <span data-sb-line></span>
-                        <span data-sb-line></span>
-                        <span data-sb-line></span>
-                      </div>
-                      <span class="sb-card__meta" data-sb-meta>待机</span>
-                    </div>
-                    <div class="sb-card" data-sb="billing">
-                      <div class="sb-card__chrome" aria-hidden="true">
-                        <span></span><span></span><span></span>
-                        <i>ctr-billing</i>
-                      </div>
-                      <div class="sb-card__top">
-                        <strong>计费结算</strong>
-                        <span class="sb-card__status" data-sb-status>idle</span>
-                      </div>
-                      <div class="sb-term" data-sb-term aria-hidden="true">
-                        <span data-sb-line></span>
-                        <span data-sb-line></span>
-                        <span data-sb-line></span>
-                      </div>
-                      <span class="sb-card__meta" data-sb-meta>待机</span>
-                    </div>
-                    <div class="sb-card" data-sb="notify">
-                      <div class="sb-card__chrome" aria-hidden="true">
-                        <span></span><span></span><span></span>
-                        <i>ctr-notify</i>
-                      </div>
-                      <div class="sb-card__top">
-                        <strong>消息通知</strong>
-                        <span class="sb-card__status" data-sb-status>idle</span>
-                      </div>
-                      <div class="sb-term" data-sb-term aria-hidden="true">
-                        <span data-sb-line></span>
-                        <span data-sb-line></span>
-                        <span data-sb-line></span>
-                      </div>
-                      <span class="sb-card__meta" data-sb-meta>待机</span>
-                    </div>
-                  </div>
-                  <div class="gates-peek" data-gates-peek>
-                    <p class="gates-peek__title">Gates Inbox</p>
-                    <p class="gates-peek__empty" data-gates-empty>暂无待审批</p>
-                    <div class="gates-peek__item" data-gates-item>
-                      <span class="gates-peek__kind">human_gate</span>
-                      <strong>计费结算 · 方案对照</strong>
-                      <span class="gates-peek__meta">REQ-18 · waiting_human</span>
-                    </div>
-                    <div class="gates-peek__foot">
-                      <span data-run-stat>0 / 3 shipping</span>
-                      <span data-gate-stat>0 waiting</span>
-                    </div>
-                  </div>
-                </aside>
-              </div>
-            </div>
-            <p class="panel__caption" data-caption="parallel">IM 确认启动，并行推进中…</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section capabilities" id="capabilities">
-      <div class="section__inner">
-        <h2 class="section__title">能力</h2>
-        <ul class="capabilities__list">
-          <li class="capabilities__item">
-            <strong class="capabilities__name">可视化编排</strong>
-            <span class="capabilities__body">画布 FSM、运行态高亮；多需求并行泳道，门禁 Inbox 收口审批。</span>
-          </li>
-          <li class="capabilities__item">
-            <strong class="capabilities__name">真实 Docker 沙箱</strong>
-            <span class="capabilities__body">经 ACP 与 sandbox-gateway 在容器中执行，Web UI 走 API。</span>
-          </li>
-          <li class="capabilities__item">
-            <strong class="capabilities__name">多 Agent 后端</strong>
-            <span class="capabilities__body">Cursor、Claude Code、CodeBuddy、Trae；按 Agent 选择 acpBackend。</span>
-          </li>
-          <li class="capabilities__item">
-            <strong class="capabilities__name">产物契约 + MCP</strong>
-            <span class="capabilities__body">write_artifact / set_* / node_complete；按 run token 隔离。</span>
-          </li>
-          <li class="capabilities__item">
-            <strong class="capabilities__name">工作区凭据与沙箱 Git</strong>
-            <span class="capabilities__body">工作区凭据 UI 优先管理 GITHUB_* / GITLAB_* / SSH；兼容 env 回退，GitLab auto-MR 与 GitHub gh 可用。</span>
-          </li>
-          <li class="capabilities__item">
-            <strong class="capabilities__name">单仓自托管</strong>
-            <span class="capabilities__body">sandbox-gateway 与沙箱镜像源码在本仓库，一次克隆即可。</span>
-          </li>
-        </ul>
-      </div>
-    </section>
+    </div>
+  </details>
+  </div></section>
+    <section class="reference-band" id="reference"><div class="home-wrap lookup">
+    <h2>帮助与配置</h2><div><button type="button" class="search-trigger lookup__search" data-search-open hidden>
+      <span class="search-icon" aria-hidden="true"></span>搜索配置或功能<kbd aria-hidden="true">/</kbd>
+    </button><a class="text-link" href="/help/">帮助中心 ↗</a></div>
+  </div></section>
   </main>
-
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="页脚">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
         <a href="/guide/quick-start/">快速开始</a>
-        <a href="/help/configuration/">配置</a>
-        <a href="/help/gateway/">网关</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+        <a href="/help/configuration/">配置参考</a>
+        <a id="workflow" href="/guide/workflows/">工作流与人工审批</a>
+        <a href="https://github.com/cocofhu/grasp">源码</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
-
-  <script src="/js/home.js"></script>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
 </body>
 </html>

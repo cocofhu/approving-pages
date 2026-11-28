@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Work in Solo · Grasp</title>
+  <meta name="description" content="Open a session, switch models, inspect a preview, and resume a stopped sandbox.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/guide/solo/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/solo/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/solo/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/solo/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/guide/solo/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/" aria-current="page">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/" aria-current="page">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#use">Use Grasp</a></nav>
+      <header class="doc-title"><h1>Work in Solo</h1><p>Open a session, switch models, inspect a preview, and resume a stopped sandbox.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#create">Create a session</a></li><li class="outline-level-2"><a href="#switch-model">Switch models and tools</a></li><li class="outline-level-2"><a href="#tools">Open a terminal, preview, or IDE</a></li><li class="outline-level-2"><a href="#lifecycle">Stop, restore, or close</a></li></ul></details>
+      <article class="doc-content"><h2 id="create">Create a session</h2>
+<p>Choose Solo from the home page. Pick an agent, a model, and any repositories you need, then send your first message. A conversation can start without a repository. For a new installation, <a href="/en/guide/first-run/#model">create a model group</a> first.</p>
+<p>A session uses a persistent sandbox workspace. Use the run information and tool activity beside a reply to see what the agent actually used. Open the terminal, browser IDE, or preview from the session to inspect the changes. An app preview requires a running service and a registered preview in the sandbox. The deployment controls how it opens.</p>
+<h2 id="switch-model">Switch models and tools</h2>
+<p>The picker lists the agent’s bound model groups and their main and auxiliary models. The main model in the default group is selected initially. The chosen group determines the tool, credential, and reasoning configuration for the turn.</p>
+<p>A turn in progress finishes with its existing choice. Your new selection applies on the next turn. When changing tools, Grasp keeps the working directory and uncommitted changes and passes its saved conversation context to the new tool. The agent can read earlier history using Grasp tools. Some environment or credential changes prompt you to reopen the session.</p>
+<h2 id="tools">Open a terminal, preview, or IDE</h2>
+<ul>
+<li>Use the <strong>terminal</strong> to run commands and inspect sandbox files and processes.</li>
+<li>Use the <strong>preview</strong> after the agent registers an app. Proxy and subdomain availability depend on <a href="/en/help/gateway/#preview">gateway and preview settings</a>.</li>
+<li>Use a <strong>local IDE</strong> after an admin enables the SSH gateway and you add a public key. Follow <a href="/en/help/local-ide/">Connect a local IDE</a>.</li>
+<li>Drag or paste <strong>attachments</strong> into the composer. Each file can be up to 50 MiB. Workflow chat and agent tests use the same attachment controls.</li>
+</ul>
+<h2 id="lifecycle">Stop, restore, or close</h2>
+<p>Open the sandbox info in the session header to see the environment and its state. Choose <strong>Stop</strong> to save the environment and free its slot, then <strong>Resume</strong> when you are ready. File archives and E2B snapshots preserve different state. See <a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a>.</p>
+<p>Closing a session cleans up its environment and restore points. Commit or export code you want to keep first. When capacity is full, check which sandboxes are stopped and which still occupy slots before restoring a session.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/guide/solo.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/guide/concepts/"><span>Previous</span><strong>Core concepts</strong></a><a href="/en/guide/workflows/"><span>Next</span><strong>Workflows</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#create">Create a session</a></li><li class="outline-level-2"><a href="#switch-model">Switch models and tools</a></li><li class="outline-level-2"><a href="#tools">Open a terminal, preview, or IDE</a></li><li class="outline-level-2"><a href="#lifecycle">Stop, restore, or close</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>配置项索引 · Grasp</title>
+  <meta name="description" content="按配置名查找 Grasp 环境变量、YAML 键、默认值与用途。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/configuration-reference/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/configuration-reference/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/configuration-reference/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/configuration-reference/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/configuration-reference/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/" aria-current="page">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/" aria-current="page">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#deploy">部署与配置</a></nav>
+      <header class="doc-title"><h1>配置项索引</h1><p>按配置名查找 Grasp 环境变量、YAML 键、默认值与用途。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#gateway">Gateway、模板与沙箱内部选项</a></li><li class="outline-level-2"><a href="#platform">Grasp 服务端字段</a></li></ul></details>
+      <article class="doc-content"><p><a href="/help/configuration/">部署与配置</a>说明配置应放在哪里、怎么应用并验证。<a href="/help/settings/">常规设置</a>覆盖界面可改的字段，包括只有 YAML 和界面入口的沙箱容量与空闲回收。</p>
+<h2 id="gateway">Gateway、模板与沙箱内部选项</h2>
+<p>按后端浏览<a href="/help/gateway-reference/">网关参数索引</a>。使用<a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">完整部署参数参考</a>查看 Docker、Kubernetes、E2B、Gateway 和沙箱内部字段。用<a href="/help/gateway/">网关配置指南</a>选择连接方式和预览策略。</p>
+<h2 id="platform">Grasp 服务端字段</h2>
+<p>这张表从服务端生成的配置参考引入，包含环境变量、YAML 路径、类型、默认值、敏感性和用途。发布栈、设置保存值和 Gateway 默认值可能影响实际值，可根据<a href="/help/configuration/#precedence">覆盖顺序</a>判断。</p>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">环境变量</th>
+<th scope="col">YAML 路径</th>
+<th scope="col">类型</th>
+<th scope="col">默认值</th>
+<th scope="col">敏感性</th>
+<th scope="col">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-platform-grasp-port">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.port</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>8080</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>HTTP 监听端口</span></td>
+</tr>
+<tr id="option-platform-grasp-deployment-mode">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_DEPLOYMENT_MODE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.deployment_mode</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>development</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>部署信任边界。local-demo 仅限 loopback</span></td>
+</tr>
+<tr id="option-platform-grasp-mcp-advertise">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_MCP_ADVERTISE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.mcp_advertise</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>derived</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>沙箱回连 grasp-tool MCP 的 API 基址</span></td>
+</tr>
+<tr id="option-platform-grasp-public-advertise">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_PUBLIC_ADVERTISE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.public_advertise</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>derived</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>浏览器预览代理的公开基址（不用于门禁分享铸造）</span></td>
+</tr>
+<tr id="option-platform-grasp-frame-ancestors">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_FRAME_ANCESTORS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>server.frame_ancestors</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>origin list</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>允许用 iframe 嵌入工作区页面的来源（空格或逗号分隔，如 <a href="https://portal.example.com">https://portal.example.com</a>）。留空禁止嵌入</span></td>
+</tr>
+<tr id="option-platform-grasp-preview-expose-strategy">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_PREVIEW_EXPOSE_STRATEGY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>preview.expose.strategy</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>enum</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>auto</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>全局默认预览暴露策略，auto、subdomain 或 none（direct 仅限直连网关在 YAML 连接级配置）</span></td>
+</tr>
+<tr id="option-platform-grasp-preview-expose-subdomain-base-url">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_PREVIEW_EXPOSE_SUBDOMAIN_BASE_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>preview.expose.subdomain.base_url</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>通配子域名预览基址（HTTP(S) DNS origin，拒绝 IP。production 要求 https 且与平台不同根域）</span></td>
+</tr>
+<tr id="option-platform-grasp-db">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_DB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.path</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>grasp.db</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>SQLite 数据库文件</span></td>
+</tr>
+<tr id="option-platform-grasp-db-driver">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_DB_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.driver</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>enum</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>sqlite</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>数据库驱动，支持 sqlite、mysql 和 postgres</span></td>
+</tr>
+<tr id="option-platform-grasp-db-dsn">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_DB_DSN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>database.dsn</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>MySQL 或 PostgreSQL 连接串</span></td>
+</tr>
+<tr id="option-platform-grasp-profiles-root">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_PROFILES_ROOT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>engine.profiles_root</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>data/profiles</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>Agent profile 根目录</span></td>
+</tr>
+<tr id="option-platform-grasp-node-auto-retry">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_NODE_AUTO_RETRY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>engine.node_auto_retry_max</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>3</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>节点自动重试上限</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-image">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_IMAGE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.image</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>image</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>已废弃并忽略（含 sandbox.images.* 与 GRASP_SANDBOX_IMAGE_*），沙箱镜像由 sandbox-gateway 配置（docker/kubernetes 的 image 或 profiles，E2B 的 defaultTemplate 或 templates），Grasp 通过 GET /api/v1/capabilities 读取</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-gateway-url">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_GATEWAY_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.gateway_url</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>http://127.0.0.1:8899</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>sandbox-gateway 控制面地址</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-gateway-api-key">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_GATEWAY_API_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.gateway_api_key</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>gateway Bearer token</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-gateway-transport">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_GATEWAY_TRANSPORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.gateway_transport</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>enum</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>direct</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>沙箱连接方式，direct 直连或 gateway 认证通道。gateway 要求 API key，预览按 preview.expose / 连接级 preview_expose 策略暴露</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-default-gateway">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_DEFAULT_GATEWAY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.default_gateway</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>新沙箱使用的命名网关。已有沙箱保持原绑定</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-private-endpoints">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_PRIVATE_ENDPOINTS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.private_endpoints</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>boolean</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>显式标记沙箱端点仅服务端可达。仅影响 preview.expose auto 展开与传统私有启动等待，不再因 gateway 通道自动覆盖</span></td>
+</tr>
+<tr id="option-platform-grasp-opencode-catalog-url">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_OPENCODE_CATALOG_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.opencode_catalog_url</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>https://models.dev/api.json</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>OpenCode 模型目录地址。出网受限时改指镜像</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-env">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_ENV</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.env</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>key-value list</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>注入所有沙箱的通用环境变量</span></td>
+</tr>
+<tr id="option-platform-grasp-agent-timeout-sec">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_AGENT_TIMEOUT_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.agent_chat_timeout_seconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>已废弃并忽略，Agent 回合不再有单轮总时限。节点总时限在画布节点上配置</span></td>
+</tr>
+<tr id="option-platform-grasp-chat-idle-sec">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_CHAT_IDLE_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.chat_idle_timeout_seconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>1200</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>Agent 无动作时限秒数，既无输出也无 CPU/IO 活动这么久，先续跑一次，仍无活动则中断本轮。设置后设置页只读</span></td>
+</tr>
+<tr id="option-platform-grasp-agent-node-hard-cap-hours">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_AGENT_NODE_HARD_CAP_HOURS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.agent_node_hard_cap_hours</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>24</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>未在画布配置总时限的 Agent 节点的兜底上限（小时）</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-max-attempts">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_MAX_ATTEMPTS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.sandbox_max_attempts</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>3</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>可重试沙箱故障的最大尝试次数</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-retry-backoff-sec">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_RETRY_BACKOFF_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.sandbox_retry_backoff_seconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>2</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>沙箱重试基础退避秒数</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-create-timeout-sec">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_CREATE_TIMEOUT_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.sandbox_create_timeout_seconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>1200</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>等待沙箱就绪的超时秒数</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-memory-trim-idle-min">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_MEMORY_TRIM_IDLE_MIN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.memory_trim_idle_minutes</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>10</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>E2B 沙箱模型回合结束多少分钟后首次清理页面缓存并整理内存，把内存还给主机。负数关闭</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-memory-trim-interval-min">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_MEMORY_TRIM_INTERVAL_MIN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.memory_trim_interval_minutes</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>30</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>E2B 沙箱持续空闲时再次清理的间隔分钟数</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-memory-trim-min-cache-mb">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_MEMORY_TRIM_MIN_CACHE_MB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.memory_trim_min_cache_mb</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>1024</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>沙箱页面缓存低于该值（MiB）时跳过清理</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-memory-mb">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_MEMORY_MB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.sandbox_memory_mb</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>0</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>沙箱内存覆盖（MiB）。0 跟随网关/模板，非零至少 1024，E2B 必须匹配模板。环境变量覆盖并锁定设置页</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-work-dir">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_WORK_DIR</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.work_dir</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>ConfigHome 宿主工作目录</span></td>
+</tr>
+<tr id="option-platform-grasp-sandbox-runtime-bundle">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SANDBOX_RUNTIME_BUNDLE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>sandbox.runtime_bundle</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>/app/sandbox-runtime/sandbox-runtime.tgz</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>下发给沙箱的运行时包（scripts/build-sandbox-runtime.sh 构建）</span></td>
+</tr>
+<tr id="option-platform-grasp-auth-session-ttl">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_AUTH_SESSION_TTL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>auth.session_ttl</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>duration</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>168h</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>会话有效期</span></td>
+</tr>
+<tr id="option-platform-grasp-auth-users">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_AUTH_USERS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>auth.users</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>YAML/JSON</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>静态账号数组。非本地部署必须显式配置</span></td>
+</tr>
+<tr id="option-platform-grasp-secrets-key">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SECRETS_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>security.secrets_key</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>固定的凭据加密主密钥（base64 编码的 32 字节）。非 production 的 SQLite 文件部署可在数据库旁自动生成 secrets.key，其他部署需显式提供</span></td>
+</tr>
+<tr id="option-platform-grasp-storage-driver">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_STORAGE_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>storage.driver</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>enum</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>local</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>附件存储驱动，local（预留 cos）</span></td>
+</tr>
+<tr id="option-platform-grasp-max-file-bytes">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_MAX_FILE_BYTES</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>storage.max_file_bytes</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>int</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>134217728</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>Agent 单文件导入大小上限（字节）</span></td>
+</tr>
+<tr id="option-platform-grasp-blobs-root">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_BLOBS_ROOT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>storage.blobs_root</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>data/blobs</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>本地附件 blob 根目录</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-dir">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_DIR</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.local_dir</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>data/solo-backups</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>未配置 S3 时，沙箱回收时的工作区备份目录</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-max-bytes">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_MAX_BYTES</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.max_bytes</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>int</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>4294967296</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>单个沙箱工作区压缩备份上限（字节）。超出则不能停止</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-keep">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_KEEP</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.keep</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>int</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>1</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>每个沙箱保留的成功恢复点数量，文件备份和 E2B 快照共用。新保存成功后清理旧版本</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-endpoint">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_ENDPOINT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.endpoint</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>S3 兼容服务地址。留空使用 region 对应的 AWS 地址</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-region">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_REGION</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.region</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>us-east-1</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>S3 区域</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-bucket">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_BUCKET</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.bucket</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>设置后沙箱工作区备份写入该 S3 桶，否则写本地目录</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-prefix">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_PREFIX</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.prefix</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>S3 对象键前缀</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-access-key-id">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_ACCESS_KEY_ID</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.access_key_id</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>S3 访问密钥 ID</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-secret-access-key">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_SECRET_ACCESS_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.secret_access_key</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>S3 访问密钥</span></td>
+</tr>
+<tr id="option-platform-grasp-solo-backup-s3-path-style">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SOLO_BACKUP_S3_PATH_STYLE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>solo_backup.s3.path_style</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>boolean</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>使用路径式桶地址（MinIO 等自托管服务通常需要）</span></td>
+</tr>
+<tr id="option-platform-grasp-github-oauth-client-id">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_GITHUB_OAUTH_CLIENT_ID</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>github.oauth_client_id</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>GitHub OAuth App 的 Client ID（需勾选 Enable Device Flow）。设置后工作区可用「用 GitHub 登录」添加 <a href="http://github.com">github.com</a> 凭据，不需要 client secret</span></td>
+</tr>
+<tr id="option-platform-grasp-codex-login-refresh-lead">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_CODEX_LOGIN_REFRESH_LEAD</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>codex_login.refresh_lead</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>duration</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>96h</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>Codex ChatGPT 登录在 access token 到期前多久由平台续期</span></td>
+</tr>
+<tr id="option-platform-grasp-codex-login-check-interval">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_CODEX_LOGIN_CHECK_INTERVAL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>codex_login.check_interval</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>duration</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>10m</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>平台检查 Codex 登录是否需要续期的间隔</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-enabled">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_ENABLED</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.enabled</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>boolean</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>开启内置 SSH 网关，让本地 VS Code / Cursor 等 IDE 通过 Remote-SSH 连接沙箱（用户名 sbx-&lt;沙箱 ID&gt;，在设置页登记公钥）</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-listen">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_LISTEN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.listen</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>host:port</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>:2222</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>SSH 网关监听地址。需要在部署中对外开放这个 TCP 端口</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-public-host">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_PUBLIC_HOST</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.public_host</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>string</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span>未设置</span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>用户 ~/.ssh/config 里填写的网关主机名。留空使用浏览器访问 Grasp 的主机名</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-public-port">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_PUBLIC_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.public_port</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>listen port</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>用户连接的网关端口（端口映射或负载均衡改了端口时设置）</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-host-key-path">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_HOST_KEY_PATH</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.host_key_path</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>path</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>data/ssh-gateway/host_ed25519_key</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>敏感</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>网关主机私钥路径，首次启动自动生成。必须放在持久卷上并由所有副本共享，否则客户端会提示主机密钥变更</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-max-conns">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_MAX_CONNS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.max_conns</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>200</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>网关同时连接数上限</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-max-conns-per-sandbox">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_MAX_CONNS_PER_SANDBOX</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.max_conns_per_sandbox</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>integer</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>10</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>单个沙箱同时连接数上限</span></td>
+</tr>
+<tr id="option-platform-grasp-ssh-gateway-admins-only">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_SSH_GATEWAY_ADMINS_ONLY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>ssh_gateway.admins_only</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>boolean</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>仅允许管理员账号通过 SSH 网关连接。关闭时 Solo 会话的所有者可以进入自己的沙箱，工作流等其他沙箱只对管理员开放</span></td>
+</tr>
+<tr id="option-platform-grasp-codex-login-auth-base-url">
+<td><span class="reference-label" aria-hidden="true">环境变量</span><span><code>GRASP_CODEX_LOGIN_AUTH_BASE_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">YAML 路径</span><span><code>codex_login.auth_base_url</code></span></td>
+<td><span class="reference-label" aria-hidden="true">类型</span><span>URL</span></td>
+<td><span class="reference-label" aria-hidden="true">默认值</span><span><code>https://auth.openai.com</code></span></td>
+<td><span class="reference-label" aria-hidden="true">敏感性</span><span>公开</span></td>
+<td><span class="reference-label" aria-hidden="true">用途</span><span>OpenAI 登录服务地址，用于 Codex 登录续期和设备码登录。请求遵循 HTTPS_PROXY</span></td>
+</tr>
+</tbody>
+</table></div>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/configuration-reference.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/configuration/"><span>上一篇</span><strong>部署配置</strong></a><a href="/help/gateway/"><span>下一篇</span><strong>网关与预览</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#gateway">Gateway、模板与沙箱内部选项</a></li><li class="outline-level-2"><a href="#platform">Grasp 服务端字段</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
+        <a href="/guide/quick-start/">快速开始</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
+</body>
+</html>

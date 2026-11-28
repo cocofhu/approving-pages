@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Gateway and sandbox configuration index · Grasp</title>
+  <meta name="description" content="Look up defaults and effects for gateway, Docker, Kubernetes, E2B, and sandbox runtime settings.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/gateway-reference/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/gateway-reference/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/gateway-reference/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/gateway-reference/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/gateway-reference/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/" aria-current="page">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/" aria-current="page">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#deploy">Deploy and configure</a></nav>
+      <header class="doc-title"><h1>Gateway and sandbox configuration index</h1><p>Look up defaults and effects for gateway, Docker, Kubernetes, E2B, and sandbox runtime settings.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#common">Gateway common settings</a></li><li class="outline-level-2"><a href="#docker">Docker settings</a></li><li class="outline-level-2"><a href="#kubernetes">Kubernetes settings</a></li><li class="outline-level-2"><a href="#e2b">E2B settings</a></li><li class="outline-level-2"><a href="#runtime">Sandbox runtime variables</a></li></ul></details>
+      <article class="doc-content"><p>Restart the gateway after changing its configuration and verify with a new test environment. Choose the backend section that matches <code>driver</code>. Time uses seconds, memory uses MiB, and disk uses GiB. See the <a href="/en/help/configuration-reference/">configuration index</a> for Grasp keys and <a href="/en/help/gateway/">Gateway and previews</a> for setup.</p>
+<h2 id="common">Gateway common settings</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">YAML key</th>
+<th scope="col">Environment variable</th>
+<th scope="col">Default</th>
+<th scope="col">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-common-driver">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>driver</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>docker</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Selects <code>docker</code>, <code>kubernetes</code>, or <code>e2b</code>. The environment and file must select the same backend.</span></td>
+</tr>
+<tr id="option-common-server-listen">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>server.listen</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_LISTEN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>:8080</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Address where the gateway API listens.</span></td>
+</tr>
+<tr id="option-common-server-finalizetimeoutseconds">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>server.finalizeTimeoutSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_FINALIZE_TIMEOUT_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>1200</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>How long a create or reinstall can wait for readiness.</span></td>
+</tr>
+<tr id="option-common-database-driver">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>database.driver</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DB_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>sqlite</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Choose <code>sqlite</code>, <code>mysql</code>, or <code>postgres</code>.</span></td>
+</tr>
+<tr id="option-common-database-path">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>database.path</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DB_PATH</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>gateway.db</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Persistent SQLite file.</span></td>
+</tr>
+<tr id="option-common-database-dsn">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>database.dsn</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DB_DSN</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Required for PostgreSQL. MySQL uses the DSN when set or the individual fields below.</span></td>
+</tr>
+<tr id="option-common-database-host-database-port">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>database.host</code> / <code>database.port</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DB_HOST</code> / <code>SBGW_DB_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset / <code>0</code> (connects on <code>3306</code>)</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>MySQL host and port.</span></td>
+</tr>
+<tr id="option-common-database-user-database-password-database-name">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>database.user</code> / <code>database.password</code> / <code>database.name</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DB_USER</code> / <code>SBGW_DB_PASSWORD</code> / <code>SBGW_DB_NAME</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>MySQL credentials and database name.</span></td>
+</tr>
+<tr id="option-common-database-params">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>database.params</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>MySQL parameters. Defaults add <code>charset=utf8mb4&amp;parseTime=True&amp;loc=Local</code>.</span></td>
+</tr>
+<tr id="option-common-auth-apikeys">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>auth.apiKeys</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_API_KEYS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>[]</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Bearer API keys. Separate environment values with commas. An empty list disables v1 authentication and prevents v2 transport.</span></td>
+</tr>
+<tr id="option-common-orphangc-enabled">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>orphanGC.enabled</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_ORPHAN_GC_ENABLED</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Remove workloads from this deployment that have no database record.</span></td>
+</tr>
+<tr id="option-common-orphangc-intervalseconds">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>orphanGC.intervalSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_ORPHAN_GC_INTERVAL_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>300</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Interval between orphan scans.</span></td>
+</tr>
+<tr id="option-common-orphangc-minageseconds">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>orphanGC.minAgeSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_ORPHAN_GC_MIN_AGE_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>600</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Minimum age before cleanup. Use <code>0</code> to remove the age limit.</span></td>
+</tr>
+<tr id="option-common-ports-session-ports-codeserver-ports-ssh">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>ports.session</code> / <code>ports.codeServer</code> / <code>ports.ssh</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>8765</code> / <code>8744</code> / <code>22</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Session, IDE, and SSH ports.</span></td>
+</tr>
+<tr id="option-common-ports-cdp-ports-novnc">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>ports.cdp</code> / <code>ports.novnc</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>9222</code> / <code>6080</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Internal ports. Docker hosts and Kubernetes load balancers keep them private.</span></td>
+</tr>
+<tr id="option-common-ports-app">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>ports.app</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>See the backend example</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Additional application ports.</span></td>
+</tr>
+<tr id="option-common-sbgw-log-level">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_LOG_LEVEL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>info</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Gateway logging level.</span></td>
+</tr>
+<tr id="option-common-sbgw-log-pretty">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_LOG_PRETTY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Enable human-readable gateway logging.</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="docker">Docker settings</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">YAML key</th>
+<th scope="col">Environment variable</th>
+<th scope="col">Default</th>
+<th scope="col">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-docker-image">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>image</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DOCKER_IMAGE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>universal-sandbox:local</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>OCI image for new Docker sandboxes.</span></td>
+</tr>
+<tr id="option-docker-bindip">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>bindIP</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DOCKER_BIND_IP</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>127.0.0.1</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Host address where Docker publishes ports.</span></td>
+</tr>
+<tr id="option-docker-network">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>network</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_DOCKER_NETWORK</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Docker network to attach to.</span></td>
+</tr>
+<tr id="option-docker-nameprefix-shmsize">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>namePrefix</code> / <code>shmSize</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>sbx-</code> / <code>1g</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Container name prefix and shared memory size.</span></td>
+</tr>
+<tr id="option-docker-resources-default">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>resources.default</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>CPU <code>0</code>、memory <code>0</code>、disk <code>0</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Used when the request omits resources. <code>0</code> means unlimited. Fields are <code>cpuCores</code>, <code>memoryMB</code>, and <code>diskGi</code>.</span></td>
+</tr>
+<tr id="option-docker-resources-max">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>resources.max</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>CPU <code>8</code>、memory <code>16384</code>、disk <code>500</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Request limits. The Docker disk value does not create a storage quota.</span></td>
+</tr>
+<tr id="option-docker-profiles">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>profiles</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>{}</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Optional map of environment names to OCI images for named Grasp connections.</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="kubernetes">Kubernetes settings</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">YAML key</th>
+<th scope="col">Environment variable</th>
+<th scope="col">Default</th>
+<th scope="col">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-kubernetes-image">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>image</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_IMAGE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>universal-sandbox:local</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>OCI image that cluster nodes can pull.</span></td>
+</tr>
+<tr id="option-kubernetes-incluster">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>inCluster</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_IN_CLUSTER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>false</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Use the pod service account.</span></td>
+</tr>
+<tr id="option-kubernetes-kubeconfig">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>kubeconfig</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_KUBECONFIG</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Blank uses standard kubeconfig or in-cluster discovery.</span></td>
+</tr>
+<tr id="option-kubernetes-namespace">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>namespace</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_NAMESPACE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>sandboxes</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Namespace for sandbox resources.</span></td>
+</tr>
+<tr id="option-kubernetes-nameprefix">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>namePrefix</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>sbx-</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Prefix used to name workloads.</span></td>
+</tr>
+<tr id="option-kubernetes-storageclass">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>storageClass</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_STORAGE_CLASS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Blank uses the cluster default storage class.</span></td>
+</tr>
+<tr id="option-kubernetes-pvcannotations">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>pvcAnnotations</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>{}</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Annotations on newly created PVCs.</span></td>
+</tr>
+<tr id="option-kubernetes-imagepullsecret">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>imagePullSecret</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Name of a private registry secret.</span></td>
+</tr>
+<tr id="option-kubernetes-imagepullpolicy">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>imagePullPolicy</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_IMAGE_PULL_POLICY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>IfNotPresent</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Choose <code>Always</code>, <code>IfNotPresent</code>, or <code>Never</code>.</span></td>
+</tr>
+<tr id="option-kubernetes-enableloadbalancer">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>enableLoadBalancer</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_K8S_ENABLE_LB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>true</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Create a load balancer Service for exposed ports.</span></td>
+</tr>
+<tr id="option-kubernetes-resources-default-resources-max">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>resources.default</code> / <code>resources.max</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>2/4096/25</code> / <code>8/16384/500</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Default and maximum CPU, memory, and PVC size. Fields are <code>cpuCores</code>, <code>memoryMB</code>, and <code>diskGi</code>.</span></td>
+</tr>
+<tr id="option-kubernetes-cpurequestcores-memoryrequestmb">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>cpuRequestCores</code> / <code>memoryRequestMB</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>0.25</code> / <code>512</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Fixed scheduling requests take precedence. Set a field to <code>0</code> to use its ratio.</span></td>
+</tr>
+<tr id="option-kubernetes-cpurequestratio-memoryrequestratio">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>cpuRequestRatio</code> / <code>memoryRequestRatio</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>0.25</code> / <code>0.25</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Scheduling request equals limit multiplied by this ratio, in <code>(0, 1]</code>. The driver enforces minimum requests.</span></td>
+</tr>
+<tr id="option-kubernetes-profiles">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>profiles</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>{}</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Optional map of environment names to OCI images.</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="e2b">E2B settings</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">YAML key</th>
+<th scope="col">Environment variable</th>
+<th scope="col">Default</th>
+<th scope="col">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-e2b-apiurl">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>apiURL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_API_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Required, no default</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Provider control API origin. Use your self-hosted address or <code>https://api.e2b.app</code> for the cloud service.</span></td>
+</tr>
+<tr id="option-e2b-sandboxurl">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>sandboxURL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_SANDBOX_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Self-hosted sandbox proxy origin. Blank uses the hostname returned for each sandbox. A missing returned hostname causes an error.</span></td>
+</tr>
+<tr id="option-e2b-apikey">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>apiKey</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_API_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Required</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Provider API key. Prefer passing it through the environment.</span></td>
+</tr>
+<tr id="option-e2b-ownerid">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>ownerID</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_OWNER_ID</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Required</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Stable, unique deployment identifier for scoping resources.</span></td>
+</tr>
+<tr id="option-e2b-statedir">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>stateDir</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_STATE_DIR</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Required absolute path other than <code>/</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Persistent private state used to recover gateway connections.</span></td>
+</tr>
+<tr id="option-e2b-boottimeoutseconds">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>bootTimeoutSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_BOOT_TIMEOUT_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>600</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Deadline for booting a guest and establishing private readiness.</span></td>
+</tr>
+<tr id="option-e2b-leaseseconds">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>leaseSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_LEASE_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>3600</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Requested provider lease in seconds. Minimum <code>30</code>.</span></td>
+</tr>
+<tr id="option-e2b-renewintervalseconds">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>renewIntervalSeconds</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_RENEW_INTERVAL_SEC</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>300</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Lease renewal interval. Must be positive and less than half the lease.</span></td>
+</tr>
+<tr id="option-e2b-autopause">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>autoPause</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span><code>SBGW_E2B_AUTO_PAUSE</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span><code>true</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Pause a new guest at lease expiry. An explicit delete still destroys it.</span></td>
+</tr>
+<tr id="option-e2b-templates">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>templates</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Required, no built-in template</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Map a name to <code>templateID</code>, <code>cpuCores</code>, <code>memoryMB</code>, and <code>diskGi</code>.</span></td>
+</tr>
+<tr id="option-e2b-defaulttemplate">
+<td><span class="reference-label" aria-hidden="true">YAML key</span><span><code>defaultTemplate</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Environment variable</span><span>—</span></td>
+<td><span class="reference-label" aria-hidden="true">Default</span><span>Automatic for one template, required for multiple</span></td>
+<td><span class="reference-label" aria-hidden="true">Effect</span><span>Choose an existing name from <code>templates</code>.</span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="runtime">Sandbox runtime variables</h2>
+<div class="table-scroll" tabindex="0"><table class="reference-table" role="table">
+<thead>
+<tr>
+<th scope="col">Runtime variable</th>
+<th scope="col">Standalone default</th>
+<th scope="col">Source and effect</th>
+</tr>
+</thead>
+<tbody>
+<tr id="option-runtime-grasp-runtime-url">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>GRASP_RUNTIME_URL</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span>Required to boot, no default</span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Grasp provides the runtime bundle download URL.</span></td>
+</tr>
+<tr id="option-runtime-sandbox-inject-sandbox-inject-headers">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>SANDBOX_INJECT</code> / <code>SANDBOX_INJECT_HEADERS</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Grasp supplies the configuration bundle and scoped download authorization.</span></td>
+</tr>
+<tr id="option-runtime-workspace-dir">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>WORKSPACE_DIR</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>/root/workspace</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Code directory inside the sandbox. Grasp’s <code>sandbox.work_dir</code> configures host-side staging.</span></td>
+</tr>
+<tr id="option-runtime-root-password">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>ROOT_PASSWORD</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>toor</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Grasp supplies the password for managed sandboxes. The standalone default applies when running the image by itself.</span></td>
+</tr>
+<tr id="option-runtime-ssh-key">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>SSH_KEY</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Optional SSH public key.</span></td>
+</tr>
+<tr id="option-runtime-code-server-port">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>CODE_SERVER_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>8744</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Browser IDE listen port.</span></td>
+</tr>
+<tr id="option-runtime-agent-provider">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>AGENT_PROVIDER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>cursor</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Grasp sets the coding tool for the agent. Gateway <code>driver</code> selects the sandbox backend.</span></td>
+</tr>
+<tr id="option-runtime-acp-bridge-port">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>ACP_BRIDGE_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>8765</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Agent session service port.</span></td>
+</tr>
+<tr id="option-runtime-acp-bridge-password">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>ACP_BRIDGE_PASSWORD</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Grasp supplies the session authentication password at creation.</span></td>
+</tr>
+<tr id="option-runtime-skip-inner-docker">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>SKIP_INNER_DOCKER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>0</code>, start the inner Docker daemon</span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Set to <code>1</code> to skip starting the inner Docker daemon.</span></td>
+</tr>
+<tr id="option-runtime-inner-docker-storage-driver">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>INNER_DOCKER_STORAGE_DRIVER</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span><code>vfs</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Storage driver used by the inner Docker daemon.</span></td>
+</tr>
+<tr id="option-runtime-preview-direct-preview-port">
+<td><span class="reference-label" aria-hidden="true">Runtime variable</span><span><code>PREVIEW_DIRECT</code> / <code>PREVIEW_PORT</code></span></td>
+<td><span class="reference-label" aria-hidden="true">Standalone default</span><span>Unset</span></td>
+<td><span class="reference-label" aria-hidden="true">Source and effect</span><span>Direct preview configuration and app port injected according to the preview policy.</span></td>
+</tr>
+</tbody>
+</table></div>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/gateway-reference.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/gateway/"><span>Previous</span><strong>Gateway and previews</strong></a><a href="/en/help/sandbox-lifecycle/"><span>Next</span><strong>Sandbox lifecycle</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#common">Gateway common settings</a></li><li class="outline-level-2"><a href="#docker">Docker settings</a></li><li class="outline-level-2"><a href="#kubernetes">Kubernetes settings</a></li><li class="outline-level-2"><a href="#e2b">E2B settings</a></li><li class="outline-level-2"><a href="#runtime">Sandbox runtime variables</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>

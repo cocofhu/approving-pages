@@ -1,99 +1,159 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gateway · Grasp</title>
-  <meta name="description" content="sandbox-gateway contract summary; full details in GATEWAY.md.">
+  <meta name="theme-color" content="#fafafb">
+  <title>Connect a sandbox gateway · Grasp</title>
+  <meta name="description" content="Set gateway transport, choose a backend, configure preview exposure, and diagnose sandbox startup.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/gateway/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/gateway/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/gateway/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/gateway/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/help/gateway/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/help/gateway/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/gateway/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">Gateway</h1>
-        <p class="doc__lead">sandbox-gateway contract summary; full details in GATEWAY.md.</p>
-      </header>
-      <div class="doc__body">
-        <p>Grasp schedules the generic sandbox image through the vendored <strong>sandbox-gateway</strong> control plane. The Web UI talks to the Grasp API; Agent nodes execute in containers via the gateway.</p>
-<h2>Direct endpoints vs platform proxy</h2>
-<p>Legacy direct mode remains the default. With <code>sandbox.gateway_transport: gateway</code>, Docker, Kubernetes and E2B SSH, chat, IDE and browser connections can use the authenticated gateway, so Grasp can run outside the sandbox network. This requires a gateway API key. Browsers keep using Grasp, with previews under <code>/preview/...</code>; no separate preview domain is required. Sandboxes must still reach <code>server.mcp_advertise</code> for runtime/config downloads, MCP and other callbacks. The default named gateway affects new sandboxes only; existing sandboxes retain their connection.</p>
-<h2>Docker and Kubernetes deployment</h2>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/" aria-current="page">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/" aria-current="page">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#deploy">Deploy and configure</a></nav>
+      <header class="doc-title"><h1>Connect a sandbox gateway</h1><p>Set gateway transport, choose a backend, configure preview exposure, and diagnose sandbox startup.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#connect">Connect Grasp and the gateway</a></li><li class="outline-level-2"><a href="#cloud">Connect a public-cloud sandbox</a></li><li class="outline-level-2"><a href="#preview">Configure app previews</a></li><li class="outline-level-2"><a href="#network">Check network reachability</a></li><li class="outline-level-2"><a href="#diagnose">Diagnose creation and restore</a></li></ul></details>
+      <article class="doc-content"><h2 id="connect">Connect Grasp and the gateway</h2>
+<ol>
+<li>Configure the Docker, Kubernetes, or E2B gateway with its example. The gateway owns image, template, and resource selection.</li>
+<li>Set <code>sandbox.gateway_url</code> in Grasp and provide the matching gateway API key. Verify that gateway <code>/healthz</code> is ready.</li>
+<li>Select <code>sandbox.gateway_transport</code>. The default <code>direct</code> requires callers to reach the relevant endpoints. <code>gateway</code> sends traffic through the authenticated gateway and suits server-only endpoints. With multiple named connections, new sandboxes use the connection selected by <code>sandbox.default_gateway</code>. Existing sandboxes keep the connection they were created with.</li>
+</ol>
+<p>See the <a href="https://github.com/cocofhu/grasp/blob/main/CONFIGURATION.md">deployment reference</a> and <a href="https://github.com/cocofhu/grasp/blob/main/GATEWAY.md">gateway contract</a> for connection and backend fields.</p>
+<h2 id="cloud">Connect a public-cloud sandbox</h2>
+<p>Grasp registers execution environments as named gateways. The repository ships E2B, Kubernetes, and Docker drivers. Each gateway deployment runs one driver, and a single Grasp control plane can register multiple gateways.</p>
 <ul>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/docker/README.md">Docker deployment guide</a>: production Compose override, accounts and keys, browser/callback URLs, private-network troubleshooting, backups and upgrades. <code>.env</code> does not forward every variable automatically; add settings to the service environment or a mounted configuration file.</li>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/k8s/README.md">Kubernetes guide and manifests</a>: dedicated namespaces, complete RBAC, Secrets, PVCs, Deployments, Services and Ingress. Gateway transport works with ClusterIP sandboxes without a per-sandbox LoadBalancer. The older <code>pods/log</code> files are incremental patches only.</li>
+<li><strong>E2B-compatible services.</strong> Configure the provider’s <code>e2b.apiURL</code>, <code>e2b.sandboxURL</code>, credentials, and template in the E2B gateway. The template must include the Grasp bootstrap and reach the control plane to fetch its runtime bundle. See the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">E2B template and deployment guide</a>.</li>
+<li><strong>Other cloud sandbox APIs.</strong> Implement a gateway adapter that maps create, inspect, delete, and endpoint discovery to the provider’s API. The environment must support the Grasp runtime bootstrap and session endpoint. Private networks can use authenticated v2 transport. Check the required capabilities, then validate an actual create, connection, and cleanup. See the <a href="https://github.com/cocofhu/grasp/blob/main/GATEWAY.md#minimum-compatible-api">minimum gateway contract</a> and <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/gateway/docs/API.md#authenticated-tcp-transport-v2">data channel protocol</a>.</li>
 </ul>
-<p>For Docker private-network access, check container DNS, host forwarding and firewall rules. For Kubernetes, check Pod DNS, CNI/NetworkPolicy and destination ACLs. Neither uses the E2B allowlist variable; verify connectivity inside the sandbox.</p>
-<ul>
-<li><strong>Direct (already authenticated)</strong>: <code>session</code> (session password), <code>ide</code> (IDE password), <code>ssh</code> (<code>ROOT_PASSWORD</code> or <code>SSH_KEY</code>).</li>
-<li><strong>Not direct</strong>: CDP <code>:9222</code> and noVNC <code>:6080</code> have no app-layer auth, are not published to the host/LB, and are not shown or copied on the sandbox detail page.</li>
-<li><strong>User path</strong>: platform proxy only — <code>/sandbox-vnc/:sandboxId/ws</code>, one desktop per sandbox showing the browser the Agent drives (Session required when platform Auth is enabled; validity only, no sandbox/run ownership check). “Open preview” opens sandbox console noVNC; it does not dial websockify.</li>
-<li><strong>Inventory window</strong>: Docker already-running <code>-p</code> needs TTL/Reinstall. K8s inventory <code>*-lb</code> may still expose <code>:9222</code> / <code>:6080</code> until gateway startup reconcile / Start / Reinstall.</li>
-</ul>
-<h2>Kubernetes stop confirmation</h2>
-<p>Kubernetes stop waits for the controller to observe scaling down and for live Pods to exit. The PVC is retained and services cold-start on resume; process memory is not saved. Stop is not reported as complete while it is waiting. Observation failures or a subsequent start superseding the stop return an error so operators can check the current state and retry.</p>
-<h2>E2B private-network access</h2>
-<p>E2B sandboxes restrict private-network egress by default. A gateway or host that can reach an internal service does not grant its guests the same access. Supported self-hosted E2B/Embed versions use <code>ALLOW_SANDBOX_INTERNAL_CIDRS</code> on the <strong>provider’s orchestrator</strong>. Preserve existing entries when adding destinations. This exception applies to every sandbox on the node; it is not a Grasp or gateway setting.</p>
-<p>See the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md#%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AE">E2B deployment guide: private-network access</a> for locating the configuration, a Compose example, applying changes and verifying access from inside a guest.</p>
-<h2>Full documentation</h2>
-<ul>
-<li><a href="https://github.com/cocofhu/grasp/blob/main/GATEWAY.md">GATEWAY.md</a></li>
-</ul>
-<h2>Health checks (default local stack)</h2>
-<ul>
-<li>Gateway: <a href="http://localhost:8899/healthz">http://localhost:8899/healthz</a></li>
-<li>Grasp API: <a href="http://localhost:8080/api/health">http://localhost:8080/api/health</a></li>
-</ul>
-<h2>Source locations</h2>
-<ul>
-<li>Control plane: <code>sandbox-gateway/gateway/</code></li>
-<li>Sandbox image and scripts: <code>sandbox-gateway/sandbox/</code>, <code>sandbox-gateway/scripts/</code></li>
-</ul>
-<h2>Related</h2>
-<ul>
-<li><a href="../configuration/">Configuration</a></li>
-<li><a href="../../guide/concepts/">Core concepts</a></li>
-</ul>
-
-      </div>
-    </article>
-  </main>
+<h2 id="preview">Configure app previews</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code>, default</td>
+<td>Public direct endpoints use direct access. Private endpoints or authenticated gateway transport use subdomains when a base URL is set. Without it, the corresponding exposure option is hidden.</td>
+</tr>
+<tr>
+<td><code>subdomain</code></td>
+<td>Use <code>preview.expose.subdomain.base_url</code> and wildcard DNS to give each preview its own subdomain.</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>Disable this form of preview exposure.</td>
+</tr>
+<tr>
+<td><code>direct</code></td>
+<td>Available on named connections that use direct transport.</td>
+</tr>
+</tbody>
+</table></div>
+<p>For production subdomains, use HTTPS and a root domain separate from the application. Treat a preview URL as an access credential. CDP and noVNC are proxied by the platform, with the raw ports kept on the service side. For desktop IDE access, see <a href="/en/help/local-ide/">Connect a local IDE</a>.</p>
+<h2 id="network">Check network reachability</h2>
+<p>Verify reachability from Grasp and from the sandbox. For Docker, check container DNS, host forwarding, and firewall rules. For Kubernetes, check pod DNS, network policies, and target ACLs. E2B applies its own private network access policy. Use the <a href="https://github.com/cocofhu/grasp/blob/main/sandbox-gateway/deploy/e2b/README.md">deployment guide</a> to configure the required destinations.</p>
+<h2 id="diagnose">Diagnose creation and restore</h2>
+<p>Start with the sandbox status in Solo or in the run detail, then check gateway logs. Missing templates, resource mismatches, failed repository access, and capacity waits can prevent readiness. Verify current settings with a new test sandbox. See <a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a> for reclaim and restore and <a href="/en/help/troubleshooting/">Troubleshooting</a> for common failures.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/gateway.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/configuration-reference/"><span>Previous</span><strong>Configuration index</strong></a><a href="/en/help/gateway-reference/"><span>Next</span><strong>Gateway options</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#connect">Connect Grasp and the gateway</a></li><li class="outline-level-2"><a href="#cloud">Connect a public-cloud sandbox</a></li><li class="outline-level-2"><a href="#preview">Configure app previews</a></li><li class="outline-level-2"><a href="#network">Check network reachability</a></li><li class="outline-level-2"><a href="#diagnose">Diagnose creation and restore</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

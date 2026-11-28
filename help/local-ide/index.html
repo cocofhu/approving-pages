@@ -1,52 +1,85 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-base="">
+<!doctype html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>help/local-ide · Grasp</title>
-  <meta name="description" content="Grasp 帮助文档">
+  <meta name="theme-color" content="#fafafb">
+  <title>用本地 IDE 连接沙箱 · Grasp</title>
+  <meta name="description" content="启用 SSH 网关，登记公钥并从桌面 IDE 或终端连接。">
+  <link rel="canonical" href="https://www.approving-ai.com/help/local-ide/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/local-ide/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/local-ide/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/local-ide/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="复制" data-copied="已复制" data-copy-error="无法访问剪贴板，请手动选择并复制。">
+  <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/">Grasp</a>
-      <nav class="site-header__nav" aria-label="主导航">
-        <a class="site-header__link" href="/guide/quick-start/">文档</a>
-        <a class="site-header__link" href="/guide/concepts/">概念</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="语言">
-        <a class="lang-switch__link is-current" href="/help/local-ide/" data-locale-set="zh-CN" aria-current="page">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link" href="/en/help/local-ide/" data-locale-set="en">English</a>
+      <a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="header-secondary" data-section="solo" href="/#solo">Agent 实例</a>
+        <a class="header-secondary" data-section="sandbox" href="/#sandbox">运行环境</a>
+        <a class="header-secondary" href="/help/configuration/">配置</a>
+        <a href="/help/" aria-current="true">帮助中心</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>搜索文档</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/en/help/local-ide/" lang="en" data-locale-set="en" aria-label="切换语言 · English">EN</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">文档</p>
-        <h1 class="doc__title">help/local-ide</h1>
-        
-      </header>
-      <div class="doc__body">
-        <h1>用本地 IDE 连接沙箱</h1>
-<p>开启内置 SSH 网关后，可以用本地的 VS Code、Cursor（Remote-SSH）或任意终端直接打开沙箱，E2B、Docker、Kubernetes 用同一种方式。本地只需要 IDE 和系统自带的 OpenSSH，不用安装其他程序。</p>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/" aria-current="page">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>文档目录</summary>
+      <nav aria-label="文档目录"><section class="docs-nav__group">
+    <h2>开始使用</h2>
+    <ul><li><a href="/guide/quick-start/">快速开始</a></li><li><a href="/guide/first-run/">首次运行</a></li><li><a href="/guide/concepts/">核心概念</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>使用 Grasp</h2>
+    <ul><li><a href="/guide/solo/">Solo 会话</a></li><li><a href="/guide/workflows/">工作流</a></li><li><a href="/help/agents-models/">模型组与智能体</a></li><li><a href="/help/repositories/">仓库与 Git 授权</a></li><li><a href="/help/settings/">常规设置</a></li><li><a href="/help/local-ide/" aria-current="page">本地 IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>部署与配置</h2>
+    <ul><li><a href="/help/configuration/">部署配置</a></li><li><a href="/help/configuration-reference/">配置项索引</a></li><li><a href="/help/gateway/">网关与预览</a></li><li><a href="/help/gateway-reference/">网关参数</a></li><li><a href="/help/sandbox-lifecycle/">沙箱生命周期</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>排查与贡献</h2>
+    <ul><li><a href="/help/troubleshooting/">常见问题</a></li><li><a href="/help/contributing/">贡献</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="文档目录"><a href="/help/">帮助中心</a><span aria-hidden="true">/</span><a href="/help/#use">使用 Grasp</a></nav>
+      <header class="doc-title"><h1>用本地 IDE 连接沙箱</h1><p>启用 SSH 网关，登记公钥并从桌面 IDE 或终端连接。</p></header>
+      <details class="mobile-outline"><summary>本页内容</summary><ul><li class="outline-level-2"><a href="#管理员开启网关">管理员：开启网关</a></li><li class="outline-level-2"><a href="#安全说明">安全说明</a></li><li class="outline-level-2"><a href="#用户第一次连接">用户：第一次连接</a></li><li class="outline-level-2"><a href="#连接与沙箱状态">连接与沙箱状态</a></li><li class="outline-level-2"><a href="#资源占用">资源占用</a></li></ul></details>
+      <article class="doc-content"><p>开启内置 SSH 网关后，可以用本地的 VS Code、Cursor（Remote-SSH）或任意终端直接打开沙箱，E2B、Docker、Kubernetes 用同一种方式。本地只需要 IDE 和系统自带的 OpenSSH，不用安装其他程序。</p>
 <pre><code>VS Code / Cursor ──SSH──&gt; Grasp SSH 网关（默认 2222 端口）──&gt; 沙箱 sshd
 </code></pre>
 <p>SSH 用户名决定连哪个沙箱：<code>sbx-&lt;沙箱 ID&gt;</code>。网关用你在 Grasp 登记的公钥认证，再以 root 身份连进沙箱。公钥只保存在 Grasp，不会写入沙箱；删除公钥后，使用它的连接会立即断开。</p>
-<h2>管理员：开启网关</h2>
-<table>
+<h2 id="管理员开启网关">管理员：开启网关</h2>
+<div class="table-scroll" tabindex="0"><table>
 <thead>
 <tr>
 <th>配置</th>
@@ -91,14 +124,14 @@
 <td>只允许管理员账号连接</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>部署时注意：</p>
 <ul>
 <li><strong>对外开放 TCP 端口。</strong> Docker Compose 示例使用主机网络，放行防火墙端口即可。Kubernetes 的 Ingress 只转发 HTTP，需要另建 <code>LoadBalancer</code> 或 <code>NodePort</code> 类型的 Service，示例见 <code>sandbox-gateway/deploy/k8s/stack.example.yaml</code> 末尾的 <code>grasp-ssh</code>。公司网络只放行 443 时，这个端口可能不通。</li>
 <li><strong>主机私钥要持久化。</strong> 所有沙箱共用这一把主机密钥，所以沙箱重建或 E2B 恢复后不会出现「主机密钥已变更」的提示。它必须放在持久卷上（示例都放在 <code>/data</code> 下），多副本部署时还要共享，否则每次重新部署客户端都会报警。</li>
 <li><strong>配置只在启动时读取</strong>，修改后需要重启服务。</li>
 </ul>
-<h2>安全说明</h2>
+<h2 id="安全说明">安全说明</h2>
 <ul>
 <li>访问范围按账号授权：Solo 会话的所有者可以进入自己会话的沙箱，管理员可以进入任意沙箱；工作流、测试等没有所有者的沙箱只对管理员开放。不存在和无权访问的沙箱返回同样的提示。会话被删除或转给他人、公钥被删除、账号被移除时，已有连接会在一分钟内断开（删除公钥时立即断开）。开启 <code>admins_only</code> 后只有管理员能连接。</li>
 <li>网关会解开并重新建立 SSH 连接，能看到会话明文。平台本来就持有沙箱的 root 权限，安全边界不变。</li>
@@ -106,14 +139,14 @@
 <li>不支持远程端口转发（<code>-R</code>）、agent 转发和 X11 转发；本地端口转发（<code>-L</code>）、SFTP 和 VS Code/Cursor 需要的通道都可用。</li>
 <li>网关重启时现有连接会断开，IDE 会自动重连。</li>
 </ul>
-<h2>用户：第一次连接</h2>
+<h2 id="用户第一次连接">用户：第一次连接</h2>
 <ol>
 <li>在本机生成密钥（已有可跳过）：<code>ssh-keygen -t ed25519</code>。</li>
 <li>在左下角账号菜单打开 <strong>「SSH 公钥」</strong>，粘贴 <code>~/.ssh/id_ed25519.pub</code> 的内容。支持 ed25519、ECDSA 和至少 2048 位的 RSA。</li>
 <li>打开一个 Solo 会话，点击顶部右侧的 <strong>信息图标</strong>，再打开 <strong>「SSH 连接」</strong> 选择本地 IDE。菜单列出 VS Code、Cursor、CodeBuddy、CodeBuddy 中国版、Trae、Trae 中国版、Antigravity 和 Codex。选过之后，入口会显示上次选择的 IDE。</li>
 <li>浏览器会询问是否打开对应应用，IDE 第一次还会确认是否打开这个远程文件夹，都选打开即可。IDE 连接 <code>sbx-12@grasp.example.com:2222</code>，直接打开 <code>/root/workspace</code>，不需要修改 <code>~/.ssh/config</code>。</li>
 </ol>
-<table>
+<div class="table-scroll" tabindex="0"><table>
 <thead>
 <tr>
 <th>IDE</th>
@@ -138,7 +171,7 @@
 <td>用各自的 Remote-SSH 链接打开 <code>/root/workspace</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>菜单底部的 <strong>「SSH 连接信息」</strong> 会弹出用户名、主机、端口、项目目录和一条 SSH 命令（例如 <code>ssh -p 2222 sbx-12@grasp.example.com</code>），可直接在终端运行。想用 <code>ssh grasp</code> 这样的短名字时，可以把弹窗里的可选配置加入 <code>~/.ssh/config</code>：</p>
 <pre><code>Host grasp
   HostName grasp.example.com
@@ -146,30 +179,50 @@
   ServerAliveInterval 30
 </code></pre>
 <p>一台电脑可以同时连接多个沙箱，每个沙箱一个窗口。</p>
-<h2>连接与沙箱状态</h2>
+<h2 id="连接与沙箱状态">连接与沙箱状态</h2>
 <ul>
 <li><strong>已暂停的 E2B 沙箱</strong>会在连接时自动唤醒，可能需要几十秒。VS Code 默认 15 秒超时，如果连接失败，把设置 <code>remote.SSH.connectTimeout</code> 调到 60。</li>
 <li><strong>手动停止或已关闭的会话</strong>不会被 SSH 连接唤醒，终端会显示原因，例如「会话已手动停止，请先恢复」。先在 Grasp 中恢复会话再连接。</li>
 <li><strong>连接期间会暂停空闲计时。</strong> 只要还有本地 IDE 连接，E2B 沙箱就会保持运行并保留内存缓存。「自动暂停」一行会显示「计时已暂停」，下方显示连接数。最后一个连接断开后重新计时。</li>
 <li>信息面板显示环境类型、自动暂停倒计时和最近保存时间，并提供保存并停止、唤醒、恢复和「保持运行」开关。展开「基本信息」可查看最近模型活动和工作目录。</li>
 </ul>
-<h2>资源占用</h2>
+<h2 id="资源占用">资源占用</h2>
 <p>VS Code / Cursor 会在沙箱里运行远程服务端，约占 0.5–1.5 GB 内存（JetBrains 约 2–4 GB），规格较小的模板可能挤占 Agent 的内存。Docker/Kubernetes 沙箱停止后，<code>~/.vscode-server</code>、<code>~/.cursor-server</code> 不在工作区归档内，下次连接会重新下载。</p>
-
-      </div>
-    </article>
-  </main>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/help/local-ide.md">在 GitHub 编辑</a></p>
+      <nav class="doc-next" aria-label="文档目录">
+    <a href="/help/settings/"><span>上一篇</span><strong>常规设置</strong></a><a href="/help/configuration/"><span>下一篇</span><strong>部署配置</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="本页内容"><p>本页内容</p><ul><li class="outline-level-2"><a href="#管理员开启网关">管理员：开启网关</a></li><li class="outline-level-2"><a href="#安全说明">安全说明</a></li><li class="outline-level-2"><a href="#用户第一次连接">用户：第一次连接</a></li><li class="outline-level-2"><a href="#连接与沙箱状态">连接与沙箱状态</a></li><li class="outline-level-2"><a href="#资源占用">资源占用</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="页脚">
+      <div><a class="brand" href="/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>开源软件 · MIT 许可证</p></div>
+      <nav aria-label="帮助中心">
+        <a href="/help/">帮助中心</a>
         <a href="/guide/quick-start/">快速开始</a>
-        <a href="/help/configuration/">配置</a>
-        <a href="/help/gateway/">网关</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">源码</a>
+        <a href="/help/configuration/">配置参考</a>
+        
+        <a href="https://github.com/cocofhu/grasp">源码</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/help/search-index.json" data-empty="没有找到匹配的内容。试试更短的关键词或配置名。" data-error="搜索暂时不可用。可以从文档目录继续浏览。">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">搜索文档</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="搜索功能、配置名或错误信息">
+      <button class="key-button" type="button" data-search-close aria-label="关闭">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="搜索文档"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>↵</kbd> 打开</div>
+  </dialog>
 </body>
 </html>

@@ -1,52 +1,85 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>en/help/local-ide · Grasp</title>
-  <meta name="description" content="Grasp help documentation">
+  <meta name="theme-color" content="#fafafb">
+  <title>Open sandboxes from a local IDE · Grasp</title>
+  <meta name="description" content="Enable the SSH gateway, register a public key, and connect from a desktop IDE or terminal.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/local-ide/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/local-ide/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/local-ide/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/local-ide/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/help/local-ide/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/help/local-ide/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/local-ide/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">en/help/local-ide</h1>
-        
-      </header>
-      <div class="doc__body">
-        <h1>Open sandboxes from a local IDE</h1>
-<p>With the built-in SSH gateway enabled, you can open any sandbox (E2B, Docker or Kubernetes) from VS Code, Cursor (Remote-SSH) or a terminal on your own machine. You only need the IDE and the OpenSSH client that ships with your OS.</p>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/" aria-current="page">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/" aria-current="page">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#use">Use Grasp</a></nav>
+      <header class="doc-title"><h1>Open sandboxes from a local IDE</h1><p>Enable the SSH gateway, register a public key, and connect from a desktop IDE or terminal.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#admins-enable-the-gateway">Admins: enable the gateway</a></li><li class="outline-level-2"><a href="#security-notes">Security notes</a></li><li class="outline-level-2"><a href="#users-first-connection">Users: first connection</a></li><li class="outline-level-2"><a href="#connections-and-sandbox-state">Connections and sandbox state</a></li><li class="outline-level-2"><a href="#resource-use">Resource use</a></li></ul></details>
+      <article class="doc-content"><p>With the built-in SSH gateway enabled, you can open any sandbox (E2B, Docker or Kubernetes) from VS Code, Cursor (Remote-SSH) or a terminal on your own machine. You only need the IDE and the OpenSSH client that ships with your OS.</p>
 <pre><code>VS Code / Cursor ──SSH──&gt; Grasp SSH gateway (port 2222 by default) ──&gt; sandbox sshd
 </code></pre>
 <p>The SSH user name selects the sandbox: <code>sbx-&lt;sandbox id&gt;</code>. The gateway authenticates the public key you registered in Grasp, then logs into the sandbox as root. Keys stay in Grasp and are never written into sandboxes; deleting a key closes every connection that used it.</p>
-<h2>Admins: enable the gateway</h2>
-<table>
+<h2 id="admins-enable-the-gateway">Admins: enable the gateway</h2>
+<div class="table-scroll" tabindex="0"><table>
 <thead>
 <tr>
 <th>Setting</th>
@@ -91,14 +124,14 @@
 <td>Allow only admin accounts</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>When deploying:</p>
 <ul>
 <li><strong>Expose the TCP port.</strong> The Docker Compose examples use host networking, so open the port in the firewall. A Kubernetes Ingress only carries HTTP; add a <code>LoadBalancer</code> or <code>NodePort</code> Service such as the commented <code>grasp-ssh</code> at the end of <code>sandbox-gateway/deploy/k8s/stack.example.yaml</code>. Networks that only allow port 443 may block it.</li>
 <li><strong>Persist the host key.</strong> Every sandbox is served under this one key, so rebuilt or resumed sandboxes never trigger a “host key changed” warning. Keep it on a persistent volume (the examples use <code>/data</code>) and share it between replicas, or clients will warn after every redeploy.</li>
 <li><strong>Settings are read at startup</strong>; restart the server after changing them.</li>
 </ul>
-<h2>Security notes</h2>
+<h2 id="security-notes">Security notes</h2>
 <ul>
 <li>Access is authorized per account: the owner of a Solo session may enter that session’s sandbox, and admins may enter any sandbox; sandboxes without an owner (workflows, tests) are admin-only. Missing and forbidden sandboxes give the same message. Open connections close within a minute when the session is deleted or reassigned, the key is deleted (immediately) or the account is removed. With <code>admins_only</code> only admins may connect.</li>
 <li>The gateway terminates and re-opens the SSH connection, so it can see session contents. The platform already holds root on every sandbox, so the trust boundary does not change.</li>
@@ -106,14 +139,14 @@
 <li>Remote forwarding (<code>-R</code>), agent forwarding and X11 are not supported. Local forwarding (<code>-L</code>), SFTP and the channels VS Code and Cursor need all work.</li>
 <li>Restarting the server drops open connections; IDEs reconnect on their own.</li>
 </ul>
-<h2>Users: first connection</h2>
+<h2 id="users-first-connection">Users: first connection</h2>
 <ol>
 <li>Create a key if you do not have one: <code>ssh-keygen -t ed25519</code>.</li>
 <li>Open <strong>SSH keys</strong> from the account menu at the bottom left and paste the contents of <code>~/.ssh/id_ed25519.pub</code>. ed25519, ECDSA and RSA of at least 2048 bits are supported.</li>
 <li>In a Solo session, click the <strong>info icon</strong> at the top right, then open <strong>SSH connection</strong> to choose a local IDE. The menu lists VS Code, Cursor, CodeBuddy, CodeBuddy China, Trae, Trae China, Antigravity and Codex. The picker shows your last choice after you select one.</li>
 <li>The browser asks to open the app, and the IDE asks once whether to open the remote folder; accept both. The IDE connects to <code>sbx-12@grasp.example.com:2222</code> and opens <code>/root/workspace</code> directly, with no <code>~/.ssh/config</code> change.</li>
 </ol>
-<table>
+<div class="table-scroll" tabindex="0"><table>
 <thead>
 <tr>
 <th>IDE</th>
@@ -138,7 +171,7 @@
 <td>Open <code>/root/workspace</code> through each app’s Remote-SSH link</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>SSH connection details</strong> at the bottom of the menu opens a dialog with the user, host, port, project folder and an SSH command such as <code>ssh -p 2222 sbx-12@grasp.example.com</code> that runs in any terminal. For a short name such as <code>ssh grasp</code>, add the optional snippet from the dialog to <code>~/.ssh/config</code>:</p>
 <pre><code>Host grasp
   HostName grasp.example.com
@@ -146,30 +179,50 @@
   ServerAliveInterval 30
 </code></pre>
 <p>One machine can connect to several sandboxes at once, one window each.</p>
-<h2>Connections and sandbox state</h2>
+<h2 id="connections-and-sandbox-state">Connections and sandbox state</h2>
 <ul>
 <li><strong>A paused E2B sandbox</strong> wakes when you connect, which can take tens of seconds. VS Code times out after 15 seconds by default; if it fails, raise <code>remote.SSH.connectTimeout</code> to 60.</li>
 <li><strong>A session you stopped or closed</strong> is not woken by SSH. The terminal shows why, for example that the session was stopped manually. Resume it in Grasp first.</li>
 <li><strong>A local IDE connection pauses the idle countdown.</strong> An E2B sandbox keeps running with its memory cache while it has an open local IDE connection. The Auto-pause row shows “Timer paused”, with the connection count below. The timer restarts after the last connection closes.</li>
 <li>The info panel shows the environment type, the idle countdown and the latest save. It offers <strong>Save and stop</strong>, <strong>Wake</strong>, <strong>Resume</strong> and <strong>Keep running</strong>. Expand <strong>Details</strong> to see the last model activity and workspace.</li>
 </ul>
-<h2>Resource use</h2>
+<h2 id="resource-use">Resource use</h2>
 <p>VS Code and Cursor run a remote server inside the sandbox that uses about 0.5–1.5 GB of memory (JetBrains about 2–4 GB), which can crowd the Agent on small templates. After a Docker/Kubernetes sandbox stops, <code>~/.vscode-server</code> and <code>~/.cursor-server</code> are not in the workspace archive, so the next connection downloads them again.</p>
-
-      </div>
-    </article>
-  </main>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/local-ide.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/settings/"><span>Previous</span><strong>General settings</strong></a><a href="/en/help/configuration/"><span>Next</span><strong>Deployment configuration</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#admins-enable-the-gateway">Admins: enable the gateway</a></li><li class="outline-level-2"><a href="#security-notes">Security notes</a></li><li class="outline-level-2"><a href="#users-first-connection">Users: first connection</a></li><li class="outline-level-2"><a href="#connections-and-sandbox-state">Connections and sandbox state</a></li><li class="outline-level-2"><a href="#resource-use">Resource use</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

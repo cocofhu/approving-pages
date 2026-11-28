@@ -1,144 +1,92 @@
-<!DOCTYPE html>
-<html lang="en" data-base="">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Core concepts · Grasp</title>
-  <meta name="description" content="FSM orchestration, human gates, sandboxed execution, and artifact contracts.">
+  <meta name="theme-color" content="#fafafb">
+  <title>Grasp core concepts</title>
+  <meta name="description" content="Understand agents, model groups, runs, human gates, sandboxes, and artifacts.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/guide/concepts/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/concepts/">
   <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/concepts/">
   <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/concepts/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/page.css">
-  <script src="/js/locale.js"></script>
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
 </head>
-<body class="page-doc">
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__brand" href="/en/">Grasp</a>
-      <nav class="site-header__nav" aria-label="Main navigation">
-        <a class="site-header__link" href="/en/guide/quick-start/">Docs</a>
-        <a class="site-header__link" href="/en/guide/concepts/">Concepts</a>
-        <a class="site-header__link" href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">GitHub</a>
-        <nav class="lang-switch" aria-label="Language">
-        <a class="lang-switch__link" href="/guide/concepts/" data-locale-set="zh-CN">中文</a>
-        <span class="lang-switch__sep" aria-hidden="true">|</span>
-        <a class="lang-switch__link is-current" href="/en/guide/concepts/" data-locale-set="en" aria-current="page">English</a>
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
       </nav>
-      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/guide/concepts/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
     </div>
   </header>
-  <main id="main">
-    <article class="doc">
-      <header class="doc__header">
-        <p class="doc__eyebrow">Docs</p>
-        <h1 class="doc__title">Core concepts</h1>
-        <p class="doc__lead">FSM orchestration, human gates, sandboxed execution, and artifact contracts.</p>
-      </header>
-      <div class="doc__body">
-        <h2>FSM orchestration</h2>
-<p>Grasp turns coding agents into steps in a workflow. You orchestrate on a finite state machine:</p>
-<ul>
-<li><strong>Nodes</strong> are states: Agent, input, output, set variable, branch, and human gate — six in total</li>
-<li><strong>Edges</strong> are transitions, with configurable success, failure, and rollback paths</li>
-<li>Use <code>when</code> guards and checkpoints to make risky steps explicit</li>
-</ul>
-<p>This is not a one-shot, irreversible agent run: design the path first, then gate the critical steps.</p>
-<h2>Agent nodes and capabilities</h2>
-<p>A workflow has one kind of Agent node. The node only sets three things: which Agent runs (<code>agent_profile</code>), the goal (<code>prompt</code>, supports <code>{{variables}}</code>), and a timeout in minutes. What the Agent may do is declared by the Agent itself in <code>capabilities</code> in its <code>agent.json</code>, edited on the <strong>Capabilities</strong> tab in Agent Studio:</p>
-<ul>
-<li><code>interaction</code>: <code>clarify</code> holds a multi-turn conversation and ends only when a person confirms; <code>auto</code> runs once.</li>
-<li><code>review</code>: <code>auto</code> only. After the run the node waits for human review; the session stays online, so the Agent can keep editing and start previews.</li>
-<li><code>tools</code>: grantable platform tools — <code>ask_question</code>, <code>ask_form</code>, <code>set_artifact_preview</code>, <code>set_preview</code>, <code>update_plan_status</code>. <code>clarify</code> must be granted <code>ask_question</code>.</li>
-<li><code>reads</code> / <code>writes</code>: artifacts the Agent may read (<code>*</code> for all) and the structured products it writes, each optionally required. A missing required product fails the node.</li>
-<li>When the Agent writes a product with a verdict (<code>test_result</code>, <code>review</code>), its node has <strong>Pass</strong> and <strong>Fail</strong> outlets on the canvas; it leaves through Pass only when every verdict passes.</li>
-</ul>
-<p>Every node that uses the same Agent has the same capabilities; nodes differ only by goal. If you need different permissions, create a second Agent. Behaviour rules live in the Agent workspace’s <code>AGENTS.md</code> and skills; the platform keeps only a fixed common protocol.</p>
-<p>Three templates ship built in: <strong>Clarify</strong> (clarify; writes the requirement spec and plan), <strong>Implement</strong> (auto; writes the implementation result) and <strong>Test &amp; review</strong> (auto; writes the test result and review verdict). Implement and Test &amp; review ship with review off, so they hand off as soon as they finish; turn review on in the Agent’s capabilities page if you want them to wait for a person. All three can start a preview with <code>set_preview</code>. Onboarding creates the default workflow input → Clarify → Implement → Test &amp; review; Pass goes to output and Fail goes back to Implement.</p>
-<p>A workflow with an unknown node type fails validation with “未知节点类型 X” (unknown node type) and its runs fail; an Agent without capabilities fails with “Agent X 未声明能力” (Agent has no capabilities).</p>
-<h2>Human gates</h2>
-<p>When a step needs a human decision, the run stops at a <strong>gate</strong> until someone approves or rejects.</p>
-<p>Approval moments are first-class — not an afterthought. Grasp bets that agents can be fast while people still own the critical decisions.</p>
-<h3>Temporary approval links (human_gate)</h3>
-<p>In the pending-gates inbox, only <strong>human_gate</strong> cards (and the visual preview toolbar when a page artifact exists) offer <strong>Copy temp link</strong>. A signed-in operator can mint a one-shot URL so an unauthenticated person can approve or reject once.</p>
-<ul>
-<li>Default TTL is 24 hours (1h / 8h / 24h / 72h / 7d). At most one active link per instance.</li>
-<li>When minting, operators pick a permission preset: <strong>Full access</strong> (default — hot session reply / cancel / confirm+reject) or <strong>ReAct chat only</strong> (reply + cancel; every public confirm/reject decide is denied). The preset is stored on the link row and enforced on Preview.actions and public decide/reply/cancel together — hiding buttons alone is not enough.- The management panel masks the URL by default; Copy writes the full fragment URL. Refreshing the same browser tab still lets you copy the same active URL. <strong>Regen (inherit preset)</strong> immediately revokes the old link and reuses the same TTL tier and permission preset; changing permission requires creating a new link (which revokes the prior active one). Revoke now disables the link. While the gate is still pending, revoked/expired links can be replaced; after the gate is decided the entry is read-only. Pending clarify has no share entry here (app preview uses the review-share path below).</li>
-<li>The external page needs no login. It shows the title, description, redacted artifacts, a preset chip, and actions allowed by the preset. It does not expose run IDs, members, or internal URLs. A cold <strong>ReAct-only</strong> link shows a dead-end message and never falls back to decide.</li>
-<li>The token is bound to that one approval. Expiry, revoke, a <strong>successful</strong> decide, a login-side decision, or run completion invalidate unused links immediately. Denied decide calls on ReAct-only links do not mark the link used.</li>
-<li><strong>Each visitor has their own conversation.</strong> When one link is shared with several people, every browser (identified by an anonymous visitor id kept in local storage, so refreshes and new tabs keep it) gets its own dialogue and its own Agent context; visitors never see each other’s messages. Before speaking, a visitor sees the node’s dialogue so far. The Agent runs each visitor in a separate sandbox chat, but the <strong>workspace and artifacts stay shared</strong>: product edits one visitor asks for are visible to the others and in-product. Up to 6 visitors per link can talk at once; past that the page asks them to try again later. A visitor idle for 30 minutes has their sandbox chat closed, and their next message resumes with the existing conversation.</li>
-<li><strong>First decision wins.</strong> Once any visitor confirms or rejects successfully, the link stops working for everyone and all visitor chats end.</li>
-</ul>
-<h3>Temporary review links (Inbox kind=review)</h3>
-<p>Inbox <strong>pending review</strong> and <strong>app preview</strong> cards reuse the same management panel and token rules (<code>ShareLinkKindReview</code>, including TTL and permission presets), but authenticated APIs live under <code>/api/runs/:id/nodes/:nodeId/share-link*</code> — not <code>/gates/...</code>, and no fake Gate row is created. In-product entries: card <strong>Copy temp link</strong> and the mobile detail top bar button with the same label. The public page is labeled <strong>External review</strong>; hot sessions support multi-turn ReAct. When the node registered an app preview, the public page defaults to remote desktop and picking via a short-lived ticket channel (desensitized preview; API previews use a same-origin iframe); mobile shows a degrade hint only. The only footer action is <strong>Confirm and advance</strong>. Per-visitor conversations, the shared workspace, and first-decision-wins apply as above. Run-detail review tabs and the logged-in review composer do not add a temp-link entry; pending clarify stays out of scope.</p>
-<h3>App preview: noVNC and direct IP</h3>
-<p>Each sandbox has one noVNC desktop address, and that desktop is the Agent’s own screen: the headed Chromium the Agent drives with chrome-devtools MCP. As soon as the node has a sandbox you can watch it in the panel, before any <code>set_preview</code>; connecting does not change the page the Agent is on. After <code>set_preview</code> registers a port, the platform switches the desktop to <code>http://127.0.0.1:port/</code> inside the sandbox. A later registration replaces the active preview. The desktop page stays open: after you leave and come back or reload the platform page, you see the same page with its login and form state; logins also survive a Chromium restart. The external share page likewise uses one desktop ticket bound to the node’s sandbox.</p>
-<p>The preview is watch-only by default. Click the screen to take over; that first click does not affect the page. You can also select Take over in the toolbar, and Return control when you are done. Clicks during Pick annotation still select elements and do not take over. This only prevents stray clicks; it is not access control.</p>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/" aria-current="page">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/" aria-current="page">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#start">Get started</a></nav>
+      <header class="doc-title"><h1><span class="title-wordmark">Grasp</span> core concepts</h1><p>Understand agents, model groups, runs, human gates, sandboxes, and artifacts.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#agents">Agents and model groups</a></li><li class="outline-level-2"><a href="#workflows">Workflows, runs, and human gates</a></li><li class="outline-level-2"><a href="#sandboxes">Solo and sandboxes</a></li><li class="outline-level-3"><a href="#desktop-clipboard">Paste into a remote desktop</a></li><li class="outline-level-2"><a href="#workspace-changes">Review workspace changes</a></li><li class="outline-level-2"><a href="#references">@ references in Solo</a></li><li class="outline-level-2"><a href="#artifacts">Artifacts and tools</a></li></ul></details>
+      <article class="doc-content"><h2 id="agents">Agents and model groups</h2>
+<p>An agent defines the instructions, capabilities, and tools for a task. A model group selects the coding tool, authorization, and model that execute it. Agents can bind several groups or inherit defaults. Repository records select independent Git access. See <a href="/en/help/agents-models/">Model groups and agents</a>.</p>
+<h2 id="workflows">Workflows, runs, and human gates</h2>
+<p>A workflow is a graph of steps and transitions. You can start a published version. Each run records its inputs, active nodes, conversations, and artifacts. A human gate pauses the run for a decision, then follows the applicable transition. The run page, inbox, and artifacts help you follow that work.</p>
+<h2 id="sandboxes">Solo and sandboxes</h2>
+<p>Solo is a task session where you can continue a conversation. Both Solo and workflows execute in sandboxes managed by the gateway. A sandbox provides a workspace, terminal, and optional IDE and app preview. The gateway selects an image or template. Grasp requests environments for sessions and runs as needed. See <a href="/en/guide/solo/">Solo sessions</a> and <a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a>.</p>
+<h3 id="desktop-clipboard">Paste into a remote desktop</h3>
 <p>After taking control of a sandbox Browser or Computer view, select a remote input and press <code>Ctrl+V</code> (<code>⌘V</code> on macOS) to paste up to 128 KiB of plain text from your device. The paste shortcut uses the sandbox clipboard while the screen keeps focus after a copy or cut shortcut updates it, or after you select <strong>Copy to sandbox clipboard</strong> in the toolbar. Moving focus away gives priority to text from your device again. If your device clipboard has no text, the shortcut tries pasting from the sandbox clipboard.</p>
 <p>You can also enter text in the toolbar’s Clipboard dialog and select <strong>Paste into focused window</strong>. To paste into the terminal on a computer sandbox, select <strong>Terminal paste (Ctrl+Shift+V)</strong> first. You can still paste from your device after pressing <code>Ctrl+C</code> to interrupt a terminal command.</p>
-<p>When the Agent is granted <code>set_preview</code>, the noVNC toolbar adds an Open directly in new tab button for <code>http://IP:port/</code>, which carries the pick bar and the Chat drawer at the bottom right.</p>
-<h3>Live variants</h3>
-<p>Agent nodes granted <code>set_preview</code> that talk with a person (<code>clarify</code>, or <code>auto</code> with review) get <strong>Live variants</strong>. After the agent registers an in-sandbox app port with <code>set_preview</code>, open its direct preview and click the <strong>Page collaboration</strong> icon at the bottom of the chat input, next to the attachment button. Choose <strong>Page candidates</strong> from the menu. noVNC, external URL-only previews and links without Live permission do not provide candidate generation.</p>
-<p><strong>Page collaboration</strong> is collapsed by default. Its icon shares the attachment toolbar; hover to see its full name. Click the icon to expand the menu and set <strong>Page control</strong> and <strong>Page candidates</strong> independently. You can collapse the menu when finished; both switch settings are retained. The icon shows how many features are enabled; hover or open the menu to see which ones.</p>
-<p><strong>Page candidates</strong> in <strong>Page collaboration</strong> is off by default. Turn it on, describe the change and send: the agent renders <strong>3 candidates</strong> on the current page and waits for you to compare and choose. You do not need to pick an element or open the page toolbar first. Images and picked annotations travel with your request. Turning the switch off returns to ordinary chat and keeps existing candidates; use <strong>Discard</strong> to undo them. The node setting controls availability, while the chat switch chooses candidate generation for your request.</p>
-<p><strong>Let the agent operate this page</strong>, in the same menu, is also off by default and separately controls whether the agent can read, click and fill in the preview page you are viewing. The switches are independent; generating candidates does not require page control. While page control is on, page content the agent reads appears in this conversation and other participants can see it, so use a test account. The menu retains the privacy reminder and shows whether page control is connected, paused, disconnected or assigned to another tab.</p>
-<p>To use Live:</p>
-<ol>
-<li>Click the <strong>Page collaboration</strong> icon at the bottom of the chat input, next to the attachment button, and turn on <strong>Page candidates</strong> in the menu. Describe the change and send; you can collapse the menu before typing. For example: “Make this setup dialog clearer while keeping its purple style.” The agent uses the request, attachments, annotations and current page route to locate the relevant components.</li>
-<li>The agent writes the variants <strong>straight into the sandbox source</strong>, wrapped in temporary <code>data-grasp-live</code> / <code>data-grasp-variant</code> markers, and the dev server’s hot reload shows them on the page you are looking at.</li>
-<li><strong>In place</strong>: a <code>‹ 2/3 ›  ✕  Accept</code> switcher sits under the element; use ← → and the parameter knobs. Candidate switches fade in unless reduced motion is enabled. <strong>Side by side</strong>: the original and every candidate are laid out at once; “Use this” accepts one, “Keep original” discards.</li>
-<li><strong>Accept</strong> keeps only the chosen variant in source and removes every marker; <strong>Discard</strong> restores the original. With candidates open, continue refining the current candidate in chat or say “Use this one” to accept it. If a set is still generating, recovering or not displayed, wait or resolve that session before starting another set.</li>
-</ol>
-<p>The page toolbar’s <strong>Pick</strong> opens an action card on the element you click: <strong>Quote</strong> hands it to the agent as an annotation; <strong>Edit</strong> expands the design form, where you choose a design action (bolder / quieter / polish / typeset / colorize / layout / distill / adapt / animate / delight / overdrive), optionally open <strong>Marks</strong> to add notes, draw or pin notes, choose 2–4 variants and press <strong>Generate</strong>. With Live on, turning on <strong>Pick</strong> also shows a bar above the toolbar: switch between <strong>Select</strong> (pick an element) and <strong>Insert block</strong> (pick an anchor to insert a new block before or after it), or type into <strong>Adjust the whole page…</strong> to change the whole page in one sentence; 👁 appears while the page has candidates — hold it to see the original, click it to hide the candidate controls. None of these are required to generate candidates from chat. The toolbar and these panels follow the language set in Grasp, including a switch made after the preview is open.</p>
-<p>Each Live action shows up in the chat drawer as a card you can drive (switch, compare, accept, discard). While a set is open, “make 2’s title bigger” edits variant 2 only. Reloads, new tabs and route changes keep the state: markers live in source, session state on the server, and the variant you are viewing in this tab. Confirm &amp; continue is blocked until every set is accepted or discarded (the drawer offers “Discard all”), and a local pre-commit hook in the sandbox rejects commits that still contain markers.</p>
-<p>The page and chat card share the current candidate. “Use this one” keeps the version and tuned parameters you were viewing when you sent the message; switch candidates first to accept another number. If a whole-page adjustment fails or is interrupted, retry the same request or dismiss it. Dismissal preserves edits already made and does not roll back the page. “Discard all” also dismisses failed whole-page requests; review the retained result before confirming. If adoption is interrupted, “Retry accept” resumes the saved candidate and parameter values. Confirmation pauses when the workspace cannot be scanned and can be retried after access is restored.</p>
-<h2>Real Docker sandboxes</h2>
-<p>All nodes of a workflow run share one sandbox: they reuse the workspace, installed dependencies, and uncommitted changes, while separate runs remain isolated. There is nothing to configure. The model is refreshed for each Agent; a node gets its own sandbox when another session holds the shared sandbox, it needs a different image, or the working directory is incompatible.</p>
-<p>Agents are not black-box prompts on a laptop. They execute in Docker containers through the in-repo <a href="https://github.com/cocofhu/approving/tree/main/sandbox-gateway">sandbox-gateway</a>, talking over ACP.</p>
-<p>Supported coding tools are <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>CodeBuddy</strong>, <strong>Trae</strong>, <strong>OpenCode</strong>, <strong>Codex</strong>, and <strong>DeepSeek Harness</strong>. Settings → Credentials separates Agent CLI platform authorizations from model service API accounts, both with provider logos. Configure the provider, API base and key on the API account.</p>
-<p>Agents reference only named model configurations: a coding tool, a credential and an upstream model. Creation, editing, onboarding and execution use that same reference. Unavailable model configurations or accounts fail explicitly without selecting another secret.</p>
-<table>
-<thead>
-<tr>
-<th>Coding tool</th>
-<th>Model sources and connection protocols</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cursor, Trae</td>
-<td>Tool platform authorization; direct third-party connections are unavailable</td>
-</tr>
-<tr>
-<td>Claude Code</td>
-<td>Platform authorization or Anthropic Messages (CLI ≥ 2.1.257 for connections)</td>
-</tr>
-<tr>
-<td>CodeBuddy</td>
-<td>Platform authorization or Chat Completions connections</td>
-</tr>
-<tr>
-<td>OpenCode, DeepSeek Harness</td>
-<td>Chat Completions, Responses or Anthropic Messages; DSH targets 0.2.1-rc.2</td>
-</tr>
-<tr>
-<td>Codex</td>
-<td>ChatGPT login file or a Responses connection</td>
-</tr>
-</tbody>
-</table>
-<p>Grasp maintains Codex ChatGPT logins. When adding a Codex credential, choose <strong>Sign in to ChatGPT with a code</strong>, open the OpenAI page and enter the code; device-code sign-in for Codex must be allowed in ChatGPT settings. You can still paste <code>~/.codex/auth.json</code>, which must contain a <code>refresh_token</code>. Grasp renews the login before it expires (96 hours ahead by default) and pushes it to every sandbox using that credential. Sandboxes receive a copy without the <code>refresh_token</code> and never renew it themselves. If a turn fails because the login was rejected, Grasp renews and retries the turn once. If OpenAI refuses the renewal, the credential shows that a new login is needed; use <strong>Sign in again</strong>. The credential list shows the account email, the last renewal and the renewal status. Server settings live under <code>codex_login.*</code>.</p>
-<p>First configure a preset or custom service’s API base and key in Credentials, or save only the key. In Models, save a named configuration combining a coding tool, an existing credential and the selected model. Agents bind that configuration to reuse the combination. Platform authorization continues to use the tool’s own key. The configuration’s tool is fixed after creation. Disabling or deleting a configuration, or clearing its key, fails explicitly without switching to another authorization. When adding a model, select an existing model or enter its original provider ID, including any <code>/</code> characters. There is no separate model catalog or connections list. Claude Code and CodeBuddy support separate auxiliary model roles. DSH’s DeepSeek native route requires the official service. “Not verified” means no live model execution has been recorded; adapter and mock tests do not establish provider compatibility.</p>
-<p>The workspace lists and uses only credentials explicitly created with the current data structure. It does not generate empty credential slots. Close and reopen long-lived sandboxes after changing their model or authorization.</p>
-<p>Model configurations are shared references: changing a configuration’s credential, model or role settings affects every Agent that references it. Its CLI is fixed after creation; changing the CLI requires creating and selecting another configuration. Agent drafts may remain unconfigured, but execution requires a selected model or explicit inheritance from Agent defaults. New Agents inherit by default. In Agent metadata, enabling inheritance uses the default model and shows one compact inheritance card. Disabling it restores local selections. Git authorization is not configured on Agents: each repository picks its own credential and commit author in Settings → Repositories, and workflows bind repositories in their settings.</p>
-<h2>Review workspace changes</h2>
+<h2 id="workspace-changes">Review workspace changes</h2>
 <p>Open <strong>Changes</strong> in the toolbar of a Solo session or workflow run to see the branch and line counts for each repository. Select a repository to open its file diffs. The cumulative view compares against the initial checkout and includes changes after the agent commits them. The last archived view remains available after the workflow releases its sandbox. When multiple workspaces are available, use <strong>Workspace</strong> next to the file counts to switch which files and line totals are shown.</p>
 <p>Open <strong>Turn changes</strong> above the composer to see what changed between the start and end of the last turn. Diffs show syntax highlighting and line markers for recognized code files. The viewer offers read-only source and rendered Markdown. For deleted files, it shows the version before deletion.</p>
-<h2>@ references in Solo</h2>
+<h2 id="references">@ references in Solo</h2>
 <p>Type <code>@</code> to search in the Solo composer, including when starting a session from the home page. You can also choose a reference type from the <strong>+</strong> menu.</p>
 <ul>
 <li><strong>Your other Solo sessions</strong>, searched by title; closed sessions work too. The agent first sees a summary of the user’s requests in that session and reads the full conversation page by page with the grasp-tool <code>read_reference</code> tool. It sees the session as it was when the turn began; later messages there are not included.</li>
@@ -152,31 +100,43 @@
 <li>In the <strong>home page Workflow composer</strong>, pick a workflow, then type <code>@</code> or use the <strong>+</strong> menu. GitHub search uses the repositories bound to the workflow. You can search sessions and artifacts with or without a repository. A message with only references can start a run, which is then titled after the first reference. Switching workflows or back to Solo clears the picked references and keeps the text.</li>
 <li>In <strong>clarification and review chats and gate hot revisions</strong>, GitHub search uses the repositories the run cloned. The current node’s agent uses <code>read_reference</code> for sessions and artifacts. It reads GitHub references in the sandbox and selects the target repository’s credential again when reopening a discussion. References are unavailable when the node is finished, inactive or its composer is locked, and the anonymous shared approval page does not offer them.</li>
 </ul>
-<h2>Artifact contract and MCP</h2>
-<p>Each run has an isolated artifact MCP. Agents call tools such as:</p>
-<ul>
-<li><code>write_artifact</code></li>
-<li><code>set_*</code></li>
-<li><code>node_complete</code></li>
-</ul>
-<p>Isolation is by run token, leaving an inspectable paper trail.</p>
-<h2>Single-repo self-hosting</h2>
-<p><code>sandbox-gateway</code> and the generic sandbox image sources live in this repository. One clone is enough to self-host.</p>
-
-      </div>
-    </article>
-  </main>
+<h2 id="artifacts">Artifacts and tools</h2>
+<p>Artifacts are task data read and written by workflow nodes, such as requirements, plans, test reports, and attachments. Downstream steps can reference upstream artifacts. Grasp provides applicable workflow, conversation, and artifact operations through built-in agent tools. Open Settings → Integrations to browse the catalog.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/guide/concepts.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/guide/first-run/"><span>Previous</span><strong>First run</strong></a><a href="/en/guide/solo/"><span>Next</span><strong>Solo sessions</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#agents">Agents and model groups</a></li><li class="outline-level-2"><a href="#workflows">Workflows, runs, and human gates</a></li><li class="outline-level-2"><a href="#sandboxes">Solo and sandboxes</a></li><li class="outline-level-3"><a href="#desktop-clipboard">Paste into a remote desktop</a></li><li class="outline-level-2"><a href="#workspace-changes">Review workspace changes</a></li><li class="outline-level-2"><a href="#references">@ references in Solo</a></li><li class="outline-level-2"><a href="#artifacts">Artifacts and tools</a></li></ul></nav>
+  </div>
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">Grasp</p>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
         <a href="/en/guide/quick-start/">Quick start</a>
-        <a href="/en/help/configuration/">Configuration</a>
-        <a href="/en/help/gateway/">Gateway</a>
-        <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">Source</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
       </nav>
-      <p class="site-footer__meta">MIT · <a href="https://github.com/cocofhu/approving" rel="noopener noreferrer" target="_blank">cocofhu/approving</a></p>
     </div>
   </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
 </body>
 </html>

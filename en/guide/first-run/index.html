@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>Complete your first run · Grasp</title>
+  <meta name="description" content="Add credentials, create a model group, and run Solo or the default workflow.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/guide/first-run/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/guide/first-run/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/guide/first-run/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/guide/first-run/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/guide/first-run/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/" aria-current="page">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/" aria-current="page">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#start">Get started</a></nav>
+      <header class="doc-title"><h1>Complete your first run</h1><p>Add credentials, create a model group, and run Solo or the default workflow.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#model">Set up a credential and model group</a></li><li class="outline-level-2"><a href="#repository">Prepare a repository</a></li><li class="outline-level-2"><a href="#solo">Verify Solo</a></li><li class="outline-level-2"><a href="#workflow">Verify a workflow</a></li></ul></details>
+      <article class="doc-content"><p>Start Grasp with <a href="/en/guide/quick-start/">Quick start</a>. Have an account for a supported coding tool or a model service with a compatible API.</p>
+<h2 id="model">Set up a credential and model group</h2>
+<ol>
+<li>In the setup prompt, choose <strong>Coding tool authorization</strong> or <strong>Model API</strong>. You can also add an account under Settings → Credentials.</li>
+<li>For a model API, save the key and endpoint with the provider’s protocol. For tool authorization, sign in or save the credential requested by that tool.</li>
+<li>Create a <strong>model group</strong> with a coding tool, the saved credential or API account, and a main model. Use the provider’s exact model ID, including any slash.</li>
+<li>Select the group for the agents created during setup. You can choose groups per role. One model you can call successfully is enough to check the connection.</li>
+</ol>
+<h2 id="repository">Prepare a repository</h2>
+<p>Setup can register one Git repository. For a public repository, enter its URL. For a private repository, save a token or SSH key, select it on the repository record, and check the host, protocol, and commit identity. You can skip the repository for a conversation-only test. See <a href="/en/help/repositories/">Repositories and Git access</a>.</p>
+<p>Setup creates the selected role agents, a Solo agent, and a published default workflow. Start a task to verify them.</p>
+<h2 id="solo">Verify Solo</h2>
+<p>On the home page, choose <strong>Solo</strong> and an agent that is bound to your model group. Send a short request such as “List the files you can access in this directory and tell me whether a repository was cloned.”</p>
+<p>When you get a reply, open its run information to check the tool and model. If you selected a repository, use <code>git status</code> in the terminal to confirm the directory and branch. Continue with <a href="/en/guide/solo/">Solo sessions</a>.</p>
+<h2 id="workflow">Verify a workflow</h2>
+<p>Open Workflows → Default workflow and choose <strong>Run</strong>. Enter a request and confirm the repositories and branches. Use a small task with a clear result, such as documenting a README step and checking its links. Review any clarification, review item, or human gate in the inbox. Open the run detail to inspect the outputs and result. Continue with <a href="/en/guide/workflows/">Run and review workflows</a>.</p>
+<p>For an unavailable model, failed clone, or a sandbox that stays in preparation, check <a href="/en/help/troubleshooting/">Troubleshooting</a> at the stage that failed.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/guide/first-run.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/guide/quick-start/"><span>Previous</span><strong>Quick start</strong></a><a href="/en/guide/concepts/"><span>Next</span><strong>Core concepts</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#model">Set up a credential and model group</a></li><li class="outline-level-2"><a href="#repository">Prepare a repository</a></li><li class="outline-level-2"><a href="#solo">Verify Solo</a></li><li class="outline-level-2"><a href="#workflow">Verify a workflow</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>

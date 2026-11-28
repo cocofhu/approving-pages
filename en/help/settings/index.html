@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafb">
+  <title>General settings explained · Grasp</title>
+  <meta name="description" content="Look up the defaults, scope, effective time, and verification for the fields in General settings.">
+  <link rel="canonical" href="https://www.approving-ai.com/en/help/settings/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.approving-ai.com/help/settings/">
+  <link rel="alternate" hreflang="en" href="https://www.approving-ai.com/en/help/settings/">
+  <link rel="alternate" hreflang="x-default" href="https://www.approving-ai.com/help/settings/">
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/page.css">
+  <script src="/js/locale.js" defer></script>
+  <script src="/js/docs.js" defer></script>
+  
+</head>
+<body class="page-doc" data-copy="Copy" data-copied="Copied" data-copy-error="Clipboard unavailable. Select the code to copy it manually.">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="header-secondary" data-section="solo" href="/en/#solo">Examples</a>
+        <a class="header-secondary" data-section="sandbox" href="/en/#sandbox">Runtimes</a>
+        <a class="header-secondary" href="/en/help/configuration/">Configuration</a>
+        <a href="/en/help/" aria-current="true">Help center</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="search-trigger " data-search-open hidden>
+    <span class="search-icon" aria-hidden="true"></span>
+    <span>Search docs</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+        <a class="language-link" href="/help/settings/" lang="zh-CN" data-locale-set="zh-CN" aria-label="Change language · 中文">中文</a>
+        <a class="source-link" href="https://github.com/cocofhu/grasp">GitHub</a>
+      </div>
+    </div>
+  </header>
+  <div class="docs-layout">
+    <aside class="docs-nav"><nav class="docs-nav__desktop" aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/" aria-current="page">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav>
+    <details class="docs-nav__mobile"><summary>Browse documentation</summary>
+      <nav aria-label="Browse documentation"><section class="docs-nav__group">
+    <h2>Get started</h2>
+    <ul><li><a href="/en/guide/quick-start/">Quick start</a></li><li><a href="/en/guide/first-run/">First run</a></li><li><a href="/en/guide/concepts/">Core concepts</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Use Grasp</h2>
+    <ul><li><a href="/en/guide/solo/">Solo sessions</a></li><li><a href="/en/guide/workflows/">Workflows</a></li><li><a href="/en/help/agents-models/">Model groups and agents</a></li><li><a href="/en/help/repositories/">Repositories and Git access</a></li><li><a href="/en/help/settings/" aria-current="page">General settings</a></li><li><a href="/en/help/local-ide/">Local IDE</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Deploy and configure</h2>
+    <ul><li><a href="/en/help/configuration/">Deployment configuration</a></li><li><a href="/en/help/configuration-reference/">Configuration index</a></li><li><a href="/en/help/gateway/">Gateway and previews</a></li><li><a href="/en/help/gateway-reference/">Gateway options</a></li><li><a href="/en/help/sandbox-lifecycle/">Sandbox lifecycle</a></li></ul>
+  </section><section class="docs-nav__group">
+    <h2>Troubleshoot and contribute</h2>
+    <ul><li><a href="/en/help/troubleshooting/">Troubleshooting</a></li><li><a href="/en/help/contributing/">Contributing</a></li></ul>
+  </section></nav></details></aside>
+    <main id="main" class="doc-main">
+      <nav class="doc-crumbs" aria-label="Browse documentation"><a href="/en/help/">Help center</a><span aria-hidden="true">/</span><a href="/en/help/#use">Use Grasp</a></nav>
+      <header class="doc-title"><h1>General settings explained</h1><p>Look up the defaults, scope, effective time, and verification for the fields in General settings.</p></header>
+      <details class="mobile-outline"><summary>On this page</summary><ul><li class="outline-level-2"><a href="#sandbox-idle">Sandbox idle reclaim</a></li><li class="outline-level-2"><a href="#sandbox-capacity">Maximum active sandboxes</a></li><li class="outline-level-2"><a href="#sandbox-memory">Sandbox memory override</a></li><li class="outline-level-2"><a href="#agent-idle">Agent inactivity timeout</a></li><li class="outline-level-2"><a href="#workspace-brand">Workspace and branding</a></li></ul></details>
+      <article class="doc-content"><p>Open Settings → General. Numeric fields display the source of their current value. Environment overrides lock the relevant fields. An administrator can change deployment variables and restart the service.</p>
+<h2 id="sandbox-idle">Sandbox idle reclaim</h2>
+<p><strong>Default 360 minutes. Minimum 1 minute.</strong> Applies to automatic reclaim for E2B. Time starts after a complete model turn when the queue is empty. Opening the page, preview, or regular terminal leaves the timer as it was. An active local IDE connection through the Grasp SSH gateway defers reclaim. A new interval starts when the last connection closes.</p>
+<p>Changes apply on future idle checks. Verify the timer and backend in Solo’s sandbox information. An individual session can choose <strong>Never auto-reclaim</strong> or <strong>Keep running</strong>, depending on the surface. Release Docker and Kubernetes environments by stopping, closing, or cancelling. YAML: <code>sandbox.idle_ttl_minutes</code>.</p>
+<h2 id="sandbox-capacity">Maximum active sandboxes</h2>
+<p><strong>Default 15. Minimum 1.</strong> Shared across all purposes and backends. Creating, running, and releasing sandboxes occupy slots. Reaching the limit restricts new sandboxes and restores, and new workflow runs can queue. This value also supplies the workflow concurrency limit.</p>
+<p>Check the usage and limit after saving. Lowering the limit allows existing work to continue and holds new requests until there is room. YAML: <code>sandbox.max_sandboxes</code>.</p>
+<h2 id="sandbox-memory">Sandbox memory override</h2>
+<p><strong>Default 0, following the gateway or template.</strong> A nonzero value of at least 1024 MiB applies to newly created sandboxes. Docker and Kubernetes values must fit their gateway limit. On E2B the value must match the selected template. The agent, builds, and browser share that environment’s memory.</p>
+<p>Create a new sandbox to verify the resources. Enter <code>0</code> to clear the override. YAML: <code>sandbox.sandbox_memory_mb</code>. The <code>GRASP_SANDBOX_MEMORY_MB</code> environment variable locks the field.</p>
+<h2 id="agent-idle">Agent inactivity timeout</h2>
+<p><strong>Default 20 minutes. UI range 2–120 minutes.</strong> With no output, CPU activity, or disk activity for this interval, the system first attempts to resume. If the agent remains inactive, it ends that turn. A change applies starting on the next turn.</p>
+<p>Check the run details for a turn that ended because of inactivity. Canvas node duration and sandbox readiness are separate limits. YAML <code>sandbox.chat_idle_timeout_seconds</code> and environment variable <code>GRASP_CHAT_IDLE_SEC</code> use seconds.</p>
+<h2 id="workspace-brand">Workspace and branding</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workspace name and description</td>
+<td>Change the workspace’s display information.</td>
+</tr>
+<tr>
+<td>Unknown model display name</td>
+<td>Changes the label in usage reports, chart legends, and run details. Up to 64 characters. Blank restores the default label. Recorded usage retains its original attribution.</td>
+</tr>
+<tr>
+<td>Product name</td>
+<td>Admins can change the name shared by the sidebar and application home. Up to 40 characters. Blank uses Grasp.</td>
+</tr>
+<tr>
+<td>Home subtitle</td>
+<td>Admins can change the subtitle on the application home page. Up to 80 characters. Blank uses the default for the current language.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use the <a href="/en/help/configuration-reference/">Configuration index</a> for deployment keys and <a href="/en/help/configuration/">Deployment and configuration</a> for gateway and backend behavior.</p>
+</article>
+      <p class="doc-edit"><a href="https://github.com/cocofhu/grasp/edit/main/docs/content/en/help/settings.md">Edit on GitHub</a></p>
+      <nav class="doc-next" aria-label="Browse documentation">
+    <a href="/en/help/repositories/"><span>Previous</span><strong>Repositories and Git access</strong></a><a href="/en/help/local-ide/"><span>Next</span><strong>Local IDE</strong></a>
+  </nav>
+    </main>
+    <nav class="doc-outline" aria-label="On this page"><p>On this page</p><ul><li class="outline-level-2"><a href="#sandbox-idle">Sandbox idle reclaim</a></li><li class="outline-level-2"><a href="#sandbox-capacity">Maximum active sandboxes</a></li><li class="outline-level-2"><a href="#sandbox-memory">Sandbox memory override</a></li><li class="outline-level-2"><a href="#agent-idle">Agent inactivity timeout</a></li><li class="outline-level-2"><a href="#workspace-brand">Workspace and branding</a></li></ul></nav>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand" href="/en/">
+    <img src="/assets/logo-mark.svg" alt="" width="34" height="34">Grasp
+  </a><p>Open source · MIT license</p></div>
+      <nav aria-label="Help center">
+        <a href="/en/help/">Help center</a>
+        <a href="/en/guide/quick-start/">Quick start</a>
+        <a href="/en/help/configuration/">Configuration reference</a>
+        
+        <a href="https://github.com/cocofhu/grasp">Source code</a>
+      </nav>
+    </div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-label"
+    data-index="/en/help/search-index.json" data-empty="No matches. Try a shorter phrase or a configuration key." data-error="Search is temporarily unavailable. You can still browse the documentation.">
+    <div class="search-dialog__field">
+      <span class="search-icon" aria-hidden="true"></span>
+      <label class="sr-only" id="search-label" for="doc-search">Search docs</label>
+      <input id="doc-search" type="search" autocomplete="off" spellcheck="false"
+        role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false"
+        placeholder="Find a feature, setting, or error">
+      <button class="key-button" type="button" data-search-close aria-label="Close">Esc</button>
+    </div>
+    <p class="search-dialog__status" data-search-status role="status" hidden></p>
+    <ul id="search-results" role="listbox" aria-label="Search docs"></ul>
+    <div class="search-dialog__keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Select <kbd>↵</kbd> Open</div>
+  </dialog>
+</body>
+</html>
